@@ -1,0 +1,11 @@
+<mat-grid-list cols="4">
+    <mat-grid-tile
+        *ngFor="let home of homes"
+        [colspan]="1"
+        [rowspan]="1">
+      <mat-card class="card">
+          {{home.name}}
+      </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
+  

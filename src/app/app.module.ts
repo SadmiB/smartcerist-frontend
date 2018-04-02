@@ -12,6 +12,8 @@ import { SigninComponent } from './components/signin/signin.component';
 import { NavComponent } from './components/nav/nav.component';
 import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeService } from './services/home.service';
+import { HomeComponent } from './components/home/home.component';
 
 
 
@@ -23,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     SignupComponent,
     SigninComponent,
     NavComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, HomeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
