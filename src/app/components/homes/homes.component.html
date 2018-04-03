@@ -1,0 +1,16 @@
+<mat-grid-list cols="4">
+    <mat-grid-tile *ngFor="let home of homes">
+      <mat-card class="card" (click)='showRooms()'>
+      <mat-card-header>
+          <mat-card-title><mat-icon>home</mat-icon></mat-card-title>
+          <mat-card-subtitle>{{home.name}}</mat-card-subtitle>
+      </mat-card-header>
+      <img src="../../../assets/img/flat-home.png"  width='60%' height='50%' alt="home image">
+      <mat-card-actions>
+        <button mat-icon-button><mat-icon>delete</mat-icon></button>
+        <button mat-icon-button><mat-icon>settings</mat-icon></button>
+      </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
+  

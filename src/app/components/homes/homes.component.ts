@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeService } from '../../services/home.service';
+import { HomesService } from '../../services/homes.service';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-homes',
+  templateUrl: './homes.component.html',
+  styleUrls: ['./homes.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomesComponent implements OnInit {
 
   homes;
   tokenHeader;
 
-  constructor(private homeService: HomeService,
+  constructor(private homeService: HomesService,
     private auth: AuthService,
     private snackBar: MatSnackBar) {
     this.tokenHeader = auth.tokenHeader;
@@ -36,4 +36,9 @@ export class HomeComponent implements OnInit {
       this.handleError(error, 'Unable to retrieve homes!');
     });
   }
+
+  showRooms() {
+    console.log('showing rooms..');
+  }
+
 }

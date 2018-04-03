@@ -1,22 +1,28 @@
 <mat-sidenav-container class="container">
     <mat-sidenav mode='side' opened='true' id="sidenav">
 
-      <mat-button-toggle-group [vertical]='true' value='homes'>
+      <mat-button-toggle-group #group='matButtonToggleGroup' [vertical]='true' value='homes'>
         <mat-button-toggle value='homes'>
           <mat-icon>home</mat-icon>    Homes
-        </mat-button-toggle><br>
+        </mat-button-toggle>
+        <mat-button-toggle value='rooms'>
+            <mat-icon>crop_square</mat-icon>    Rooms
+          </mat-button-toggle>
         <mat-button-toggle  value='users'>
           <mat-icon>people</mat-icon>   Users
-        </mat-button-toggle><br>
+        </mat-button-toggle>
         <mat-button-toggle value='servers'>
-          <mat-icon>computer</mat-icon>   Servers
-        </mat-button-toggle><br>
+          <mat-icon>settings_system_daydream</mat-icon>   Servers
+        </mat-button-toggle>
+        <mat-button-toggle value='notifications'>
+            <mat-icon>notifications</mat-icon>Notifications
+          </mat-button-toggle>
         <mat-button-toggle value='history'>
           <mat-icon>history</mat-icon>   History
-        </mat-button-toggle><br>
+        </mat-button-toggle>
         <mat-button-toggle value='analytics'>
           <mat-icon>assessment</mat-icon>   Analytics
-        </mat-button-toggle><br>
+        </mat-button-toggle>
         <mat-button-toggle value='settings'>
           <mat-icon>settings</mat-icon>   Settings
         </mat-button-toggle>
@@ -24,9 +30,15 @@
 
     </mat-sidenav>
     <mat-sidenav-content>
-      <br>      
-        <app-home></app-home>
-      <br>  
+      <div [ngSwitch]="group.value">
+          <app-homes *ngSwitchCase="'homes'"></app-homes>
+          <app-rooms *ngSwitchCase="'rooms'"></app-rooms>
+          <app-users *ngSwitchCase="'users'"></app-users>
+          <app-servers *ngSwitchCase="'servers'"></app-servers>
+          <app-notifications *ngSwitchCase="'notifications'"></app-notifications>
+          <app-analytics *ngSwitchCase="'analytics'"></app-analytics>
+          <app-settings *ngSwitchCase="'settings'"></app-settings>          
+      </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
 

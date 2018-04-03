@@ -12,8 +12,14 @@ import { SigninComponent } from './components/signin/signin.component';
 import { NavComponent } from './components/nav/nav.component';
 import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeService } from './services/home.service';
-import { HomeComponent } from './components/home/home.component';
+import { HomesService } from './services/homes.service';
+import { HomesComponent } from './components/homes/homes.component';
+import { UsersComponent } from './components/users/users.component';
+import { ServersComponent } from './components/servers/servers.component';
+import { RoomsComponent } from './components/rooms/rooms.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
 
 
 
@@ -25,7 +31,13 @@ import { HomeComponent } from './components/home/home.component';
     SignupComponent,
     SigninComponent,
     NavComponent,
-    HomeComponent,
+    HomesComponent,
+    UsersComponent,
+    ServersComponent,
+    RoomsComponent,
+    NotificationsComponent,
+    SettingsComponent,
+    AnalyticsComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +48,7 @@ import { HomeComponent } from './components/home/home.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [AuthService, HomeService],
+  providers: [AuthService, HomesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
