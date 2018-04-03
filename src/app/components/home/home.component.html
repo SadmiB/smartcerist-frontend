@@ -4,7 +4,14 @@
         [colspan]="1"
         [rowspan]="1">
       <mat-card class="card">
-          {{home.name}}
+      <mat-card-header>
+          <mat-card-title>
+                <mat-icon>home</mat-icon>
+          </mat-card-title>
+      </mat-card-header>
+        <mat-card-content>
+          <h4>{{home.name}}</h4>
+        </mat-card-content>
       </mat-card>
     </mat-grid-tile>
 </mat-grid-list>

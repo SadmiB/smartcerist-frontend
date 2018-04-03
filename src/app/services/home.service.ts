@@ -8,8 +8,8 @@ export class HomeService {
 
   BASE_URL = 'http://localhost:3000';
 
-  getHomes(userId) {
-    return this.httpClient.get( this.BASE_URL + '/' + userId + '/homes');
+  getHomes(tokenHeader) {
+    return this.httpClient.get(this.BASE_URL + '/user/homes', {headers: tokenHeader});
   }
 
 }

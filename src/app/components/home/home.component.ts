@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../../services/home.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +8,12 @@ import { HomeService } from '../../services/home.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  
-  homes;
 
-  constructor(private homeService: HomeService) { 
-    
+  homes;
+  tokenHeader;
+
+  constructor(private homeService: HomeService, private auth: AuthService) {
+    this.tokenHeader = auth.tokenHeader;
   }
 
   ngOnInit() {
@@ -19,7 +21,7 @@ export class HomeComponent implements OnInit {
   }
 
   getHomes() {
-    this.homeService.getHomes('5ac1f194ac9f1636339b382b')
+    this.homeService.getHomes(this.tokenHeader)
     .subscribe( res => {
       this.homes = res;
       console.log(this.homes);
