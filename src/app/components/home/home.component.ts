@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../../services/home.service';
 import { AuthService } from '../../services/auth.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,9 @@ export class HomeComponent implements OnInit {
   homes;
   tokenHeader;
 
-  constructor(private homeService: HomeService, private auth: AuthService) {
+  constructor(private homeService: HomeService,
+    private auth: AuthService,
+    private snackBar: MatSnackBar) {
     this.tokenHeader = auth.tokenHeader;
   }
 
@@ -20,11 +23,17 @@ export class HomeComponent implements OnInit {
     this.getHomes();
   }
 
+  private handleError(error, message) {
+    console.error(error);
+    this.snackBar.open(message, 'close', {duration: 3000});
+  }
+
   getHomes() {
     this.homeService.getHomes(this.tokenHeader)
     .subscribe( res => {
       this.homes = res;
-      console.log(this.homes);
+    }, error => {
+      this.handleError(error, 'Unable to retrieve homes!');
     });
   }
 }

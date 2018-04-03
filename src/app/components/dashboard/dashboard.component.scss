@@ -8,6 +8,10 @@
     width: 200px;
 }
 
-#sidenav > button {
+mat-button-toggle-group > mat-button-toggle {
     width: 200px;
+}
+
+mat-button-toggle-group {
+    height: 700px;
 }
