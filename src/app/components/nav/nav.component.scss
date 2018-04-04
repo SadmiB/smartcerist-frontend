@@ -1,7 +1,35 @@
-mat-toolbar {
-    box-shadow: 0 7px 14px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-#myspan {
-    flex: 1 1 auto;
+.left *{
+    color: #fff;
 }
+
+.right{
+    display: flex;
+}
+
+.right button{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;    
+    margin-right: 25px;
+}
+
+
+
+.right mat-icon{
+    font-size: 20px;
+}
+
+.router-active{
+    background-color: rgba(255,255,255,.1);
+    padding: 15px 18px 15px 15px;
+    border-radius: 3px;
+}
+  

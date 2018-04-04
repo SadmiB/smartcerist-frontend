@@ -1,13 +1,41 @@
 .input {
-    width: 350px;
+    width: 290px;
 }
 
 #card {
-    width: 360px;
+    width: 295px;
+    height: inherit;
     margin: auto;
-    margin-top: 5%;
+    margin-top: 3%;
+    border-radius: 6px;
 }
 
 #signin-btn {
- width: 350px;
+    width: 290px;
+}
+
+.card-header {
+    position: relative;
+    overflow: hidden;
+    top: -40px;
+    width: 80%;
+    padding: 25px;
+    border-radius: 5px;
+    background: #37474f;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(158, 154, 155, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.card-header h4{
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 25px;
+    margin-top: 5px;
+}
+
+hr {
+    width: 100px;
+    align-self: center;
 }

@@ -1,15 +1,20 @@
+<div class="background"></div>  
 <mat-card id='card'>
-  <mat-card-title>
-    Sign In
+  <mat-card-title class="card-header">
+    <h4>Sign In</h4>
   </mat-card-title>
   <mat-card-content>
       <mat-form-field class="input">
         <input [(ngModel)]='loginData.email' matInput placeholder="Email" type="email">
+        
       </mat-form-field>
       <mat-form-field class="input">
-        <input  [(ngModel)]='loginData.password'matInput placeholder="Password" type="password">
+        <input [(ngModel)]='loginData.password'matInput placeholder="Password" type="password">
       </mat-form-field>
       <br><br>
       <button id='signin-btn' mat-raised-button color='primary' (click)='signin()'>Login</button>
+      <br>
+      <hr>    
+      <button id='signin-btn' mat-raised-button color='#fff'>Google</button>
   </mat-card-content>
 </mat-card>

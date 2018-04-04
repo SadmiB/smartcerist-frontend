@@ -1,8 +1,11 @@
-<mat-toolbar color='primary'>
-  <button mat-button >SMARTCERIST</button>
-  <span id="myspan"></span>
-    <button *ngIf="!auth.isAuthenticated" mat-button routerLink='/signin'>Signin</button>
-    <button *ngIf="!auth.isAuthenticated" mat-button routerLink='/signup'>Signup</button>
-    <button *ngIf="auth.isAuthenticated" mat-button routerLink='/dashboard'>Welcome {{auth.name}}</button>
-    <button *ngIf="auth.isAuthenticated" mat-button (click)="auth.signout()">Signout</button>
-</mat-toolbar>
+<header>
+  <div class="left">
+    <button mat-button ><mat-icon>fiber_manual_record</mat-icon> SMARTCERIST</button>
+  </div>
+  <div class="right">
+  <button *ngIf="!auth.isAuthenticated" routerLinkActive="router-active" mat-button routerLink='/signin'><mat-icon>fingerprint</mat-icon> Signin</button>
+  <button *ngIf="!auth.isAuthenticated"  routerLinkActive="router-active" mat-button routerLink='/signup'><mat-icon>person_add</mat-icon>  Signup</button>
+  <button *ngIf="auth.isAuthenticated" routerLinkActive="router-active" mat-button routerLink='/dashboard'><mat-icon>person</mat-icon> Welcome {{auth.name}}</button>
+  <button *ngIf="auth.isAuthenticated" routerLinkActive="router-active" mat-button (click)="auth.signout()"><mat-icon>exit_to_app</mat-icon> Signout</button>
+  </div>
+</header>
