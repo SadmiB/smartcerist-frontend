@@ -19,7 +19,9 @@ import { ServersComponent } from './components/servers/servers.component';
 import { RoomsComponent } from './components/rooms/rooms.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { AnalyticsComponent } from './analytics/analytics.component';
+import { AnalyticsComponent } from './components/analytics/analytics.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HistoryComponent } from './history/history.component';
 
 
 
@@ -38,6 +40,8 @@ import { AnalyticsComponent } from './analytics/analytics.component';
     NotificationsComponent,
     SettingsComponent,
     AnalyticsComponent,
+    HeaderComponent,
+    HistoryComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,7 +5,5 @@
   <div class="right">
   <button *ngIf="!auth.isAuthenticated" routerLinkActive="router-active" mat-button routerLink='/signin'><mat-icon>fingerprint</mat-icon> Signin</button>
   <button *ngIf="!auth.isAuthenticated"  routerLinkActive="router-active" mat-button routerLink='/signup'><mat-icon>person_add</mat-icon>  Signup</button>
-  <button *ngIf="auth.isAuthenticated" routerLinkActive="router-active" mat-button routerLink='/dashboard'><mat-icon>person</mat-icon> Welcome {{auth.name}}</button>
-  <button *ngIf="auth.isAuthenticated" routerLinkActive="router-active" mat-button (click)="auth.signout()"><mat-icon>exit_to_app</mat-icon> Signout</button>
   </div>
 </header>
