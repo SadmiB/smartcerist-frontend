@@ -21,7 +21,7 @@ import { NotificationsComponent } from './components/notifications/notifications
 import { SettingsComponent } from './components/settings/settings.component';
 import { AnalyticsComponent } from './components/analytics/analytics.component';
 import { HeaderComponent } from './components/header/header.component';
-import { HistoryComponent } from './history/history.component';
+import { HistoryComponent } from './components/history/history.component';
 
 
 
