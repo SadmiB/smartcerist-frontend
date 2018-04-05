@@ -20,6 +20,10 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: 'dashboard', component: DashboardComponent, children: [
     {path: 'homes', component: HomesComponent},
+    {path: 'homes/rooms', component: RoomsComponent},
+    {path: 'homes/users', component: UsersComponent},
+    {path: 'homes/rooms/users', component: UsersComponent},
+    {path: 'homes/servers', component: ServersComponent},
     {path: 'rooms', component: RoomsComponent},
     {path: 'users', component: UsersComponent},
     {path: 'servers', component: ServersComponent},
