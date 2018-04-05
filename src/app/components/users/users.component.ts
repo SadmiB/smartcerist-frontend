@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material';
 import {MatTableModule} from '@angular/material/table';
-=======
 import { MatTableDataSource } from '@angular/material';
->>>>>>> upstream/master
 
 @Component({
   selector: 'app-users',
@@ -14,8 +11,6 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-
-<<<<<<< HEAD
   users ;
   user;
   tokenHeader;
@@ -25,18 +20,13 @@ export class UsersComponent implements OnInit {
     private snackBar: MatSnackBar) {
     this.tokenHeader = auth.tokenHeader;
   } 
-=======
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  constructor() { }
->>>>>>> upstream/master
 
   ngOnInit() {
     this.getHomeUsers(this.homeId);
   }
-
-<<<<<<< HEAD
   private handleError(error, message) {
     console.error(error);
     this.snackBar.open(message, 'close', {duration: 3000});
@@ -59,14 +49,12 @@ export class UsersComponent implements OnInit {
       this.handleError(error, 'Unable to retrieve User');
     });
   }
-=======
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
 
->>>>>>> upstream/master
 }
 
 export interface Element {
