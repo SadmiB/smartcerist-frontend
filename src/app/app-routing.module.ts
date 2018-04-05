@@ -9,7 +9,7 @@ import { RoomsComponent } from './components/rooms/rooms.component';
 import { UsersComponent } from './components/users/users.component';
 import { ServersComponent } from './components/servers/servers.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
-import { HistoryComponent } from './history/history.component';
+import { HistoryComponent } from './components/history/history.component';
 import { AnalyticsComponent } from './components/analytics/analytics.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { HomesComponent } from './components/homes/homes.component';
