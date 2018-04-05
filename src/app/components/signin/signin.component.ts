@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -13,7 +14,11 @@ export class SigninComponent implements OnInit {
     password: ''
   };
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private router: Router) {
+    if (auth.isAuthenticated) {
+      this.router.navigate(['/dashboard/homes']);
+    }
+  }
 
   ngOnInit() {
   }

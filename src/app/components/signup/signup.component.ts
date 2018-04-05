@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +12,12 @@ export class SignupComponent implements OnInit {
 
   form;
 
-  constructor(private formBuilder: FormBuilder, private auth:AuthService) {
+  constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router) { 
+
+    if (auth.isAuthenticated) {
+      this.router.navigate(['/dashboard/homes']);
+    }
+
     this.form = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
