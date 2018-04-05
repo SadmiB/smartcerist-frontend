@@ -12,7 +12,7 @@ import { MatTableDataSource } from '@angular/material';
 })
 export class UsersComponent implements OnInit {
   users ;
-  user;
+  //user;
   tokenHeader;
   homeId="5ab36a8a8a83e61bbc8fc3e9";
   constructor(private userService : UserService,
@@ -25,35 +25,31 @@ export class UsersComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log("this.users1");
-    this.getHomeUsers(this.homeId);
-    console.log("this.users2");
+    this.getUsersHome(this.homeId);
   }
   private handleError(error, message) {
     console.error(error);
     this.snackBar.open(message, 'close', {duration: 3000});
   }
 
-  getHomeUsers(homeId) {
+  getUsersHome(homeId) {
     this.userService.getHomeUsers(this.tokenHeader,homeId)
-    .subscribe( res => {
-      this.users = res;
-      console.log("this.users");
-      console.log(this.users);
+    .subscribe( (res:any) => {
+      this.dataSource = new MatTableDataSource(res);
     }, error => {
       this.handleError(error, 'Unable to retrieve users!');
     });  
-    //this.dataSource = new MatTableDataSource(this.users);
+    console.log(this.dataSource)
   }
 
-  getUser(userId){
+/*  getUser(userId){
     this.userService.getUser(this.tokenHeader,userId)
     .subscribe(res => {
       this.user=res;
     }, error => {
       this.handleError(error, 'Unable to retrieve User');
     });
-  }
+  }*/
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
