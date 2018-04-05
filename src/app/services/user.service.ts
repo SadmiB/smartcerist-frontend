@@ -8,7 +8,7 @@ export class UserService {
 
   constructor(private httpClient : HttpClient) { }
 
-  getUsers(tokenHeader, homeId){
+  getHomeUsers(tokenHeader, homeId){
     return this.httpClient.get(this.BASE_URL + '/' + homeId +'/users',{headers: tokenHeader});
   }
 
