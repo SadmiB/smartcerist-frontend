@@ -20,6 +20,7 @@ import { RoomsComponent } from './components/rooms/rooms.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
+import { UserService } from './services/user.service';
 
 
 
@@ -48,7 +49,7 @@ import { AnalyticsComponent } from './analytics/analytics.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [AuthService, HomesService],
+  providers: [AuthService, HomesService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

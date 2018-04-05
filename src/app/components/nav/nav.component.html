@@ -1,8 +1,8 @@
 <mat-toolbar color='primary'>
   <button mat-button >SMARTCERIST</button>
   <span id="myspan"></span>
-    <button *ngIf="!auth.isAuthenticated" mat-button routerLink='/signin'>Signin</button>
-    <button *ngIf="!auth.isAuthenticated" mat-button routerLink='/signup'>Signup</button>
+    <button *ngIf="!auth.isAuthenticated" mat-button routerLink='/signin'><i class="material-icons">fingerprint</i><p>Signin</p></button>
+    <button *ngIf="!auth.isAuthenticated" mat-button routerLink='/signup'><i class="material-icons">person_add</i>Signup</button>
     <button *ngIf="auth.isAuthenticated" mat-button routerLink='/dashboard'>Welcome {{auth.name}}</button>
     <button *ngIf="auth.isAuthenticated" mat-button (click)="auth.signout()">Signout</button>
 </mat-toolbar>
