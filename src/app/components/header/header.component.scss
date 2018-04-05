@@ -1,0 +1,23 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header h4{
+    color: #555;
+}
+
+.left-part, .right-part{
+    display: flex;
+    align-items: center;
+}
+
+.right-part > button {
+    margin: 8px;
+}
+
+.left-part {
+    margin: 8px;;
+}
+  

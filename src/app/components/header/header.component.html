@@ -1,0 +1,14 @@
+<div class="header">
+  <div class="left-part">
+    <h4>{{ title }}</h4>
+  </div>
+  <div class="right-part">
+    <mat-form-field>
+      <input matInput placeholder="Search" type="search">
+    </mat-form-field>
+    <button matTooltip="Search" mat-mini-fab color='#fff'><mat-icon>search</mat-icon></button>
+    <button matTooltip="Notifications" mat-icon-button><mat-icon>notifications</mat-icon></button>
+    <button matTooltip="{{auth.name}}" mat-icon-button><mat-icon>person</mat-icon></button>
+    <button matTooltip="Signout" mat-icon-button (click)="auth.signout()"><mat-icon>exit_to_app</mat-icon></button>    
+  </div>
+</div>

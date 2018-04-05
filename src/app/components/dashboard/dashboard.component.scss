@@ -1,17 +1,32 @@
 .container {
   width: 100%;
   height: 800px;
-  margin: 0px 5px 0px 5px;
 }
 
 #sidenav {
-    width: 200px;
+    width: 230px;
+    background: #37474f;
+    color: white;
 }
 
-mat-button-toggle-group > mat-button-toggle {
+div > button {
+    width: 230px;
+}
+
+mat-button-toggle-group > .mat-button-toggle {
     width: 200px;
+    color: white;
+    border-radius: 6px;
+    align-self: center;
+    height: 40px;
+}
+
+.mat-button-toggle-checked {
+    background:crimson;
+    
 }
 
 mat-button-toggle-group {
     height: 700px;
+    width: 100%;
 }

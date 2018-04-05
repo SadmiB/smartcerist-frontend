@@ -1,14 +1,41 @@
 .card {
-    width: 80%;
-    height: 80%;
-    margin: 5px;
-    cursor: pointer;
+    position: relative;
+    width: 100%;
+    padding: 15px;
+    margin: 10px;
+    cursor: pointer;  
+    border-radius: 5%;
 }
+
+.tile {
+    height: 40%;
+}
+
+.image-card {
+    position: relative;
+    width: 100%;
+    margin: 25px 0;
+    padding: 15px;
+  }
 
 .card > mat-card-actions > button {
     float: right;
 }
 
-.card img {
-    align-content: center;
-}
+
+.header {
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    top: -40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}   
+  
+.header img{
+    position: relative;
+    max-width: 100%;
+    border-radius: 6px;
+  }
