@@ -7,28 +7,28 @@
     <br>
    
     <mat-button-toggle-group #group='matButtonToggleGroup' [vertical]='true' value='homes'>
-      <mat-button-toggle value='homes'>
+      <mat-button-toggle value='homes' routerLink='homes' routerLinkActive>
         <mat-icon>home</mat-icon> Homes
       </mat-button-toggle>
-      <mat-button-toggle value='rooms'>
+      <mat-button-toggle value='rooms' routerLink='rooms' routerLinkActive>
         <mat-icon>crop_square</mat-icon> Rooms
       </mat-button-toggle>
-      <mat-button-toggle value='users'>
+      <mat-button-toggle value='users' routerLink='users' routerLinkActive>
         <mat-icon>people</mat-icon> Users
       </mat-button-toggle>
-      <mat-button-toggle value='servers'>
+      <mat-button-toggle value='servers' routerLink='servers' routerLinkActive>
         <mat-icon>settings_system_daydream</mat-icon> Servers
       </mat-button-toggle>
-      <mat-button-toggle value='notifications'>
+      <mat-button-toggle value='notifications' routerLink='notifications' routerLinkActive>
         <mat-icon>notifications</mat-icon>Notifications
       </mat-button-toggle>
-      <mat-button-toggle value='history'>
+      <mat-button-toggle value='history' routerLink='history' routerLinkActive>
         <mat-icon>history</mat-icon> History
       </mat-button-toggle>
-      <mat-button-toggle value='analytics'>
+      <mat-button-toggle value='analytics' routerLink='analytics' routerLinkActive>
         <mat-icon>assessment</mat-icon> Analytics
       </mat-button-toggle>
-      <mat-button-toggle value='settings'>
+      <mat-button-toggle value='settings' routerLink='settings' routerLinkActive>
         <mat-icon>settings</mat-icon> Settings
       </mat-button-toggle>
     </mat-button-toggle-group>
@@ -36,22 +36,7 @@
   </mat-sidenav>
   <mat-sidenav-content>
 
-    <div [ngSwitch]="group.value">
-      <app-header *ngSwitchCase="'homes'" title="Homes" search='false'></app-header > 
-      <app-header *ngSwitchCase="'rooms'" title="Rooms" search='false'></app-header > 
-      <app-header *ngSwitchCase="'users'" title="Users" search='false'></app-header > 
-      <app-header *ngSwitchCase="'servers'" title="Servers" search='false'></app-header > 
-      <app-header *ngSwitchCase="'notifications'" title="Notifications" search='false'></app-header > 
-      <app-header *ngSwitchCase="'analytics'" title="Analytics" search='false'></app-header > 
-      <app-header *ngSwitchCase="'settings'" title="Settings" search='false'></app-header > 
-        
-      <app-homes *ngSwitchCase="'homes'"></app-homes>
-      <app-rooms *ngSwitchCase="'rooms'"></app-rooms>
-      <app-users *ngSwitchCase="'users'"></app-users>
-      <app-servers *ngSwitchCase="'servers'"></app-servers>
-      <app-notifications *ngSwitchCase="'notifications'"></app-notifications>
-      <app-analytics *ngSwitchCase="'analytics'"></app-analytics>
-      <app-settings *ngSwitchCase="'settings'"></app-settings>
-    </div>
+    <router-outlet></router-outlet>
+  
   </mat-sidenav-content>
 </mat-sidenav-container>

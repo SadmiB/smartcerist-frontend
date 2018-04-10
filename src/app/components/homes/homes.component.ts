@@ -37,8 +37,14 @@ export class HomesComponent implements OnInit {
     });
   }
 
-  showRooms() {
-    console.log('showing rooms..');
+  deleteHome(homeId) {
+    console.log('comp delete home..');
+    this.homeService.deleteHome(homeId, this.tokenHeader)
+    .subscribe(
+        res => res
+    , error => {
+      this.handleError(error, 'Unable to delete home!');
+    });
   }
 
 }

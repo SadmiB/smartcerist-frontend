@@ -68,7 +68,7 @@ export class AuthService {
     }
     localStorage.setItem(this.TOKEN_KEY, authResponse.token);
     localStorage.setItem(this.NAME_KEY, authResponse.firstName);
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/dashboard/homes']);
   }
 
 }

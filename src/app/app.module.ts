@@ -24,6 +24,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { HistoryComponent } from './history/history.component';
 import { UserService } from './services/user.service';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { RoomsService } from './services/rooms.service';
+import { HomeComponent } from './components/home/home.component';
+
 
 
 
@@ -44,6 +47,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     AnalyticsComponent,
     HeaderComponent,
     HistoryComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     HttpClientModule,
     MatPaginatorModule,
   ],
-  providers: [AuthService, HomesService, UserService],
+
+  providers: [AuthService, HomesService,RoomsService, UserService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
