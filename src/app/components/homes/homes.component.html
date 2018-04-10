@@ -1,7 +1,7 @@
-<app-header title="Homes" search='true'></app-header > 
-<mat-grid-list cols="4" >
+<app-header back="false" title="Homes" search="true"></app-header > 
+<mat-grid-list cols="3" >
   <mat-grid-tile *ngFor="let home of homes" class="tile">
-    <mat-card class="card">
+    <mat-card class="card" [routerLink]="[home._id, 'rooms']">
       <mat-card-title class="header">
         <img src="../../../assets/img/card-1.jpeg" alt="home image">
       </mat-card-title>

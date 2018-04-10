@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -8,12 +9,17 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  @Input() back: boolean;
   @Input() title: string;
   @Input() search: boolean;
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private location: Location) { }
 
   ngOnInit() {
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }

@@ -11,12 +11,6 @@
     height: 40%;
 }
 
-.image-card {
-    position: relative;
-    width: 100%;
-    margin: 25px 0;
-    padding: 15px;
-  }
 
 .card > mat-card-actions > button {
     float: right;
@@ -38,4 +32,4 @@
     position: relative;
     max-width: 100%;
     border-radius: 6px;
-  }
+}

@@ -1,5 +1,6 @@
 <div class="header">
   <div class="left-part">
+    <button *ngIf="back" (click)='goBack()' mat-mini-fab  color='#fff'><mat-icon>arrow_back</mat-icon></button>
     <h4>{{ title }}</h4>
   </div>
   <div class="right-part">

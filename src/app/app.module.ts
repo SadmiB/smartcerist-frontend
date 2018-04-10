@@ -22,6 +22,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { AnalyticsComponent } from './components/analytics/analytics.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HistoryComponent } from './components/history/history.component';
+import { RoomsService } from './services/rooms.service';
 
 
 
@@ -52,7 +53,7 @@ import { HistoryComponent } from './components/history/history.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [AuthService, HomesService],
+  providers: [AuthService, HomesService, RoomsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
