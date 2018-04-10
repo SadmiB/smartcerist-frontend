@@ -23,6 +23,7 @@ import { AnalyticsComponent } from './components/analytics/analytics.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HistoryComponent } from './components/history/history.component';
 import { RoomsService } from './services/rooms.service';
+import { HomeComponent } from './components/home/home.component';
 
 
 
@@ -43,6 +44,7 @@ import { RoomsService } from './services/rooms.service';
     AnalyticsComponent,
     HeaderComponent,
     HistoryComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
