@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatPaginator, MatSort } from '@angular/material';
 import {MatTableModule} from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -11,20 +13,25 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  users ;
+  users : MatTableDataSource<any> ;
   //user;
   tokenHeader;
-  homeId="5ab36a8a8a83e61bbc8fc3e9";
+  homeId;
   constructor(private userService : UserService,
     private auth: AuthService,
+    private route : ActivatedRoute,
     private snackBar: MatSnackBar) {
     this.tokenHeader = auth.tokenHeader;
   } 
   displayedColumns = ['firstName', 'lastName', 'email'];
   dataSource ;
-
+  selection = new SelectionModel<Element>(true,[]);
+  
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
+    this.homeId = this.route.snapshot.params.homeId;
     this.getUsersHome(this.homeId);
   }
   private handleError(error, message) {
@@ -39,7 +46,8 @@ export class UsersComponent implements OnInit {
     }, error => {
       this.handleError(error, 'Unable to retrieve users!');
     });  
-    console.log(this.dataSource)
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
 /*  getUser(userId){
@@ -50,6 +58,17 @@ export class UsersComponent implements OnInit {
       this.handleError(error, 'Unable to retrieve User');
     });
   }*/
+  isAllSelected(){
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches

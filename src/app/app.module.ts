@@ -23,7 +23,7 @@ import { AnalyticsComponent } from './components/analytics/analytics.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HistoryComponent } from './history/history.component';
 import { UserService } from './services/user.service';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
@@ -53,6 +53,7 @@ import { UserService } from './services/user.service';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    MatPaginatorModule,
   ],
   providers: [AuthService, HomesService, UserService],
   bootstrap: [AppComponent]
