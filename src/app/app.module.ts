@@ -26,6 +26,7 @@ import { UserService } from './services/user.service';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { RoomsService } from './services/rooms.service';
 import { HomeComponent } from './components/home/home.component';
+import { ServersService } from './services/servers.service';
 
 
 
@@ -60,7 +61,7 @@ import { HomeComponent } from './components/home/home.component';
     MatPaginatorModule,
   ],
 
-  providers: [AuthService, HomesService,RoomsService, UserService],
+  providers: [AuthService, HomesService,RoomsService, UserService, ServersService],
 
   bootstrap: [AppComponent]
 })
