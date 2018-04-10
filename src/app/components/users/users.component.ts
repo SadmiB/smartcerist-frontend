@@ -14,9 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UsersComponent implements OnInit {
   users : MatTableDataSource<any> ;
-  //user;
   tokenHeader;
-  homeId;
   constructor(private userService : UserService,
     private auth: AuthService,
     private route : ActivatedRoute,
@@ -31,8 +29,7 @@ export class UsersComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
-    this.homeId = this.route.snapshot.params.homeId;
-    this.getUsersHome(this.homeId);
+    this.getUsersRoom(this.route.snapshot.params.homeId,this.route.snapshot.params.roomId);
   }
   private handleError(error, message) {
     console.error(error);
@@ -41,6 +38,17 @@ export class UsersComponent implements OnInit {
 
   getUsersHome(homeId) {
     this.userService.getHomeUsers(this.tokenHeader,homeId)
+    .subscribe( (res:any) => {
+      this.dataSource = new MatTableDataSource(res);
+    }, error => {
+      this.handleError(error, 'Unable to retrieve users!');
+    });  
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  getUsersRoom(homeId,roomId) {
+    this.userService.getRoomUsers(this.tokenHeader,homeId,roomId)
     .subscribe( (res:any) => {
       this.dataSource = new MatTableDataSource(res);
     }, error => {
