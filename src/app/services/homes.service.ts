@@ -12,4 +12,9 @@ export class HomesService {
     return this.httpClient.get(this.BASE_URL + '/user/homes', {headers: tokenHeader});
   }
 
+  deleteHome(homeId, tokenHeader) {
+    console.log('serv delete home..');
+    return this.httpClient.delete(this.BASE_URL + '/user/homes/' + homeId, {headers: tokenHeader});
+  }
+
 }

@@ -1,15 +1,15 @@
 <app-header back="false" title="Homes" search="true"></app-header > 
 <mat-grid-list cols="3" >
   <mat-grid-tile *ngFor="let home of homes" class="tile">
-    <mat-card class="card" [routerLink]="[home._id, 'rooms']">
-      <mat-card-title class="header">
+    <mat-card class="card">
+      <mat-card-title class="header" [routerLink]="[home._id, 'rooms']">
         <img src="../../../assets/img/card-1.jpeg" alt="home image">
       </mat-card-title>
       <mat-card-content>
         <p>{{home.name}}</p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-icon-button><mat-icon>delete</mat-icon></button>
+        <button mat-icon-button (click)='deleteHome(home._id)'><mat-icon>delete</mat-icon></button>
         <button mat-icon-button><mat-icon>settings</mat-icon></button>
       </mat-card-actions>
     </mat-card>
