@@ -21,7 +21,7 @@ export class UsersComponent implements OnInit {
     private snackBar: MatSnackBar) {
     this.tokenHeader = auth.tokenHeader;
   } 
-  displayedColumns = ['firstName', 'lastName', 'email'];
+  displayedColumns = ['select','firstName', 'lastName', 'email','manage'];
   dataSource ;
   selection = new SelectionModel<Element>(true,[]);
   
@@ -29,7 +29,8 @@ export class UsersComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
-    this.getUsersRoom(this.route.snapshot.params.homeId,this.route.snapshot.params.roomId);
+    //this.getUsersRoom(this.route.snapshot.params.homeId,this.route.snapshot.params.roomId);
+    this.getUsersHome(this.route.snapshot.params.homeId);
   }
   private handleError(error, message) {
     console.error(error);
@@ -66,16 +67,19 @@ export class UsersComponent implements OnInit {
       this.handleError(error, 'Unable to retrieve User');
     });
   }*/
-  isAllSelected(){
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-  masterToggle() {
-    this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
-  }
+  /** Whether the number of selected elements matches the total number of rows. */
+isAllSelected() {
+  const numSelected = this.selection.selected.length;
+  const numRows = this.dataSource.data.length;
+  return numSelected == numRows;
+}
+
+/** Selects all rows if they are not all selected; otherwise clear selection. */
+masterToggle() {
+  this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
+}
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace

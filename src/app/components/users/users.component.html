@@ -1,10 +1,10 @@
 <app-header title="Users" search='true'></app-header >
 <div class="example-container mat-elevation-z8">
-  <!-- <div class="example-header">
+   <div class="example-header">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
-  </div> -->
+  </div> 
 
   <mat-table #table [dataSource]="dataSource">
    
@@ -15,13 +15,14 @@
                       [indeterminate]="selection.hasValue() && !isAllSelected()">
         </mat-checkbox>
       </mat-header-cell>
-      <mat-cell *matHeaderCellDef="let row">
+      <mat-cell *matCellDef="let row">
         <mat-checkbox (click)="$event.stopPropagation()"
                       (change)="$event ? selection.toggle(row) : null"
                       [checked]="selection.isSelected(row)">
         </mat-checkbox>
       </mat-cell>
     </ng-container>
+    
   
     <ng-container matColumnDef="firstName">
       <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
@@ -40,7 +41,15 @@
       <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="manage">
+      <mat-header-cell *matHeaderCellDef> Edit/Delete </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+          <button mat-icon-button ><mat-icon>settings</mat-icon></button>
+          <button mat-icon-button ><mat-icon>delete</mat-icon></button>
+      </mat-cell>
+    </ng-container>
 
+    
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"
               (click)="selection.toggle(row)" >
