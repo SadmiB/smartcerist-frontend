@@ -27,7 +27,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { RoomsService } from './services/rooms.service';
 import { HomeComponent } from './components/home/home.component';
 import { ServersService } from './services/servers.service';
-
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -49,6 +49,7 @@ import { ServersService } from './services/servers.service';
     HeaderComponent,
     HistoryComponent,
     HomeComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
