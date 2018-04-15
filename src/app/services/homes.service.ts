@@ -11,6 +11,7 @@ export class HomesService {
   getHomes(tokenHeader) {
     return this.httpClient.get(this.BASE_URL + '/user/homes', {headers: tokenHeader});
   }
+  
 
   deleteHome(homeId, tokenHeader) {
     console.log('serv delete home..');
