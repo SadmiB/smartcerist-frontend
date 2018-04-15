@@ -24,6 +24,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { HistoryComponent } from './components/history/history.component';
 import { RoomsService } from './services/rooms.service';
 import { HomeComponent } from './components/home/home.component';
+import { RoomComponent } from './components/room/room.component';
+import { RoomService } from './services/room.service';
 
 
 
@@ -45,6 +47,7 @@ import { HomeComponent } from './components/home/home.component';
     HeaderComponent,
     HistoryComponent,
     HomeComponent,
+    RoomComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,7 @@ import { HomeComponent } from './components/home/home.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [AuthService, HomesService, RoomsService],
+  providers: [AuthService, HomesService, RoomsService, RoomService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -14,6 +14,7 @@ import { AnalyticsComponent } from './components/analytics/analytics.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { HomesComponent } from './components/homes/homes.component';
 import { HomeComponent } from './components/home/home.component';
+import { RoomComponent } from './components/room/room.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard/homes',  pathMatch: 'full'},
@@ -23,6 +24,7 @@ const routes: Routes = [
     {path: 'homes', component: HomesComponent},
     {path: 'homes/:homeId', component: HomeComponent},
     {path: 'homes/:homeId/rooms', component: RoomsComponent},
+    {path: 'homes/:homeId/rooms/:roomId', component: RoomComponent},
     {path: 'homes/:homeId/users', component: UsersComponent},
     {path: 'homes/:homeId/rooms/:roomId/users', component: UsersComponent},
     {path: 'homes/:homeId/servers', component: ServersComponent},

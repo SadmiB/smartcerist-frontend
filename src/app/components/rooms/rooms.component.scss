@@ -1,9 +1,9 @@
 .card {
     position: relative;
     width: 100%;
-    padding: 15px;
+    height: 80px;
+    padding: 16px;
     margin: 8px;
-    cursor: pointer;  
     border-radius: 5%;
 }
 
@@ -16,13 +16,18 @@
 }
 
 .header {
+    position: relative;
+    top: -40px;
     float: left;
     text-align: center;
-    margin: -50px 15px 0 0;
+    box-shadow: rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.2);    
     border-radius: 3px;
     padding: 15px;
     position: relative;
+    cursor: pointer;  
+    overflow: hidden;
 }
+
 
 .header mat-icon {
     font-size: 46px;
@@ -32,4 +37,4 @@
     color: #fff;
     background: linear-gradient(60deg, #0c66a1, #37474f);
     border-radius: 5px;
-  }
+}
