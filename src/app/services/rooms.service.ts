@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { MatSnackBar } from '@angular/material';
+import { Consts } from '../models/Consts';
 
 @Injectable()
 export class RoomsService {
 
-  BASE_URL = 'http://localhost:3000';
+
   tokenHeader;
   rooms;
 
@@ -14,7 +15,7 @@ export class RoomsService {
 
 
   getRooms(homeId, tokenHeader) {
-    return this.httpClient.get(this.BASE_URL + `/user/${homeId}/rooms`, {headers: tokenHeader});
+    return this.httpClient.get(Consts.BASE_URL + `/user/${homeId}/rooms`, {headers: tokenHeader});
   }
 
 }
