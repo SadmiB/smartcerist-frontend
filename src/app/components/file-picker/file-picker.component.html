@@ -1,0 +1,5 @@
+ 
+
+<button mat-raised-button class="btn btn-rose btn-round" type="button" [ngxFilePicker]="readMode" multiple accept="image/*" (readStart)="onReadStart($event)" (filePick)="onFilePicked($event)"
+  (readEnd)="onReadEnd($event)">Browse</button>
+  <br> {{picked.size}} bytes
