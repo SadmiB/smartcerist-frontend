@@ -1,0 +1,35 @@
+.card {
+    position: relative;
+    width: 100%;
+    padding: 15px;
+    margin: 8px;
+    cursor: pointer;  
+    border-radius: 5%;
+}
+
+.tile {
+    height: inherit;
+}
+
+.card > mat-card-actions > button {
+    float: right;
+}
+
+.header {
+    float: left;
+    text-align: center;
+    margin: -50px 15px 0 0;
+    border-radius: 3px;
+    padding: 15px;
+    position: relative;
+}
+
+.header mat-icon {
+    font-size: 46px;
+    line-height: 56px;
+    width: 66px;
+    height: 66px;
+    color: #fff;
+    background: linear-gradient(60deg, #0c66a1, #37474f);
+    border-radius: 5px;
+  }
