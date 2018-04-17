@@ -17,7 +17,6 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RoomComponent } from './components/room/room.component';
 import { UsersByRoomComponent } from './components/users/users-by-room/users-by-room.component';
-import { HomeRoomsComponent } from './components/home-rooms/home-rooms.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard/homes',  pathMatch: 'full'},
@@ -32,7 +31,7 @@ const routes: Routes = [
     {path: 'homes/:homeId/rooms/:roomId/users', component: UsersComponent},
     {path: 'homes/:homeId/servers', component: ServersComponent},
     {path: 'users', component: UsersComponent},
-    {path: 'rooms', component: HomeRoomsComponent},
+    {path: 'rooms', component: RoomsComponent},
     {path: 'roomsUsers', component: UsersByRoomComponent},
     {path: 'servers', component: ServersComponent},
     {path: 'notifications', component: NotificationsComponent},
