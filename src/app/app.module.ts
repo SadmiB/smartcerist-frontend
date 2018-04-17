@@ -31,15 +31,19 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SweetAlertService } from 'angular-sweetalert-service';
 import { FilePickerComponent } from './components/file-picker/file-picker.component';
 import { FileHelpersModule } from 'ngx-file-helpers';
-import { NotificationsService } from './services/notifications.service';
 import { MatMenuModule } from '@angular/material/menu';
-import { EventsService } from './services/events.service';
 import { NotifIconBtnComponent } from './components/notif-icon-btn/notif-icon-btn.component';
 import { HomeUsersComponent } from './components/home-users/home-users.component';
 import { HomeRoomsComponent } from './components/home-rooms/home-rooms.component';
 import { UserPermissionsComponent } from './components/users/users-by-room/room-users/user-permissions/user-permissions.component';
 import { RoomUsersComponent } from './components/users/users-by-room/room-users/room-users.component';
+import { RoomComponent } from './components/room/room.component';
+import { RoomService } from './services/room.service';
 import { UsersByRoomComponent } from './components/users/users-by-room/users-by-room.component';
+import { NotificationsService } from './services/notifications.service';
+import { EventsService } from './services/events.service';
+
+
 
 
 
@@ -68,6 +72,7 @@ import { UsersByRoomComponent } from './components/users/users-by-room/users-by-
     HomeRoomsComponent,
     UserPermissionsComponent,
     UsersByRoomComponent,
+    RoomComponent,
   ],
   imports: [
     BrowserModule,

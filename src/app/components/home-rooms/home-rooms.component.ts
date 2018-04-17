@@ -10,7 +10,7 @@ import { RoomsService } from '../../services/rooms.service';
   styleUrls: ['./home-rooms.component.scss']
 })
 export class HomeRoomsComponent implements OnInit {
-  @Input() homeId;
+  @Input() homeId = "5ab36a8a8a83e61bbc8fc3e9";
   rooms;
   tokenHeader;
 

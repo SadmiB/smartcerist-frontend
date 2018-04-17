@@ -1,8 +1,10 @@
 <app-header back="true" title="Rooms" search="true"></app-header >
-    <mat-tab-group >
+   <mat-tab-group >
       <div *ngFor="let home of connectedUserHomes">
         <mat-tab label="{{home.name}}" >
             <app-home-rooms homeId="{{home._id}}" ></app-home-rooms>
         </mat-tab>
       </div>
-    </mat-tab-group>
+</mat-tab-group>
+
+

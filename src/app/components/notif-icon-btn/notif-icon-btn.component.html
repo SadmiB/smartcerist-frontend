@@ -1,7 +1,7 @@
 <button mat-icon-button class="msg-btn" [matMenuTriggerFor]="menu">
     <span>{{ events.length }}</span>
     <i class="material-icons icon-btn">{{ icon }}</i>
-  </button>
+</button>
 
   <mat-menu #menu="matMenu" >
     <div *ngFor="let event of events">  
