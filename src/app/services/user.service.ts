@@ -5,7 +5,6 @@ import { Consts } from '../models/Consts';
 @Injectable()
 export class UserService {
 
-
   constructor(private httpClient: HttpClient) { }
 
   getHomeUsers(tokenHeader, homeId) {
@@ -50,7 +49,5 @@ export class UserService {
 
   addUser(tokenHeader,userId){
     return this.httpClient.post(Consts.BASE_URL + '/users', {headers:tokenHeader});
-  }
-
-  
+}  
 }

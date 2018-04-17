@@ -9,7 +9,6 @@ export class HomesService {
 
 
   getHomes(tokenHeader) {
-    console.log(Consts.BASE_URL)
     return this.httpClient.get(Consts.BASE_URL + '/user/homes', {headers: tokenHeader});
   }
 

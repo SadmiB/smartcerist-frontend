@@ -1,5 +1,9 @@
 <app-header back="true" title='Room details' search="false"></app-header>
 
+<<<<<<< HEAD
+=======
+<!--
+>>>>>>> ae33fc5dde3084793413457e756b214a9ed58c67
 <mat-card *ngFor="let obj of objects">
     <mat-card-header>
         <mat-card-title>{{obj.name}}</mat-card-title>
@@ -11,4 +15,58 @@
     <mat-card-actions>
         <button mat-button>Ok</button>
     </mat-card-actions>
+<<<<<<< HEAD
 </mat-card>
+=======
+</mat-card>
+
+-->
+
+
+<mat-card class="card">
+    <mat-card-header>
+        <mat-card-title>
+            
+            <h4><mat-icon> lightbulb_outline </mat-icon>Led3: </h4>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <h4 *ngIf="responseLed==='1'">Status: On</h4>
+        <h4 *ngIf="responseLed==='0'">Status: Off</h4>
+        <button *ngIf="responseLed" mat-raised-button color="primary" (click)="putLed(responseLed)">Toggle</button>    
+    </mat-card-content>
+</mat-card>
+
+<br>
+
+<mat-card class="card">
+    
+    <h4><mat-icon>highlight</mat-icon>Ligth: </h4>
+    <h4>{{responseLigth}}</h4>
+</mat-card>
+
+<br>
+<!--
+<mat-card class="card">
+    <h4>Presence: </h4>
+    <h4>{{responsePresence}}</h4>
+</mat-card>
+-->
+
+<br>
+
+
+<mat-card class="card">
+    <mat-card-header>
+        <mat-card-title>
+            <h4>Camera:</h4>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        
+        <canvas id="canvas"></canvas>
+
+    </mat-card-content>
+    
+</mat-card>
+>>>>>>> ae33fc5dde3084793413457e756b214a9ed58c67
