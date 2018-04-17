@@ -1,0 +1,10 @@
+<button mat-icon-button class="msg-btn" [matMenuTriggerFor]="menu">
+    <span>{{ events.length }}</span>
+    <i class="material-icons icon-btn">{{ icon }}</i>
+  </button>
+
+  <mat-menu #menu="matMenu" >
+    <div *ngFor="let event of events">  
+      <button mat-menu-item routerLink='/dashboard/notifications'>{{event.type}}</button>
+    </div>
+  </mat-menu>
