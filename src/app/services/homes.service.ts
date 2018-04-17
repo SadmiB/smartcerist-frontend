@@ -18,4 +18,11 @@ export class HomesService {
     return this.httpClient.delete(this.BASE_URL + '/user/homes/' + homeId, {headers: tokenHeader});
   }
 
+  getConnectedUserHomesId (tokenHeader){
+    return this.httpClient.get(this.BASE_URL + '/user/homesId', {headers: tokenHeader});
+  }
+
+  getConnectedUserHomes (tokenHeader){
+    return this.httpClient.get(this.BASE_URL + '/user/homes', {headers: tokenHeader});
+  }
 }

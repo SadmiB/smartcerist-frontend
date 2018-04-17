@@ -3,6 +3,7 @@ import { RoomsService } from '../../services/rooms.service';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
+import { HomesService } from '../../services/homes.service';
 
 @Component({
   selector: 'app-rooms',
@@ -10,20 +11,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./rooms.component.scss']
 })
 export class RoomsComponent implements OnInit {
-
-  rooms;
   tokenHeader;
+  connectedUserHomes;
 
-  constructor(private roomsService: RoomsService,
-    private auth: AuthService,
-    private snackBar: MatSnackBar,
-    private route: ActivatedRoute) {
+  constructor(private auth: AuthService,
+    private homesService: HomesService,
+    private snackBar: MatSnackBar) {
     this.tokenHeader = auth.tokenHeader;
   }
 
   ngOnInit() {
-    const homeId = this.route.snapshot.params.homeId;
-    this.getRooms(homeId);
+    this.getConnectedUserHomes();
   }
 
   private handleError(error, message) {
@@ -31,13 +29,13 @@ export class RoomsComponent implements OnInit {
     this.snackBar.open(message, 'close', {duration: 3000});
   }
 
-
-  getRooms(homeId) {
-    this.roomsService.getRooms(homeId, this.tokenHeader).subscribe( res =>
-      this.rooms = res
-    , error => {
-      this.handleError(error, 'Unable to retrieve rooms');
-    });
+  getConnectedUserHomes(){
+    this.homesService.getConnectedUserHomes(this.tokenHeader)
+    .subscribe((res:any)=>{
+      this.connectedUserHomes=res;
+    },error => {
+      this.handleError(error,'Unable to retrieve homes ids')
+    })
   }
 
 }

@@ -1,59 +1,12 @@
 <app-header title="Users" search='true'></app-header >
-<div class="example-container mat-elevation-z8">
-   <div class="example-header">
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-    </mat-form-field>
-  </div> 
-
-  <mat-table #table [dataSource]="dataSource">
-   
-    <ng-container matColumnDef="select">
-      <mat-header-cell *matHeaderCellDef>
-        <mat-checkbox (change)="$event ? masterToggle() : null"
-                      [checked]="selection.hasValue() && isAllSelected()"
-                      [indeterminate]="selection.hasValue() && !isAllSelected()">
-        </mat-checkbox>
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row">
-        <mat-checkbox (click)="$event.stopPropagation()"
-                      (change)="$event ? selection.toggle(row) : null"
-                      [checked]="selection.isSelected(row)">
-        </mat-checkbox>
-      </mat-cell>
-    </ng-container>
-    
+        <mat-tab-group >
+          <div *ngFor="let home of connectedUserHomes">
+            <mat-tab label="{{home.name}}" >
+              <app-users-by-room homeId="{{home._id}}"></app-users-by-room> 
+            </mat-tab>
+          </div>
+        </mat-tab-group>
   
-    <ng-container matColumnDef="firstName">
-      <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
-    </ng-container>
 
- 
-    <ng-container matColumnDef="lastName">
-      <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
-    </ng-container>
 
- 
-    <ng-container matColumnDef="email">
-      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
-    </ng-container>
 
-    <ng-container matColumnDef="manage">
-      <mat-header-cell *matHeaderCellDef> Edit/Delete </mat-header-cell>
-      <mat-cell *matCellDef="let element"> 
-          <button mat-icon-button ><mat-icon>settings</mat-icon></button>
-          <button mat-icon-button ><mat-icon>delete</mat-icon></button>
-      </mat-cell>
-    </ng-container>
-
-    
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"
-              (click)="selection.toggle(row)" >
-    </mat-row>
-  </mat-table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-</div>

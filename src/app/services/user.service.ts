@@ -16,15 +16,31 @@ export class UserService {
     return this.httpClient.get(this.BASE_URL + '/' + homeId + '/' + roomId + '/users',{headers: tokenHeader});
   }
 
-  getUser(tokenHeader,userId){
+  getUserById(tokenHeader,userId){
+    return this.httpClient.get(this.BASE_URL + '/users/' + userId , {headers:tokenHeader});
+  }
+
+  getUserProfile(tokenHeader){
     return this.httpClient.get(this.BASE_URL + '/users/user' , {headers:tokenHeader});
   }
   
   updateUser(tokenHeader,userId){
+    return this.httpClient.put(this.BASE_URL + '/users/' + userId , {headers:tokenHeader});
+  }
+
+  updateUserProfile(tokenHeader){
     return this.httpClient.put(this.BASE_URL + '/users/user' , {headers:tokenHeader});
   }
   
   removeUser(tokenHeader,userId){
+    return this.httpClient.delete(this.BASE_URL + '/users/' + userId , {headers:tokenHeader});
+  }
+
+  removeRoomUser(tokenHeader,homeId,roomId,userId){
+    return this.httpClient.delete(this.BASE_URL + `/${homeId}/${roomId}/users/${userId}`, {headers:tokenHeader});
+  }
+
+  removeUserAccount(tokenHeader){
     return this.httpClient.delete(this.BASE_URL + '/users/user' , {headers:tokenHeader});
   }
 

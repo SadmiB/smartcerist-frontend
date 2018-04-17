@@ -17,4 +17,7 @@ export class RoomsService {
     return this.httpClient.get(this.BASE_URL + `/user/${homeId}/rooms`, {headers: tokenHeader});
   }
 
+  getUserRoomPermission(homeId,roomId,userId, tokenHeader) {
+    return this.httpClient.get(this.BASE_URL + `/${homeId}/${roomId}/permission/${userId}`, {headers: tokenHeader});
+  }
 }
