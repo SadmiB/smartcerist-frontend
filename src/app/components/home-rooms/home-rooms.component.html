@@ -1,20 +1,16 @@
-<!-- <mat-card> -->
-  <mat-grid-list cols="4" rowHeight="200px">
-      <mat-grid-tile *ngFor='let room of rooms' class="tile">
-              <mat-card class="card">
-                  <mat-card-header>
-                      <mat-card-title class="header">
-                          <mat-icon>airline_seat_individual_suite</mat-icon>
-                      </mat-card-title>
-                  </mat-card-header>
-                  <mat-card-content>
-                          {{room.name}}
-                  </mat-card-content>
-                  <mat-card-actions>
-                      <button mat-icon-button><mat-icon>delete</mat-icon></button>
-                      <button mat-icon-button><mat-icon>settings</mat-icon></button>
-                  </mat-card-actions>
-          </mat-card>
-      </mat-grid-tile>
-  </mat-grid-list>
-<!-- </mat-card> -->
+    <mat-grid-list cols="4">
+        <mat-grid-tile *ngFor='let room of rooms' class="tile">
+            <mat-card class="card">
+                <mat-card-title  class="header"  [routerLink]="[room._id]">
+                    <mat-icon>airline_seat_individual_suite</mat-icon>
+                </mat-card-title>
+                <mat-card-content>
+                        <h4>{{room.name}}</h4>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-icon-button><mat-icon>delete</mat-icon></button>
+                    <button mat-icon-button><mat-icon>settings</mat-icon></button>
+                </mat-card-actions>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
