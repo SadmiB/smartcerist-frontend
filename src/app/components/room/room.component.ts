@@ -48,57 +48,14 @@ export class RoomComponent implements OnInit {
 
 
 
-  getObjectMesure(object) {
-    this.objectsService.getObjectMesure(object)
+  async getObjectMesure(object) {
+    await this.objectsService.getObjectMesure(object)
     .subscribe(res => {
-
+      object.mesure = res;
+    }, error => {
+      this.handleError(error, `Unable to get ${object.name} value`);
     });
   }
-
-  /**
-  // led
-  getLed() {
-    this.roomService.getLed()
-    .subscribe(res => this.responseLed = res);
-    console.log('getLed led=' + this.responseLed);
-  }
-
-  putLed(val): void {
-    if ( val === '1') {
-      val = '0';
-    } else {
-      val = '1';
-    }
-    this.roomService.putLed(val)
-    .subscribe(_ => this.getLed());
-    console.log(`comp putLed called...${val}`);
-  }
-
-  // ligth
-  getLigth() {
-    this.roomService.getLigth()
-    .subscribe(res => this.responseLigth = res);
-
-    // if (this.responseLed === '1') {
-    //   if (Number(this.responseLigth) > 500) {
-    //     this.putLed('0');
-    //     console.log('set light to 0');
-    //   }
-    // } else if (this.responseLed === '0') {
-    //     if (Number(this.responseLigth) < 500) {
-    //       this.putLed('1');
-    //       console.log('set light to 1');
-    //     }
-    // }
-  }
-
-  // presence
-  getPresence() {
-    this.roomService.getPresence()
-    .subscribe(res => this.responsePresence = res);
-  }
-
-  */
 
 
   private handleError(error, message) {
