@@ -28,6 +28,7 @@ import { RoomsService } from './services/rooms.service';
 import { HomeComponent } from './components/home/home.component';
 import { RoomComponent } from './components/room/room.component';
 import { RoomService } from './services/room.service';
+import { ObjectsService } from './services/objects.service';
 
 
 
@@ -63,7 +64,7 @@ import { RoomService } from './services/room.service';
     MatPaginatorModule,
   ],
 
-  providers: [AuthService, HomesService, RoomsService, RoomService, UserService],
+  providers: [AuthService, HomesService, RoomsService, RoomService, UserService, ObjectsService],
 
   bootstrap: [AppComponent]
 })
