@@ -10,4 +10,6 @@ export class IotObject {
     server_lipv6: string;
     server_ipv4: string;
     server_lipv4: string;
+    status: string;
+    mesure: string;
 }
