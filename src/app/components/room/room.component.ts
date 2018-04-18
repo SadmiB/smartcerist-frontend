@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { IotObject } from '../../models/IotObject';
 import { UpperCasePipe } from '@angular/common';
+import { ObjectsService } from '../../services/objects.service';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class RoomComponent implements OnInit {
 
   constructor(private roomService: RoomService,
     private snackBar: MatSnackBar,
-    private router: ActivatedRoute) {
+    private router: ActivatedRoute,
+    private objectsService: ObjectsService) {
 
   }
 
@@ -36,14 +38,22 @@ export class RoomComponent implements OnInit {
     const homeId = this.router.snapshot.params.homeId;
     this.getRoom(homeId, roomId);
 
-    // this.getLed();
-    // this.getLigth();
-    // this.getPresence();
+    this.objects.forEach(object => {
+      this.getObjectMesure(object);
+    });
     // const canvas = document.getElementById('canvas');
     // const  client = new WebSocket('ws://10.0.88.57:9999');
     // const  player = new jsmpeg(client, { canvas: canvas });
   }
 
+
+
+  getObjectMesure(object) {
+    this.objectsService.getObjectMesure(object)
+    .subscribe(res => {
+
+    });
+  }
 
   /**
   // led
