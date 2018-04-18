@@ -9,13 +9,11 @@
                 <mat-icon *ngIf="obj.type==='LIGHT'"> highlight </mat-icon>
                 <mat-icon *ngIf="obj.type==='PRESENCE'"> remove_red_eye </mat-icon>
             </h4>
-            
         </mat-card-title>
-        <mat-card-subtitle>
-            <h4>{{obj.name}}</h4> </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-    
+        <h3>{{obj.name}}</h3> 
+        <p *ngIf="obj.status" >Status: {{obj.status}}</p>
     </mat-card-content>
 </mat-card>
 

@@ -1,10 +1,27 @@
 .card {
-    width: 75%;
-    background: lightcyan;
+    width: 40%;
     margin: 16px;
+    display: flex;
+    border-radius: 10px;
 }
 
 canvas#canvas {
     height: 100%;
     width: 100%;
+}
+
+.card > mat-card-header {
+    background-image: linear-gradient(to right, #4cc4ff, #4ca6ff);
+    box-shadow: 0 0 0 0 #419cdb, 0 0 0 0 #4cb5ff;
+    border-radius: 10px;
+    width: 20%;
+}
+
+.card > mat-card-header *{
+    color: white;
+    margin-left: 20%;
+}
+
+.card > mat-card-content {
+   margin-left: 16px;   
 }

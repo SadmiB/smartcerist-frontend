@@ -41,6 +41,7 @@ export class RoomComponent implements OnInit {
     this.objects.forEach(object => {
       this.getObjectMesure(object);
     });
+
     // const canvas = document.getElementById('canvas');
     // const  client = new WebSocket('ws://10.0.88.57:9999');
     // const  player = new jsmpeg(client, { canvas: canvas });
@@ -49,10 +50,13 @@ export class RoomComponent implements OnInit {
 
 
   async getObjectMesure(object) {
+    console.log('getObjectMesure...');
     await this.objectsService.getObjectMesure(object)
     .subscribe(res => {
       object.mesure = res;
+      object.status = 'CONNECTED';
     }, error => {
+      object.status = 'DISSSCONNECTED';
       this.handleError(error, `Unable to get ${object.name} value`);
     });
   }
