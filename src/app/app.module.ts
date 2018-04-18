@@ -42,6 +42,7 @@ import { RoomService } from './services/room.service';
 import { UsersByRoomComponent } from './components/users/users-by-room/users-by-room.component';
 import { NotificationsService } from './services/notifications.service';
 import { EventsService } from './services/events.service';
+import { RoomsTabsComponent } from './components/home-rooms/rooms-tabs/rooms-tabs.component';
 
 
 
@@ -73,6 +74,7 @@ import { EventsService } from './services/events.service';
     UserPermissionsComponent,
     UsersByRoomComponent,
     RoomComponent,
+    RoomsTabsComponent,
   ],
   imports: [
     BrowserModule,
