@@ -43,6 +43,7 @@ import { UsersByRoomComponent } from './components/users/users-by-room/users-by-
 import { NotificationsService } from './services/notifications.service';
 import { EventsService } from './services/events.service';
 import { RoomsTabsComponent } from './components/home-rooms/rooms-tabs/rooms-tabs.component';
+import { ObjectsService } from './services/objects.service';
 
 
 
@@ -89,7 +90,7 @@ import { RoomsTabsComponent } from './components/home-rooms/rooms-tabs/rooms-tab
     MatMenuModule,
   ],
 
-  providers: [AuthService, HomesService,RoomsService, UserService, ServersService,SweetAlertService, NotificationsService,EventsService],
+  providers: [AuthService, HomesService,RoomsService,RoomService, ObjectsService, UserService, ServersService,SweetAlertService, NotificationsService,EventsService],
 
   bootstrap: [AppComponent]
 })
