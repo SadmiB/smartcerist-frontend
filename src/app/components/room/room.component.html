@@ -1,56 +1,32 @@
 <app-header back="true" title='Room details' search="false"></app-header>
 
+<h3>Objects:</h3>
 
-<mat-card *ngFor="let obj of objects" class="card">
-    <mat-card-header>
-        <mat-card-title>
-            <h4>
-                <mat-icon *ngIf="obj.type==='LED'"> lightbulb_outline </mat-icon>
-                <mat-icon *ngIf="obj.type==='LIGHT'"> highlight </mat-icon>
-                <mat-icon *ngIf="obj.type==='PRESENCE'"> remove_red_eye </mat-icon>
-            </h4>
-        </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <h3>{{obj.name}}</h3> 
-        <p *ngIf="obj.status" >Status: {{obj.status}}</p>
-    </mat-card-content>
-</mat-card>
+<mat-grid-list cols="2" rowHeight='150px'>
+    <mat-grid-tile  *ngFor="let obj of objects" >
+        
+        <mat-card class="card">
+            <mat-card-header>
+                <mat-card-title>
+                    <mat-icon *ngIf="obj.type==='LED'"> lightbulb_outline </mat-icon>
+                    <mat-icon *ngIf="obj.type==='LIGHT'"> highlight </mat-icon>
+                    <mat-icon *ngIf="obj.type==='PRESENCE'"> remove_red_eye </mat-icon>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <h4>{{obj.name}}</h4> 
+                <mat-button-toggle *ngIf="obj.type==='LED'">ON/OFF</mat-button-toggle>
+                <p *ngIf="obj.status" >Status: {{obj.status}}</p>
+            </mat-card-content>
+        </mat-card>
 
+    </mat-grid-tile>
+</mat-grid-list>
+
+
+<h3>Cameras:</h3>
 
 <!--
-<mat-card class="card">
-    <mat-card-header>
-        <mat-card-title>
-            
-            <h4><mat-icon> lightbulb_outline </mat-icon>Led3: </h4>
-        </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <h4 *ngIf="responseLed==='1'">Status: On</h4>
-        <h4 *ngIf="responseLed==='0'">Status: Off</h4>
-        <button *ngIf="responseLed" mat-raised-button color="primary" (click)="putLed(responseLed)">Toggle</button>    
-    </mat-card-content>
-</mat-card>
-
-<br>
-
-<mat-card class="card">
-    
-    <h4><mat-icon>highlight</mat-icon>Ligth: </h4>
-    <h4>{{responseLigth}}</h4>
-</mat-card>
-
-<br>
-
-<mat-card class="card">
-    <h4>Presence: </h4>
-    <h4>{{responsePresence}}</h4>
-</mat-card>
-
-
-<br>
-
 
 <mat-card class="card">
     <mat-card-header>

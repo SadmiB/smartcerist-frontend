@@ -6,6 +6,7 @@
 
 .header h4{
     color: #555;
+    margin-left:4px;
 }
 
 .left-part, .right-part{
@@ -13,7 +14,7 @@
     align-items: center;
 }
 
-.right-part > button, .left-part > button {
+.right-part > button {
     margin: 8px;
 }
 
