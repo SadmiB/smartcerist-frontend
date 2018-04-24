@@ -1,0 +1,37 @@
+<app-header title="Homes" search="true"></app-header > 
+  <mat-card class="home-form-add" >
+      <mat-card-title class="card-header">
+          <h4>Add Home</h4>
+      </mat-card-title>
+      <mat-card-content>
+        <form  class="home-form" [formGroup]='form' (ngSubmit)='onSubmit()' #homeForm="ngForm">
+          <div class="home-form-div">
+            <mat-form-field>
+              <input [ngClass]="{'error' : isValid('name')}" matInput placeholder="Name" formControlName='name'>
+            </mat-form-field>
+            <mat-form-field>
+              <input [ngClass]="{'error' : isValid('address')}" matInput placeholder="Address" formControlName='address'>
+            </mat-form-field>
+            <mat-form-field>
+              <input [ngClass]="{'error' : isValid('email')}"  matInput placeholder="Email" type="email" formControlName='email'>
+            </mat-form-field>
+            <mat-form-field>
+              <input [ngClass]="{'error' : isValid('phone')}" matInput placeholder="Phone Number" formControlName='phone'>
+            </mat-form-field>
+            
+            <mat-form-field>
+              <mat-select [ngClass]="{'error' : isValid('country')}" placeholder="Country" formControlName='country'>
+                <mat-option value="algeria">Algeria</mat-option>
+                <mat-option value="france">France</mat-option>
+                <mat-option value="usa">USA</mat-option>
+                <mat-option value="spain">Spain</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <br><br>
+          <button type="submit" id='signup-btn' (click)='signup' [disabled]="!homeForm.form.valid" mat-raised-button color='primary'>Add</button>
+          <button (click)="redirect()"  mat-raised-button color='accent' >Cancel</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
