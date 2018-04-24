@@ -7,10 +7,14 @@ export class ObjectsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  BASE_URL = 'http://localhost:3000/api/';
+  BASE_URL = 'http://localhost:3000/api';
 
   getObjectMesure(object) {
-    return this.httpClient.get(this.BASE_URL + `${object.path}`, {responseType: 'text'});
+    return this.httpClient.get(this.BASE_URL + '/lights/' + object.type.toLowerCase() , {responseType: 'text'});
+  }
+
+  putLed(val) {
+    return this.httpClient.put(this.BASE_URL + '/lights/led', {'payload': val} , {responseType: 'text'} );
   }
 
 }

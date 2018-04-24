@@ -14,9 +14,10 @@
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <h4>{{obj.name}}</h4> 
-                <mat-button-toggle *ngIf="obj.type==='LED'">ON/OFF</mat-button-toggle>
-                <p *ngIf="obj.status" >Status: {{obj.status}}</p>
+                <h4>{{obj.name}}</h4>
+                <button mat-raised-button *ngIf="obj.type==='LED' && obj.status!=='Disconnected'" (click)='putLed(obj)'>ON/OFF</button>
+                <p *ngIf="obj.status==='Disconnected'">STATUS: {{obj.status}}</p>
+                <p *ngIf="obj.mesure">Mesure: {{obj.mesure}}</p>
             </mat-card-content>
         </mat-card>
 

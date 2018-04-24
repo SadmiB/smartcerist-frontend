@@ -15,50 +15,58 @@ import { ObjectsService } from '../../services/objects.service';
 })
 export class RoomComponent implements OnInit {
 
-  objects = [];
+  objects: IotObject[] = [];
   room;
-
-  /*
-
-  responseLed: string;
-  responseLigth: string;
-  responsePresence: string;
-
-   */
 
   constructor(private roomService: RoomService,
     private snackBar: MatSnackBar,
     private router: ActivatedRoute,
     private objectsService: ObjectsService) {
 
+    }
+
+    ngOnInit() {
+
+      const roomId = this.router.snapshot.params.roomId;
+      const homeId = this.router.snapshot.params.homeId;
+      this.getRoom(homeId, roomId);
+
+      // const canvas = document.getElementById('canvas');
+      // const  client = new WebSocket('ws://10.0.88.57:9999');
+      // const  player = new jsmpeg(client, { canvas: canvas });
   }
 
-  ngOnInit() {
-    const roomId = this.router.snapshot.params.roomId;
-    const homeId = this.router.snapshot.params.homeId;
-    this.getRoom(homeId, roomId);
 
-    this.objects.forEach(object => {
-      this.getObjectMesure(object);
+  putLed(obj) {
+    let val;
+    if (obj.mesure === '1') {
+      val = '0';
+    } else {
+      val = '1';
+    }
+    console.log('putLed..', val);
+    this.objectsService.putLed(val)
+    .subscribe(res => {
+      this.getObjectMesure(obj);
+    }, error => {
+      this.handleError(error, 'Unable to toggle led');
     });
-
-    // const canvas = document.getElementById('canvas');
-    // const  client = new WebSocket('ws://10.0.88.57:9999');
-    // const  player = new jsmpeg(client, { canvas: canvas });
   }
-
 
 
   async getObjectMesure(object) {
     console.log('getObjectMesure...');
+   if (object.type !== 'PRESENCE') {
+    console.log('object.type: ', object.type);
     await this.objectsService.getObjectMesure(object)
     .subscribe(res => {
       object.mesure = res;
-      object.status = 'CONNECTED';
+      object.status = 'Connected';
     }, error => {
-      object.status = 'DISSSCONNECTED';
+      object.status = 'Disconnected';
       this.handleError(error, `Unable to get ${object.name} value`);
     });
+   }
   }
 
 
@@ -81,6 +89,10 @@ export class RoomComponent implements OnInit {
         }, error => {
           this.handleError(error, 'Unable to get objects');
       });
+    });
+    console.log('this.objects: ', this.objects);
+    this.objects.forEach(obj => {
+      this.getObjectMesure(obj);
     });
   }
 
