@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Consts } from '../models/Consts';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable()
 export class HomesService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private snackBar:MatSnackBar) { }
 
 
   getHomes(tokenHeader) {
@@ -23,5 +24,19 @@ export class HomesService {
 
   getConnectedUserHomes (tokenHeader){
     return this.httpClient.get(Consts.BASE_URL + '/user/homes', {headers: tokenHeader});
+  }
+
+  addHome(tokenHeader,home){
+    this.httpClient.post<any>(Consts.BASE_URL + '/user/homes', home, {headers:tokenHeader})
+    .subscribe(res => {
+     res;
+    }, error => {
+      this.handleError(error, 'Unable to add home!');
+    });
+  }
+
+  private handleError(error, message) {
+    console.error(error);
+    this.snackBar.open(message, 'close', {duration: 3000});
   }
 }
