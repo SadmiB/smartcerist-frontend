@@ -1,0 +1,17 @@
+<mat-grid-list cols="4">
+  <mat-grid-tile *ngFor='let server of servers' class="tile">
+      <mat-card class="card">
+          <mat-card-title  class="header" >
+              <mat-icon>router</mat-icon>
+          </mat-card-title>
+          <mat-card-content>
+                  <h4>{{server.name}}</h4>
+          </mat-card-content>
+          <mat-card-actions>
+                  <button mat-icon-button (click)="removeServer(server._id)"><mat-icon>delete</mat-icon></button>
+              <button mat-icon-button><mat-icon>settings</mat-icon></button>
+          </mat-card-actions>
+      </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+<app-add-button></app-add-button>
