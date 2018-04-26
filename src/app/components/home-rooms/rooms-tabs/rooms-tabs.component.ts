@@ -34,7 +34,7 @@ export class RoomsTabsComponent implements OnInit {
     .subscribe((res:any)=>{
       this.connectedUserHomes=res;
     },error => {
-      this.handleError(error,'Unable to retrieve homes ids')
+      this.handleError(error,"Unable to retrieve user's homes")
     })
   }
 }
