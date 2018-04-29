@@ -10,11 +10,11 @@ export class ObjectsService {
   BASE_URL = 'http://localhost:3000/api';
 
   getObjectMesure(object) {
-    return this.httpClient.get(this.BASE_URL + '/lights/' + object.type.toLowerCase() , {responseType: 'text'});
+    return this.httpClient.get(this.BASE_URL + object.path , {responseType: 'text'});
   }
 
   putLed(val) {
-    return this.httpClient.put(this.BASE_URL + '/lights/led', {'payload': val} , {responseType: 'text'} );
+    return this.httpClient.put(this.BASE_URL + '/lights/led3', {'payload': val} , {responseType: 'text'} );
   }
 
 }
