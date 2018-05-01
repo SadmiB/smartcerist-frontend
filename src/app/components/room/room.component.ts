@@ -16,6 +16,7 @@ import { ObjectsService } from '../../services/objects.service';
 export class RoomComponent implements OnInit {
 
   objects: IotObject[] = [];
+  cameras = [];
   room;
 
   constructor(private roomService: RoomService,
@@ -39,6 +40,7 @@ export class RoomComponent implements OnInit {
 
   putLed(obj) {
     let val;
+    this.getObjectMesure(obj);
     if (obj.mesure === '1') {
       val = '0';
     } else {
@@ -56,8 +58,6 @@ export class RoomComponent implements OnInit {
 
   async getObjectMesure(object) {
     console.log('getObjectMesure...');
-   if (object.type !== 'PRESENCE') {
-    console.log('object.type: ', object.type);
     await this.objectsService.getObjectMesure(object)
     .subscribe(res => {
       object.mesure = res;
@@ -66,9 +66,7 @@ export class RoomComponent implements OnInit {
       object.status = 'Disconnected';
       this.handleError(error, `Unable to get ${object.name} value`);
     });
-   }
   }
-
 
   private handleError(error, message) {
     console.error(error);
@@ -86,13 +84,10 @@ export class RoomComponent implements OnInit {
           const object = this.getObject(server, objectId);
           this.objects.push(object);
           console.log('this.objects:' , this.objects);
+          this.getObjectMesure(object);
         }, error => {
           this.handleError(error, 'Unable to get objects');
       });
-    });
-    console.log('this.objects: ', this.objects);
-    this.objects.forEach(obj => {
-      this.getObjectMesure(obj);
     });
   }
 

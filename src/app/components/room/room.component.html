@@ -1,6 +1,6 @@
 <app-header back="true" title='Room details' search="false"></app-header>
 
-<h3>Objects:</h3>
+<h3 *ngIf="objects">Objects:</h3>
 
 <mat-grid-list cols="2" rowHeight='150px'>
     <mat-grid-tile  *ngFor="let obj of objects" >
@@ -11,11 +11,12 @@
                     <mat-icon *ngIf="obj.type==='LED'"> lightbulb_outline </mat-icon>
                     <mat-icon *ngIf="obj.type==='LIGHT'"> highlight </mat-icon>
                     <mat-icon *ngIf="obj.type==='PRESENCE'"> remove_red_eye </mat-icon>
+                    <mat-icon *ngIf="obj.type==='POWER'"> power </mat-icon>
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content>
                 <h4>{{obj.name}}</h4>
-                <button mat-raised-button *ngIf="obj.type==='LED' && obj.status!=='Disconnected'" (click)='putLed(obj)'>ON/OFF</button>
+                <button mat-raised-button *ngIf="obj.type==='LED' && obj.status" (click)='putLed(obj)'>ON/OFF</button>
                 <p *ngIf="obj.status==='Disconnected'">STATUS: {{obj.status}}</p>
                 <p *ngIf="obj.mesure">Mesure: {{obj.mesure}}</p>
             </mat-card-content>
@@ -25,7 +26,7 @@
 </mat-grid-list>
 
 
-<h3>Cameras:</h3>
+<h3 *ngIf="cameras">Cameras:</h3>
 
 <!--
 
