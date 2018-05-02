@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { IotObject } from '../../models/IotObject';
 import { UpperCasePipe } from '@angular/common';
+import { ObjectsService } from '../../services/objects.service';
 
 
 @Component({
@@ -14,75 +15,56 @@ import { UpperCasePipe } from '@angular/common';
 })
 export class RoomComponent implements OnInit {
 
-  objects = [];
+  objects: IotObject[] = [];
+  cameras = [];
   room;
-
-  /*
-  responseLed: string;
-  responseLigth: string;
-  responsePresence: string;
-   */
 
   constructor(private roomService: RoomService,
     private snackBar: MatSnackBar,
-    private router: ActivatedRoute) {
+    private router: ActivatedRoute,
+    private objectsService: ObjectsService) {
 
+    }
+
+    ngOnInit() {
+
+      const roomId = this.router.snapshot.params.roomId;
+      const homeId = this.router.snapshot.params.homeId;
+      this.getRoom(homeId, roomId);
+
+      const canvas = document.getElementById('canvas');
+      const  client = new WebSocket('ws://10.0.88.58:9999');
+      const  player = new jsmpeg(client, { canvas: canvas });
   }
 
-  ngOnInit() {
-    const roomId = this.router.snapshot.params.roomId;
-    const homeId = this.router.snapshot.params.homeId;
-    this.getRoom(homeId, roomId);
-
-    // this.getLed();
-    // this.getLigth();
-    // this.getPresence();
-    // const canvas = document.getElementById('canvas');
-    // const  client = new WebSocket('ws://10.0.88.57:9999');
-    // const  player = new jsmpeg(client, { canvas: canvas });
-  }
-
-
-  /**
-  // led
-  getLed() {
-    this.roomService.getLed()
-    .subscribe(res => this.responseLed = res);
-    console.log('getLed led=' + this.responseLed);
-  }
-  putLed(val): void {
-    if ( val === '1') {
+  putLed(obj) {
+    let val;
+    this.getObjectMesure(obj);
+    if (obj.mesure === '1') {
       val = '0';
     } else {
       val = '1';
     }
-    this.roomService.putLed(val)
-    .subscribe(_ => this.getLed());
-    console.log(`comp putLed called...${val}`);
+    console.log('putLed..', val);
+    this.objectsService.putLed(val)
+    .subscribe(res => {
+      this.getObjectMesure(obj);
+    }, error => {
+      this.handleError(error, 'Unable to toggle led');
+    });
   }
-  // ligth
-  getLigth() {
-    this.roomService.getLigth()
-    .subscribe(res => this.responseLigth = res);
-    // if (this.responseLed === '1') {
-    //   if (Number(this.responseLigth) > 500) {
-    //     this.putLed('0');
-    //     console.log('set light to 0');
-    //   }
-    // } else if (this.responseLed === '0') {
-    //     if (Number(this.responseLigth) < 500) {
-    //       this.putLed('1');
-    //       console.log('set light to 1');
-    //     }
-    // }
-  }
-  // presence
-  getPresence() {
-    this.roomService.getPresence()
-    .subscribe(res => this.responsePresence = res);
-  }
-  */
 
+  async getObjectMesure(object) {
+    console.log('getObjectMesure...');
+    await this.objectsService.getObjectMesure(object)
+    .subscribe(res => {
+      object.mesure = res;
+      object.status = 'Connected';
+    }, error => {
+      object.status = 'Disconnected';
+      this.handleError(error, `Unable to get ${object.name} value`);
+    });
+  }
 
   private handleError(error, message) {
     console.error(error);
@@ -100,6 +82,7 @@ export class RoomComponent implements OnInit {
           const object = this.getObject(server, objectId);
           this.objects.push(object);
           console.log('this.objects:' , this.objects);
+          this.getObjectMesure(object);
         }, error => {
           this.handleError(error, 'Unable to get objects');
       });

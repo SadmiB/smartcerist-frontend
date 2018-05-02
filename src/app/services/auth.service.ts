@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthResponse } from '../models/AuthResponse';
 import { MatSnackBar } from '@angular/material';
+import { Consts } from '../models/Consts';
 
 
 @Injectable()
@@ -12,7 +13,6 @@ export class AuthService {
     private router: Router,
     private snackBar: MatSnackBar) { }
 
-  BASE_URL = 'http://localhost:3000';
   NAME_KEY = 'name';
   TOKEN_KEY = 'token';
 
@@ -37,7 +37,7 @@ export class AuthService {
 
   signup(user) {
     delete user.confirmPassword;
-    this.httpClient.post<AuthResponse>(this.BASE_URL + '/signup', user)
+    this.httpClient.post<AuthResponse>(Consts.BASE_URL + '/signup', user)
     .subscribe(res => {
      this.authenticate(res);
     }, error => {
@@ -46,7 +46,7 @@ export class AuthService {
   }
 
   signin(loginData) {
-    this.httpClient.post(this.BASE_URL + '/signin', loginData)
+    this.httpClient.post(Consts.BASE_URL + '/signin', loginData)
     .subscribe( res => {
       console.log(res);
       this.authenticate(res);

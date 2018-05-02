@@ -45,6 +45,7 @@ export class ServersService {
   private handleError(error, message) {
     console.error(error);
     this.snackBar.open(message, 'close', {duration: 3000});
+
   }
 
 }
