@@ -1,4 +1,4 @@
-<app-header title="Homes" search="true"></app-header > 
+<app-header back="true" title="Homes" search="true"></app-header > 
   <mat-card class="home-form-add" >
       <mat-card-title class="card-header">
           <h4>Add Home</h4>
@@ -30,7 +30,7 @@
           </div>
           <br><br>
           <button type="submit" id='signup-btn' (click)='signup' [disabled]="!homeForm.form.valid" mat-raised-button color='primary'>Add</button>
-          <button (click)="redirect()"  mat-raised-button color='accent' >Cancel</button>
+          <button type="button" (click)="redirect('/dashboard/homes')"  mat-raised-button color='accent' >Cancel</button>
         </form>
       </mat-card-content>
     </mat-card>

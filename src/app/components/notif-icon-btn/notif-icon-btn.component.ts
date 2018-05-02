@@ -20,18 +20,14 @@ export class NotifIconBtnComponent implements OnInit {
      }
 
   ngOnInit() {
-    this.getAllEvents();
+    this.eventsService.getAllEvents();
+    this.eventsService.getSocketRooms(this.tokenHeader);
+    this.eventsService.getEvents()
+      .throttleTime(1000)
+      .subscribe();
   }
   private handleError(error, message) {
     console.error(error);
     this.snackBar.open(message, 'close', {duration: 3000});
-  }
-  getAllEvents() {
-    this.eventsService.getAllEvents(this.tokenHeader)
-    .subscribe( (res:any) => {
-      this.events = res;
-    }, error => {
-      this.handleError(error, 'Unable to retrieve any event!');
-    });  
   }
 }

@@ -44,12 +44,7 @@ export class UsersComponent implements OnInit {
   }
 
   getConnectedUserHomes(){
-    this.homesService.getConnectedUserHomes(this.tokenHeader)
-    .subscribe((res:any)=>{
-      this.connectedUserHomes=res;
-    },error => {
-      this.handleError(error,'Unable to retrieve homes ids')
-    })
+    this.homesService.getConnectedUserHomes(this.tokenHeader);
   }
 
 

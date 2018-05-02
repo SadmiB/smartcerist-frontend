@@ -1,10 +1,11 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <button mat-icon-button class="msg-btn" [matMenuTriggerFor]="menu">
-    <span>{{ events.length }}</span>
+    <span>{{ eventsService.eventsNumbers }}</span>
     <i class="material-icons icon-btn">{{ icon }}</i>
 </button>
 
   <mat-menu #menu="matMenu" >
-    <div *ngFor="let event of events">  
+    <div *ngFor="let event of eventsService.events | async">  
       <button mat-menu-item routerLink='/dashboard/notifications'>{{event.type}}</button>
     </div>
   </mat-menu>

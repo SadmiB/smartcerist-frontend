@@ -14,8 +14,8 @@
             </mat-form-field>
           </div>
           <br><br>
-          <button type="submit" [disabled]="!roomForm.form.valid" id='signup-btn' (click)='signup' mat-raised-button color='primary'>Add</button>
-          <button (click)="redirect()"  mat-raised-button color='accent' >Cancel</button>
+          <button type="submit" [disabled]="!roomForm.form.valid" id='signup-btn'  mat-raised-button color='primary'>Add</button>
+          <button type="button" (click)="onCancel()"  mat-raised-button color='accent' >Cancel</button>
         </form>
       </mat-card-content>
     </mat-card>

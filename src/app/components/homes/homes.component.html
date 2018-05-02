@@ -1,17 +1,18 @@
-<app-header title="Homes" search="true"></app-header > 
-<mat-grid-list cols="3" >
-  <mat-grid-tile *ngFor="let home of homes" class="tile">
-    <mat-card class="card">
-      <mat-card-title class="header" [routerLink]="[home._id, 'rooms']">
-        <img src="../../../assets/img/card-1.jpeg" alt="home image">
-      </mat-card-title>
-      <mat-card-content>
-        <h4>{{home.name}}</h4>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-icon-button (click)='deleteHome(home._id)'><mat-icon>delete</mat-icon></button>
-        <button mat-icon-button [routerLink]="[home._id]"><mat-icon>settings</mat-icon></button>
-      </mat-card-actions>
-    </mat-card>
- </mat-grid-tile>
-</mat-grid-list>
+<app-header back="true" title="Homes" search="true"></app-header > 
+  <mat-grid-list cols="3" >
+    <mat-grid-tile *ngFor="let home of homeService.homes | async" class="tile">
+      <mat-card class="card">
+        <mat-card-title class="header" [routerLink]="[home._id, 'rooms']">
+          <img src="../../../assets/img/card-1.jpeg" alt="home image">
+        </mat-card-title>
+        <mat-card-content>
+          <h4>{{home.name}}</h4>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-icon-button (click)='deleteHome(home._id)'><mat-icon>delete</mat-icon></button>
+          <button mat-icon-button [routerLink]="[home._id]"><mat-icon>settings</mat-icon></button>
+        </mat-card-actions>
+      </mat-card>
+   </mat-grid-tile>
+  </mat-grid-list>
+  <app-add-button link="form"></app-add-button>

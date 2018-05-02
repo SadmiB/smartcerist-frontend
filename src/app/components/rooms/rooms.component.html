@@ -1,6 +1,6 @@
 <app-header back="true" title="Rooms" search="true"></app-header >
   <mat-grid-list cols="4">
-    <mat-grid-tile *ngFor='let room of rooms' class="tile">
+    <mat-grid-tile *ngFor='let room of roomsService.rooms | async' class="tile">
         <mat-card class="card">
             <mat-card-title  class="header"  [routerLink]="[room._id]">
                 <mat-icon>airline_seat_individual_suite</mat-icon>
@@ -15,4 +15,4 @@
         </mat-card>
     </mat-grid-tile>
 </mat-grid-list>
-<app-add-button></app-add-button>
+<app-add-button link="form"></app-add-button>

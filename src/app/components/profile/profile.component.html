@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<app-header back="false" title="Profile" search="true"></app-header > 
+<app-header back="true" back="false" title="Profile" search="true"></app-header > 
   <div class="container">
     <div class="row" style="margin-top: 30px">
       <div class="col-md-8">
@@ -34,36 +34,36 @@
               <div class="row">
                   <div class="col-md-6">
                     <mat-input-container color="accent">
-                        <input matInput placeholder="Telephone number" value="{{userProfile.phone}}">
+                        <input matInput placeholder="Telephone number" value="{{userProfile.phone}}" formControlName='phone'>
                     </mat-input-container>
                   </div>
                 </div>
               <div class="row">
                 <div class="col-md-4">
                   <mat-input-container color="accent">
-                    <input matInput type="text" placeholder="City" value="{{userProfile.city}}">
+                    <input matInput type="text" placeholder="City" value="{{userProfile.city}}"formControlName='city'>
                   </mat-input-container>
                 </div>
                 <div class="col-md-4">
                   <mat-input-container color="accent">
-                    <input matInput type="text" placeholder="Country" value="{{userProfile.country}}">
+                    <input matInput type="text" placeholder="Country" value="{{userProfile.country}}"formControlName='country'>
                   </mat-input-container>
                 </div>
                 <div class="col-md-4">
                   <mat-input-container color="accent">
-                    <input matInput type="text" placeholder="Postcode" value="{{userProfile.postCode}}">
+                    <input matInput type="text" placeholder="Postcode" value="{{userProfile.postCode}}" formControlName='postCode'>
                   </mat-input-container>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
-                    <mat-select placeholder="Gender" [(value)]="selectedGender">
+                    <mat-select placeholder="{{userProfile.gender}}" [(value)]="selectedGender"formControlName='gender'>
                         <mat-option value="male">Male </mat-option>
                         <mat-option value="female">Female </mat-option>
                     </mat-select>
                 </div>
               </div>
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col-md-4">
                   <mat-form-field class="input">
                       <input [ngClass]="{'error' : isValid('password')}" matInput placeholder="New password" type="password" >   
@@ -76,9 +76,9 @@
                       <input [ngClass]="{'error' : isValid('confirmPassword')}" matInput placeholder="Confirm Password" type="password" >
                     </mat-form-field>
                   </div>
-              </div>
+              </div> -->
               <div class="row action-btn">
-                <button md-raised-button type="submit" class="btn btn-rose">UPDATE PROFILE</button>
+                <button md-raised-button type="submit" class="btn btn-rose" (click)="updateProfile()">UPDATE PROFILE</button>
               </div>
             </form>
           </div>
@@ -87,11 +87,12 @@
       <div class="col-md-4">
         <div class="card right-profile">
           <div class="profile">
-            <img src="{{userProfile.picture}}" alt="profile"/>
+            <!-- <img src="{{userProfile.picture}}" alt="profile"/> -->
+            <app-profile-picture ></app-profile-picture>
           </div>
           <div class="profileName">
             <h4>{{ userProfile.firstName }} {{ userProfile.lastName }}</h4>
-            <app-file-picker></app-file-picker> 
+            <!-- <app-file-picker></app-file-picker>  -->
           </div>
         </div>
       </div>

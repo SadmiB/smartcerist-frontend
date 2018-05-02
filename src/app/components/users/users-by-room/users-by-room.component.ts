@@ -12,10 +12,10 @@ import { RoomsService } from '../../../services/rooms.service';
 })
 export class UsersByRoomComponent implements OnInit {
   @Input() homeId;
-  rooms;
+  home;
   tokenHeader;
 
-  constructor(private roomsService: RoomsService,
+  constructor(private homesService: HomesService,
     private auth: AuthService,
     private snackBar: MatSnackBar,
     private route: ActivatedRoute) {
@@ -23,7 +23,7 @@ export class UsersByRoomComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getRooms(this.homeId);
+    this.getRooms();
   }
 
   private handleError(error, message) {
@@ -32,12 +32,9 @@ export class UsersByRoomComponent implements OnInit {
   }
 
 
-  getRooms(homeId) {
-    this.roomsService.getRooms(homeId, this.tokenHeader).subscribe( res =>
-      this.rooms = res
-    , error => {
-      this.handleError(error, 'Unable to retrieve rooms');
-    });
+  getRooms() {
+    this.home = this.homesService.getHomeFromArray(this.homeId)[0];
+    console.log(this.home.rooms);
   }
 
 }

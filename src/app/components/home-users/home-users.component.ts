@@ -38,38 +38,23 @@ export class HomeUsersComponent implements OnInit {
   }
 
   getUsersHome() {
-    this.userService.getHomeUsers(this.tokenHeader,this.homeId)
-    .subscribe( (res:any) => {
-      this.dataSource = new MatTableDataSource(res);
-    }, error => {
-      this.handleError(error, 'Unable to retrieve users!');
-    });  
+    this.userService.getHomeUsers(this.tokenHeader,this.homeId);
+    this.dataSource = new MatTableDataSource();
+    this.dataSource.data = this.userService.users;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
   getUsersRoom(homeId,roomId) {
-    this.userService.getRoomUsers(this.tokenHeader,homeId,roomId)
-    .subscribe( (res:any) => {
-      this.dataSource = new MatTableDataSource(res);
-    }, error => {
-      this.handleError(error, 'Unable to retrieve users!');
-    });  
+    this.userService.getRoomUsers(this.tokenHeader,homeId,roomId);
+    this.dataSource = new MatTableDataSource();
+    this.dataSource.data = this.userService.users;
     // this.dataSource.forEach(element => {
     //   element.permission=this.getUserRoomPermission(homeId,roomId,element._id);       
     // });
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
-  // getUserRoomPermission(homeId,roomId,userId){
-  //   this.roomService.getUserRoomPermission(homeId,roomId,userId,this.tokenHeader)
-  //   .subscribe(res=> {
-  //     res;
-  //   },error => {
-  //     this.handleError(error,'Unable to retrieve user permission for this room');
-  //   })
-  // }
 
   updateUserPermission(){}
   /** Whether the number of selected elements matches the total number of rows. */

@@ -23,9 +23,12 @@ export class ProfileComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, emailValid()]],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required]
-    }, {validator: matchingFields('password', 'confirmPassword')});
+      phone:[''],
+      city:[''],
+      country:[''],
+      postCode:[''],
+      gender:['']
+    });
   }
 
   ngOnInit() {
@@ -49,6 +52,10 @@ export class ProfileComponent implements OnInit {
     }, error => {
       this.handleError(error, 'Unable to retrieve User');
     });
+  }
+
+  updateProfile(){
+    this.userService.updateUserProfile(this.tokenHeader,this.form.value)
   }
 }
 

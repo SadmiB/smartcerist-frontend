@@ -1,28 +1,24 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UploadedFile, FancyImageUploaderOptions } from 'ng2-fancy-image-uploader';
-
+import { FileSelectDirective, FileUploader} from 'ng2-file-upload';
+import { AuthService } from '../../../services/auth.service';
+const uri = 'http://localhost:3000/upload';
 @Component({
   selector: 'app-profile-picture',
   templateUrl: './profile-picture.component.html',
   styleUrls: ['./profile-picture.component.scss']
 })
 export class ProfilePictureComponent implements OnInit {
-  @Input() picture: String;
-  options: FancyImageUploaderOptions = {
-    thumbnailHeight: 200,
-    thumbnailWidth: 200,
-    uploadUrl: 'http://fancy-image-uploader-demo.azurewebsites.net/api/demo/upload',
-    allowedImageTypes: ['image/png', 'image/jpeg'],
-    maxImageSize: 3
-};
 
-response: string;
+  uploader:FileUploader = new FileUploader({url:uri});
 
-onUpload(file: UploadedFile) {
-  this.response = file.response;
-}
+    attachmentList:any = [];
 
-  constructor() { }
+    constructor(){
+
+        this.uploader.onCompleteItem = (item:any, response:any , status:any, headers:any) => {
+            this.attachmentList.push(JSON.parse(response));
+        }
+      }
 
   ngOnInit() {
   }

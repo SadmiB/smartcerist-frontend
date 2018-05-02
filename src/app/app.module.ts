@@ -44,9 +44,22 @@ import { NotificationsService } from './services/notifications.service';
 import { EventsService } from './services/events.service';
 import { RoomsTabsComponent } from './components/home-rooms/rooms-tabs/rooms-tabs.component';
 import { ObjectsService } from './services/objects.service';
-
-
-
+import { FileUploadServiceService } from './services/file-upload-service.service';
+import { ChartsModule } from 'ng2-charts';
+import {SnotifyModule, SnotifyService, ToastDefaults} from 'ng-snotify';
+import { FancyImageUploaderModule } from 'ng2-fancy-image-uploader';
+import { ProfilePictureComponent } from './components/profile/profile-picture/profile-picture.component';
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+import { AddButtonComponent } from './components/add-button/add-button.component';
+import { HomeFormComponent } from './components/homes/home-form/home-form.component';
+import { RoomFormComponent } from './components/rooms/room-form/room-form.component';
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+import { FileUploadModule } from 'ng2-file-upload';
+import { HomeServersComponent } from './components/servers/home-servers/home-servers.component';
+import { ServerFormComponent } from './components/servers/home-servers/server-form/server-form.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { PersonAddComponent } from './components/room/person-add/person-add.component';
+import { TagInputModule } from 'ngx-chips';
 
 
 @NgModule({
@@ -76,6 +89,13 @@ import { ObjectsService } from './services/objects.service';
     UsersByRoomComponent,
     RoomComponent,
     RoomsTabsComponent,
+    ProfilePictureComponent,
+    AddButtonComponent,
+    HomeFormComponent,
+    RoomFormComponent,
+    HomeServersComponent,
+    ServerFormComponent,
+    PersonAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,9 +108,19 @@ import { ObjectsService } from './services/objects.service';
     MatPaginatorModule,
     FileHelpersModule,
     MatMenuModule,
+    ChartsModule,
+    SnotifyModule,
+    FancyImageUploaderModule,
+    SocketIoModule.forRoot(config),
+    FileUploadModule,
+    MatProgressSpinnerModule,
+    TagInputModule, 
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 
-  providers: [AuthService, HomesService,RoomsService,RoomService, ObjectsService, UserService, ServersService,SweetAlertService, NotificationsService,EventsService],
+  providers: [AuthService, HomesService,RoomsService,RoomService, ObjectsService, UserService, ServersService,SweetAlertService, NotificationsService,EventsService,{ provide: 'SnotifyToastConfig', useValue: ToastDefaults},SnotifyService,FileUploadServiceService],
 
   bootstrap: [AppComponent]
 })

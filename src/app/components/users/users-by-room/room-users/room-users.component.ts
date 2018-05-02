@@ -40,17 +40,14 @@ export class RoomUsersComponent implements OnInit {
   }
 
   getUsersRoom() {
-    this.userService.getRoomUsers(this.tokenHeader,this.homeId,this.roomId)
-    .subscribe( (res:any) => {
+    this.userService.getRoomTabUsers(this.tokenHeader,this.homeId,this.roomId)
+    .subscribe(res => {
       this.dataSource = new MatTableDataSource(res);
-    }, error => {
-      this.handleError(error, 'Unable to retrieve users!');
-    });  
-    // this.dataSource.forEach(element => {
-    //   element.permission=this.getUserRoomPermission(homeId,roomId,element._id);       
-    // });
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    },error=>{
+      this.handleError(error, "Unable to get the users")
+    });
   }
 
   
@@ -88,15 +85,7 @@ masterToggle() {
     };
     this.alertService.confirm(options)
     .then(() => {
-      this.userService.removeRoomUser(this.tokenHeader,this.homeId,this.roomId,userId)
-      .subscribe(res => {
-        res;
-        this.alertService.success({
-          title: 'Account deleted'
-        });
-      } ,error =>{
-        this.handleError(error,'Unable to remove User')
-      })
+      this.userService.removeRoomUser(this.tokenHeader,this.homeId,this.roomId,userId);
     })
     .catch(() => console.log('canceled')); 
   }
@@ -115,8 +104,6 @@ masterToggle() {
         </label>
       </form>`,
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
       confirmButtonText: 'save'
     };
     this.alertService.confirm(options)

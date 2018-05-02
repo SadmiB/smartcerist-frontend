@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HomesService } from '../../services/homes.service';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material';
+import { SweetAlertService } from 'angular-sweetalert-service/js';
+import { Home } from '../../models/Home';
 
 @Component({
   selector: 'app-homes',
@@ -10,12 +12,12 @@ import { MatSnackBar } from '@angular/material';
 })
 export class HomesComponent implements OnInit {
 
-  homes;
   tokenHeader;
 
   constructor(private homeService: HomesService,
     private auth: AuthService,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private alertService:SweetAlertService) {
     this.tokenHeader = auth.tokenHeader;
   }
 
@@ -29,22 +31,27 @@ export class HomesComponent implements OnInit {
   }
 
   getHomes() {
-    this.homeService.getHomes(this.tokenHeader)
-    .subscribe( res => {
-      this.homes = res;
-    }, error => {
-      this.handleError(error, 'Unable to retrieve homes!');
-    });
+    this.homeService.getConnectedUserHomes(this.tokenHeader);
   }
 
   deleteHome(homeId) {
     console.log('comp delete home..');
-    this.homeService.deleteHome(homeId, this.tokenHeader)
-    .subscribe(
-        res => res
-    , error => {
-      this.handleError(error, 'Unable to delete home!');
-    });
-  }
+    const options = {
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!'
+    };
+    this.alertService.confirm(options)
+    .then(() => {
+        this.homeService.deleteHome(homeId, this.tokenHeader);
+    
+          this.alertService.success({
+            title: 'Home deleted'
+          });
+        })    
+    .catch(() => console.log('canceled'));
+    }
 
 }

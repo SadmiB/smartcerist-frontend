@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ServersService } from '../../../services/servers.service';
 import { AuthService } from '../../../services/auth.service';
 import { MatSnackBar } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SweetAlertService } from 'angular-sweetalert-service/js';
 
 @Component({
@@ -20,12 +20,13 @@ export class HomeServersComponent implements OnInit {
     private auth: AuthService,
     private snackBar: MatSnackBar,
     private route: ActivatedRoute,
+    private router:Router,
     private alertService:SweetAlertService) {
     this.tokenHeader = auth.tokenHeader;
   }
 
   ngOnInit() {
-    this.getServers(this.homeId);
+    this.getServers();
   }
 
   private handleError(error, message) {
@@ -34,36 +35,39 @@ export class HomeServersComponent implements OnInit {
   }
 
 
-  getServers(homeId) {
-    this.serversService.getHomeServers(this.tokenHeader,homeId).subscribe( res =>
-      this.servers = res
+  getServers() {
+    this.serversService.getHomeServers(this.tokenHeader,this.homeId).subscribe( res =>
+      {this.servers = res;}
     , error => {
       this.handleError(error, 'Unable to retrieve rooms');
     });
   }
 
   removeServer(serverId){
-    const options = {
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    };
-    this.alertService.confirm(options)
-    .then(() => {
-    this.serversService.removeHomeServer(this.tokenHeader, this.homeId, serverId).subscribe(res =>{ 
-      res;
-      this.alertService.success({
-        title: 'Room deleted'
-      });
-    },error=>{
-      this.handleError(error,'Unable to remove the room')
-    })
-  })
-  .catch(() => console.log('canceled'));
+    try {
+      this.serversService.removeHomeServer(this.tokenHeader, this.homeId, serverId);
+      const options = {
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!'
+      };
+      this.alertService.confirm(options)
+        .then(() => {
+          this.alertService.success({
+            title: 'Server deleted',
+          });
+          this.redirect('/dashboard/homes')
+        })
+        .catch(() => console.log('canceled'));
+      
+    } catch (error) {
+      this.handleError(error, "Unable to remove the server")
+    }
+    
   }
-
+  redirect(link) {
+    this.router.navigate([link]);
+  }
 }

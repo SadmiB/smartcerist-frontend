@@ -37,12 +37,7 @@ export class NotificationsComponent implements OnInit {
     });  
   }
   getAllEvents() {
-    this.eventsService.getAllEvents(this.tokenHeader)
-    .subscribe( (res:any) => {
-      this.events = res;
-    }, error => {
-      this.handleError(error, 'Unable to retrieve any event!');
-    });  
+    this.eventsService.getAllEvents(); 
   }
   btnClick(position) {
     let from = 'top';

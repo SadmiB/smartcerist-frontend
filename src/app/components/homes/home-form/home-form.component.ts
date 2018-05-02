@@ -4,6 +4,7 @@ import { HomesService } from '../../../services/homes.service';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { SweetAlertService } from 'angular-sweetalert-service/js';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-home-form',
@@ -17,6 +18,7 @@ export class HomeFormComponent implements OnInit {
     private formBuilder: FormBuilder, 
     private homesServices:HomesService,
     private router: Router,
+    private snackBar: MatSnackBar,
     private alertService:SweetAlertService) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
@@ -32,29 +34,39 @@ export class HomeFormComponent implements OnInit {
   }
 
   onSubmit() {
-    const options = {
-      title: 'Are you sure?',
-      text: "You want to add a new Home!",
-      type: 'info',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Create'
-    };
+    try {
+      this.homesServices.addHome(this.tokenHeader,this.form.value);    
+      const options = {
+        title: 'Home Created',
+        text: 'do you want to add another home ?',
+        showCancelButton: true,
+        cancelButtonText: 'No'
+      };
 
-    this.alertService.confirm(options)
-    .then(() => {
-    this.homesServices.addHome(this.tokenHeader,this.form.value);
-    this.redirect();
-  }).catch(() => console.log('canceled'));
+      this.alertService.success(options)
+      .then(() => {
+        this.redirect('/dashboard/homes/form');
+      }).catch(() => {
+        console.log('canceled')
+        this.redirect('/dashboard/homes');
+      });
+    } catch (error) {
+      this.handleError
+    }
+      
 }
 
   isValid(control) {
     return this.form.controls[control].isValid  && this.form.controls[control].touched;
   }
 
-  redirect() {
-    this.router.navigate(['/dashboard/homes']);
+  redirect(link) {
+    this.router.navigate([link]);
+  }
+
+  private handleError(error, message) {
+    console.error(error);
+    this.snackBar.open(message, 'close', {duration: 3000});
   }
 }
 
@@ -65,3 +77,6 @@ function emailValid() {
     return regex.test(control.value) ? null : {invalidEmail: true};
   };
 }
+
+  
+

@@ -12,7 +12,7 @@ import { HomesService } from '../../../services/homes.service';
 })
 export class RoomsTabsComponent implements OnInit {
   tokenHeader;
-  connectedUserHomes;
+  
 
   constructor(private auth: AuthService,
     private homesService: HomesService,
@@ -30,11 +30,6 @@ export class RoomsTabsComponent implements OnInit {
   }
 
   getConnectedUserHomes(){
-    this.homesService.getConnectedUserHomes(this.tokenHeader)
-    .subscribe((res:any)=>{
-      this.connectedUserHomes=res;
-    },error => {
-      this.handleError(error,"Unable to retrieve user's homes")
-    })
+    this.homesService.getConnectedUserHomes(this.tokenHeader);
   }
 }
