@@ -11,7 +11,7 @@
                     <mat-icon *ngIf="obj.type==='LED'"> lightbulb_outline </mat-icon>
                     <mat-icon *ngIf="obj.type==='LIGHT'"> highlight </mat-icon>
                     <mat-icon *ngIf="obj.type==='PRESENCE'"> remove_red_eye </mat-icon>
-                    <mat-icon *ngIf="obj.type==='POWER'"> power </mat-icon>
+                    <mat-icon *ngIf="obj.type==='POWER'" > power </mat-icon>
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content>
@@ -28,19 +28,14 @@
 
 <h3 *ngIf="cameras">Cameras:</h3>
 
-<!--
 
-<mat-card class="card">
+<mat-card class="cam-card">
     <mat-card-header>
         <mat-card-title>
-            <h4>Camera:</h4>
+            <h4>Dahua Camera:</h4>
         </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        
         <canvas id="canvas"></canvas>
-
     </mat-card-content>
-    
 </mat-card>
--->

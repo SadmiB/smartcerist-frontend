@@ -32,9 +32,9 @@ export class RoomComponent implements OnInit {
       const homeId = this.router.snapshot.params.homeId;
       this.getRoom(homeId, roomId);
 
-      // const canvas = document.getElementById('canvas');
-      // const  client = new WebSocket('ws://10.0.88.57:9999');
-      // const  player = new jsmpeg(client, { canvas: canvas });
+      const canvas = document.getElementById('canvas');
+      const  client = new WebSocket('ws://10.0.88.58:9999');
+      const  player = new jsmpeg(client, { canvas: canvas });
   }
 
 

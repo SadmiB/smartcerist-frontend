@@ -28,7 +28,7 @@ const routes: Routes = [
     {path: 'homes/:homeId/users', component: UsersComponent},
     {path: 'homes/:homeId/rooms/:roomId/users', component: UsersComponent},
     {path: 'homes/:homeId/servers', component: ServersComponent},
-    {path: 'rooms', component: RoomsComponent},
+    {path: 'rooms', component: RoomsComponent}, // to change
     {path: 'users', component: UsersComponent},
     {path: 'servers', component: ServersComponent},
     {path: 'notifications', component: NotificationsComponent},
