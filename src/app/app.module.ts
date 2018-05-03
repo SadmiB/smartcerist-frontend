@@ -29,6 +29,9 @@ import { HomeComponent } from './components/home/home.component';
 import { RoomComponent } from './components/room/room.component';
 import { RoomService } from './services/room.service';
 import { ObjectsService } from './services/objects.service';
+import { CamerasService } from './services/cameras.service';
+import { ObjectsComponent } from './components/objects/objects.component';
+import { CamerasComponent } from './components/cameras/cameras.component';
 
 
 
@@ -52,6 +55,8 @@ import { ObjectsService } from './services/objects.service';
     HistoryComponent,
     HomeComponent,
     RoomComponent,
+    ObjectsComponent,
+    CamerasComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +69,7 @@ import { ObjectsService } from './services/objects.service';
     MatPaginatorModule,
   ],
 
-  providers: [AuthService, HomesService, RoomsService, RoomService, UserService, ObjectsService],
+  providers: [AuthService, HomesService, RoomsService, RoomService, UserService, ObjectsService, CamerasService],
 
   bootstrap: [AppComponent]
 })

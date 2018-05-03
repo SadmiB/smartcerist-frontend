@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IotObject } from '../../models/IotObject';
 import { UpperCasePipe } from '@angular/common';
 import { ObjectsService } from '../../services/objects.service';
+import { CamerasService } from '../../services/cameras.service';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class RoomComponent implements OnInit {
   constructor(private roomService: RoomService,
     private snackBar: MatSnackBar,
     private router: ActivatedRoute,
-    private objectsService: ObjectsService) {
+    private objectsService: ObjectsService,
+    private camerasService: CamerasService) {
 
     }
 
@@ -33,8 +35,8 @@ export class RoomComponent implements OnInit {
       this.getRoom(homeId, roomId);
 
       const canvas = document.getElementById('canvas');
-      const  client = new WebSocket('ws://10.0.88.58:9999');
-      const  player = new jsmpeg(client, { canvas: canvas });
+      const client = new WebSocket('ws://10.1.88.167:9999');
+      const player = new jsmpeg(client, { canvas: canvas });
   }
 
 
@@ -58,7 +60,7 @@ export class RoomComponent implements OnInit {
 
   async getObjectMesure(object) {
     console.log('getObjectMesure...');
-    await this.objectsService.getObjectMesure(object)
+      await this.objectsService.getObjectMesure(object)
     .subscribe(res => {
       object.mesure = res;
       object.status = 'Connected';
@@ -77,7 +79,7 @@ export class RoomComponent implements OnInit {
     console.log('getObjects...');
     await objectsIds.forEach(objectId => {
       console.log('getObjects...', objectId);
-      this.roomService.getServerByObjectId(objectId)
+      this.objectsService.getServerByObjectId(objectId)
         .subscribe(res => {
           const server = res;
           console.log('getObjects server: ', server);
@@ -91,6 +93,17 @@ export class RoomComponent implements OnInit {
     });
   }
 
+  async getCameras(camerasIds) {
+    await camerasIds.forEach(cameraId => {
+      this.camerasService.getServerByCameraId(cameraId)
+      .subscribe(res => {
+            const server = res;
+            this.cameras.push(server.cameras[0]);
+        }, error => {
+        this.handleError(error, 'Unable to get cameras');
+      });
+    });
+  }
 
   getObject(server, objectId) {
     console.log('getObject server: ', server);
@@ -114,11 +127,13 @@ export class RoomComponent implements OnInit {
   }
 
 
+
   async getRoom(homeId, roomId) {
     await this.roomService.getRoom(homeId, roomId)
       .subscribe(res => {
         this.room = res;
         this.getObjects(this.room.objects);
+        // this.getCameras(this.room.cameras);
       }, error => {
         this.handleError(error, 'Unable to get room');
       });

@@ -18,7 +18,7 @@
                 <h4>{{obj.name}}</h4>
                 <button mat-raised-button *ngIf="obj.type==='LED' && obj.status" (click)='putLed(obj)'>ON/OFF</button>
                 <p *ngIf="obj.status==='Disconnected'">STATUS: {{obj.status}}</p>
-                <p *ngIf="obj.mesure">Mesure: {{obj.mesure}}</p>
+                <p *ngIf="obj.mesure">Measure: {{obj.mesure}}</p>
             </mat-card-content>
         </mat-card>
 
