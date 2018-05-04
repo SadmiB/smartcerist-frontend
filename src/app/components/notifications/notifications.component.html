@@ -10,12 +10,13 @@
                     </mat-card-header>
                     <mat-card-content *ngFor="let event of eventsService.events | async">
                         <div >
-                            <div class="alert alert-{{event.category}}">
-                              <button class="close" (click)="removeEvent(event._id)" type="button" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button>
-                              <span>{{event.category}}  </span> <br>
-                              <span>{{event.type}}</span> <br>
-                              <span>{{event.message}}</span>
-                            </div>
+                            <app-notification-alert type="{{event.type}}"
+                                                    eventId="{{event._id}}"
+                                                    date="{{event.date}}"
+                                                    category="{{event.category}}"
+                                                    message="{{event.message}}">
+
+                            </app-notification-alert>
                         </div>
                     </mat-card-content>
                 </mat-card>

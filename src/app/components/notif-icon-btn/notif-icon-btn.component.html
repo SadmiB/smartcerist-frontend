@@ -6,6 +6,6 @@
 
   <mat-menu #menu="matMenu" >
     <div *ngFor="let event of eventsService.events | async">
-      <button mat-menu-item routerLink='/dashboard/notifications'>{{event.type}}</button>
+      <button mat-menu-item class="notification-element" routerLink='/dashboard/notifications'>{{event.type}}</button>
     </div>
   </mat-menu>

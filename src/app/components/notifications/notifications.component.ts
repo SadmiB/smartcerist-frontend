@@ -40,9 +40,6 @@ export class NotificationsComponent implements OnInit {
     this.eventsService.getAllEvents();
   }
 
-  removeEvent(eventId) {
-    this.eventsService.removeEvent(eventId);
-  }
   btnClick(position) {
     let from = 'top';
     let align = 'right';

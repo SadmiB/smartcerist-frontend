@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   @Input() title: string;
   @Input() search: boolean;
 
-  constructor(private auth: AuthService, private location: Location) { }
+  constructor(protected auth: AuthService, private location: Location) { }
 
   ngOnInit() {
   }

@@ -61,6 +61,7 @@ import { PersonAddComponent } from './components/room/person-add/person-add.comp
 import { TagInputModule } from 'ngx-chips';
 import { RoomUsersExpansionPanelComponent } from './components/room/room-users-expansion-panel/room-users-expansion-panel.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { NotificationAlertComponent } from './components/notification-alert/notification-alert.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ServerFormComponent,
     PersonAddComponent,
     RoomUsersExpansionPanelComponent,
+    NotificationAlertComponent,
   ],
   imports: [
     BrowserModule,
