@@ -3,7 +3,6 @@ import { AuthService } from '../../../../services/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ServersService } from '../../../../services/servers.service';
-import { SweetAlertService } from 'angular-sweetalert-service/js';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -14,18 +13,17 @@ import { MatSnackBar } from '@angular/material';
 export class ServerFormComponent implements OnInit {
   form;
   tokenHeader;
-  constructor(private auth:AuthService, 
-    private formBuilder: FormBuilder, 
-    private serversServices:ServersService,
-    private route: ActivatedRoute, 
-    private router:Router,
-    private snackBar:MatSnackBar,
-    private alertService:SweetAlertService) {
+  constructor(private auth: AuthService,
+    private formBuilder: FormBuilder,
+    private serversServices: ServersService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private snackBar: MatSnackBar) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       ipv6: ['', Validators.required],
     });
-    this.tokenHeader=auth.tokenHeader;
+    this.tokenHeader = auth.tokenHeader;
    }
 
   ngOnInit() {
@@ -33,28 +31,13 @@ export class ServerFormComponent implements OnInit {
 
   onSubmit() {
     const homeId = this.route.snapshot.params.homeId;
-    try{
-      this.serversServices.addHomeServer(this.tokenHeader,homeId,this.form.value); 
-      const options = {
-        title: 'Server Created',
-        text: 'do you want to add another server ?',
-        showCancelButton: true,
-        cancelButtonText: 'No'
-      };
-
-      this.alertService.success(options)
-      .then(() => {
+    try {
+      this.serversServices.addHomeServer(this.tokenHeader, homeId, this.form.value);
       this.redirect('/dashboard/servers/form');
-      }).catch(() => {
-        console.log('canceled')
-        this.redirect('/dashboard/servers');
-      }); 
-    } catch(error){
-      this.handleError(error, "unable to add the server to the home")
+      this.redirect('/dashboard/servers');
+    } catch (error) {
+      this.handleError(error, 'unable to add the server to the home');
     }
-    
-      
-
   }
 
   isValid(control) {

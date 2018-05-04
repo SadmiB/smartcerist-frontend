@@ -1,0 +1,30 @@
+<app-header back="true" title='Users' search="false"></app-header>
+<h4> Room Users </h4>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Add a User
+      </mat-panel-title>
+      <mat-panel-description>
+        restricted permissions
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <app-person-add type="user"></app-person-add>
+  </mat-expansion-panel>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Add an Admin
+      </mat-panel-title>
+      <mat-panel-description>
+        all permissions
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <app-person-add type="admin"></app-person-add>
+  </mat-expansion-panel>
+</mat-accordion>
+<app-room-users homeId="homeId" roomId="roomId"></app-room-users> 
+

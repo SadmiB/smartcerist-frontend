@@ -3,7 +3,6 @@ import { UserService } from '../../services/user.service';
 import { MatSnackBar, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { AuthService } from '../../services/auth.service';
-import { SweetAlertService } from 'angular-sweetalert-service/js';
 
 @Component({
   selector: 'app-home-users',
@@ -11,25 +10,21 @@ import { SweetAlertService } from 'angular-sweetalert-service/js';
   styleUrls: ['./home-users.component.scss']
 })
 export class HomeUsersComponent implements OnInit {
-  @Input() homeId:String;
+  @Input() homeId: String;
   tokenHeader;
-  displayedColumns = ['select', 'email','firstName', 'lastName','manage'];
+  displayedColumns = ['select', 'email', 'firstName', 'lastName', 'manage'];
   dataSource ;
-  selection = new SelectionModel<Element>(true,[]);
-  
+  selection = new SelectionModel<Element>(true, []);
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  
-
-  constructor(private userService:UserService,
-    private snackBar:MatSnackBar,
-    private auth:AuthService,
-    private alertService:SweetAlertService) { 
-      this.tokenHeader=auth.tokenHeader;
+  constructor(private userService: UserService,
+    private snackBar: MatSnackBar,
+    private auth: AuthService) {
+      this.tokenHeader = auth.tokenHeader;
     }
 
   ngOnInit() {
-    this.getUsersHome()
+    this.getUsersHome();
   }
 
   private handleError(error, message) {
@@ -38,25 +33,25 @@ export class HomeUsersComponent implements OnInit {
   }
 
   getUsersHome() {
-    this.userService.getHomeUsers(this.tokenHeader,this.homeId);
+    this.userService.getHomeUsers(this.tokenHeader, this.homeId);
     this.dataSource = new MatTableDataSource();
     this.dataSource.data = this.userService.users;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  getUsersRoom(homeId,roomId) {
-    this.userService.getRoomUsers(this.tokenHeader,homeId,roomId);
+  getUsersRoom(homeId, roomId) {
+    this.userService.getRoomUsers(this.tokenHeader, homeId, roomId);
     this.dataSource = new MatTableDataSource();
     this.dataSource.data = this.userService.users;
     // this.dataSource.forEach(element => {
-    //   element.permission=this.getUserRoomPermission(homeId,roomId,element._id);       
+    //   element.permission=this.getUserRoomPermission(homeId,roomId,element._id);
     // });
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  updateUserPermission(){}
+  updateUserPermission() {}
   /** Whether the number of selected elements matches the total number of rows. */
 isAllSelected() {
   const numSelected = this.selection.selected.length;
@@ -77,52 +72,15 @@ masterToggle() {
     this.dataSource.filter = filterValue;
   }
 
-  deleteUser(userId){
-    const options = {
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    };
-    this.alertService.confirm(options)
-    .then(() => {
-      this.userService.removeUser(this.tokenHeader,userId)
-      .subscribe(res => {
-        res;
-        this.alertService.success({
-          title: 'Account deleted'
-        });
-      } ,error =>{
-        this.handleError(error,'Unable to remove User')
-      })
-    })
-    .catch(() => console.log('canceled')); 
+  deleteUser(userId) {
+    this.userService.removeUser(this.tokenHeader, userId)
+    .subscribe(res => {
+      console.log(res);
+      } , error => {
+        this.handleError(error, 'Unable to remove User');
+      });
   }
-  
-  editUser(userId){
-    const options = {
-      title: 'Permission',
-      type: 'info',
-      html:
-      `<form action="">
-        <label >User
-          <input type="radio" checked="checked" >
-        </label>
-        <label >Admin
-          <input type="radio" name="radio" value="Admin">
-        </label>
-      </form>`,
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'save'
-    };
-    this.alertService.confirm(options)
-  }
-
+  editUser(userId) {}
 }
 export interface Element {
   firstName: string;

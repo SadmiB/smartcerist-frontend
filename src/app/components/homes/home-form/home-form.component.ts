@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { HomesService } from '../../../services/homes.service';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
-import { SweetAlertService } from 'angular-sweetalert-service/js';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -14,12 +13,11 @@ import { MatSnackBar } from '@angular/material';
 export class HomeFormComponent implements OnInit {
   form;
   tokenHeader;
-  constructor(private auth:AuthService, 
-    private formBuilder: FormBuilder, 
-    private homesServices:HomesService,
+  constructor(private auth: AuthService,
+    private formBuilder: FormBuilder,
+    private homesServices: HomesService,
     private router: Router,
-    private snackBar: MatSnackBar,
-    private alertService:SweetAlertService) {
+    private snackBar: MatSnackBar) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       address: ['', Validators.required],
@@ -27,7 +25,7 @@ export class HomeFormComponent implements OnInit {
       phone: ['', Validators.required],
       country: ['', Validators.required]
     });
-    this.tokenHeader=auth.tokenHeader;
+    this.tokenHeader = auth.tokenHeader;
    }
 
   ngOnInit() {
@@ -35,25 +33,11 @@ export class HomeFormComponent implements OnInit {
 
   onSubmit() {
     try {
-      this.homesServices.addHome(this.tokenHeader,this.form.value);    
-      const options = {
-        title: 'Home Created',
-        text: 'do you want to add another home ?',
-        showCancelButton: true,
-        cancelButtonText: 'No'
-      };
-
-      this.alertService.success(options)
-      .then(() => {
-        this.redirect('/dashboard/homes/form');
-      }).catch(() => {
-        console.log('canceled')
-        this.redirect('/dashboard/homes');
-      });
+      this.homesServices.addHome(this.tokenHeader, this.form.value);
+      this.redirect('/dashboard/homes/form');
     } catch (error) {
-      this.handleError
+      this.handleError(error, 'Unable to add the home');
     }
-      
 }
 
   isValid(control) {
@@ -77,6 +61,3 @@ function emailValid() {
     return regex.test(control.value) ? null : {invalidEmail: true};
   };
 }
-
-  
-

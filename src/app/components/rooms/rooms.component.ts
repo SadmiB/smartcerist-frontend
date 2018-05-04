@@ -3,7 +3,6 @@ import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { RoomsService } from '../../services/rooms.service';
-import { SweetAlertService } from 'angular-sweetalert-service/js';
 
 @Component({
   selector: 'app-rooms',
@@ -17,8 +16,7 @@ export class RoomsComponent implements OnInit {
   constructor(private roomsService: RoomsService,
     private auth: AuthService,
     private snackBar: MatSnackBar,
-    private router: ActivatedRoute,
-    private alertService:SweetAlertService) {
+    private router: ActivatedRoute) {
     this.tokenHeader = auth.tokenHeader;
   }
 
@@ -34,25 +32,11 @@ export class RoomsComponent implements OnInit {
 
 
   getRooms(homeId) {
-    this.roomsService.getRooms(this.tokenHeader,homeId);
+    this.roomsService.getRooms(this.tokenHeader, homeId);
   }
 
-  removeRoom(roomId){
-    const options = {
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!'
-    };
-    this.alertService.confirm(options)
-    .then(() => {
+  removeRoom(roomId) {
     this.roomsService.removeRoom(this.tokenHeader, this.homeId, roomId);
-    this.alertService.success({
-      title: 'Room deleted',
-    });
-  })
-  .catch(() => console.log('canceled'));
-  }
 
+  }
 }

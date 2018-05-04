@@ -5,16 +5,23 @@ import { MatSnackBar } from '@angular/material';
 import { Subject } from 'rxjs/Subject';
 import { Consts } from '../models/Consts';
 import { Room } from '../models/Room';
+import { EventObj } from '../models/EventObj';
+import { EventsService } from './events.service';
 
 @Injectable()
 export class UserService {
 
   constructor(private httpClient: HttpClient,
+    private eventsService: EventsService,
     private snackBar:MatSnackBar) { }
 
   private userStore : User[];
   private userSubject = new Subject();
   users = this.userSubject.asObservable();
+
+  private nonUserRoomStore : User[];
+  private nonUserRoomSubject = new Subject();
+  nonUsersRoom = this.nonUserRoomSubject.asObservable();
   
   private allUserStore : User[];
   private allUserSubject = new Subject();
@@ -109,6 +116,13 @@ addUserToRoom(tokenHeader,userId,user){
   return this.httpClient.put(Consts.BASE_URL + `/rooms/room/users/${userId}`,user , {headers:tokenHeader})
   .subscribe(res => {
     res;
+    let _event= new EventObj()
+    _event.category="info";
+    _event.type="join room notification";
+    _event.date=Date.now.toString(); 
+    _event.message= "you have been added to new room  " 
+    _event.socketId=userId;
+    this.eventsService.addEvent(_event)
   },error => {
     this.handleError(error,"Unable to add the User to the Room")
   });

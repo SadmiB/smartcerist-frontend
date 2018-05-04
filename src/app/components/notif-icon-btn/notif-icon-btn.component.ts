@@ -9,14 +9,14 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./notif-icon-btn.component.scss']
 })
 export class NotifIconBtnComponent implements OnInit {
-  number= 0;
-  icon="notifications";
+  number = 0;
+  icon = 'notifications';
   events;
   tokenHeader;
-  constructor(private eventsService: EventsService,
-    private auth:AuthService,
+  constructor(protected eventsService: EventsService,
+    private auth: AuthService,
     private snackBar: MatSnackBar) {
-      this.tokenHeader=auth.tokenHeader;
+      this.tokenHeader = auth.tokenHeader;
      }
 
   ngOnInit() {

@@ -1,6 +1,4 @@
-<app-header back="true" title='Add User' search="false"></app-header>
 <div>
-  <h3>Add Users to Room</h3>
   <tag-input [ngModel]="[]"
              [onlyFromAutocomplete]="true"
              [theme]="'dark'"
@@ -12,30 +10,10 @@
                           [focusFirstElement]="true"
                           [displayBy]="'firstName'"
                           [identifyBy]="'_id'"
-                          [autocompleteItems]="autocompleteItemsAsObjects">
+                          [autocompleteItems]="itemsObjects">
           <ng-template let-item="item" let-index="index">
               ({{ item.firstName }}): {{ item.lastName }}
           </ng-template>
       </tag-input-dropdown>
   </tag-input>
-</div>
-<div>
-    <h3>Add Admins to Room</h3>
-    <tag-input [ngModel]="[]"
-               [onlyFromAutocomplete]="true"
-               [theme]="'dark'"
-               (onAdd)="addAdminToRoom($event)"
-               (onRemove)="removeUserFromRoom($event)"
-               >
-        <tag-input-dropdown [showDropdownIfEmpty]="true"
-                            [dynamicUpdate]="false"
-                            [focusFirstElement]="true"
-                            [displayBy]="'firstName'"
-                            [identifyBy]="'_id'"
-                            [autocompleteItems]="autocompleteItemsAsObjects">
-            <ng-template  let-item="item" let-index="index">
-                ({{ item.firstName }}): {{ item.lastName }}
-            </ng-template>
-        </tag-input-dropdown>
-    </tag-input>
 </div>

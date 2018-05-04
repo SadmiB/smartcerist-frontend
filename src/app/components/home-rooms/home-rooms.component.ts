@@ -3,7 +3,6 @@ import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoomsService } from '../../services/rooms.service';
-import { SweetAlertService } from 'angular-sweetalert-service/js';
 import { Room } from '../../models/Room';
 import { Home } from '../../models/Home';
 import { HomesService } from '../../services/homes.service';
@@ -14,7 +13,7 @@ import { HomesService } from '../../services/homes.service';
   styleUrls: ['./home-rooms.component.scss']
 })
 export class HomeRoomsComponent implements OnInit {
-  home:Home;
+  home: Home;
   @Input() homeId;
   tokenHeader;
 
@@ -23,14 +22,13 @@ export class HomeRoomsComponent implements OnInit {
     private homesService: HomesService,
     private snackBar: MatSnackBar,
     private route: ActivatedRoute,
-    private router:Router,
-    private alertService:SweetAlertService) {
+    private router: Router) {
     this.tokenHeader = auth.tokenHeader;
   }
 
   ngOnInit() {
     this.getRooms();
-    console.log(this.home)
+    console.log(this.home);
   }
 
   private handleError(error, message) {
@@ -40,27 +38,13 @@ export class HomeRoomsComponent implements OnInit {
 
 
   getRooms() {
-    //this.roomsService.getRooms(this.tokenHeader,homeId);
+    // this.roomsService.getRooms(this.tokenHeader,homeId);
     this.home = this.homesService.getHomeFromArray(this.homeId)[0];
   }
 
-  removeRoom(roomId){
-    const options = {
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!'
-    };
-    this.alertService.confirm(options)
-    .then(() => {
+  removeRoom(roomId) {
     this.roomsService.removeRoom(this.tokenHeader, this.homeId, roomId);
-    this.redirect('/dashboard/rooms')
-    this.alertService.success({
-      title: 'Room deleted',
-    });
-  })
-  .catch(() => console.log('canceled'));
+    this.redirect('/dashboard/rooms');
   }
 
   redirect(link) {

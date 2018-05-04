@@ -1,22 +1,8 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
 <app-header back="true" title="Notifications" search='false'></app-header >
     <div class="container">
             <div class="row page-title">
               <div class="col-md-6 col-sm-6 col-xs-6">
-                <!-- <mat-card>
-                    <mat-card-header>
-                        <mat-card-title>Your notifications</mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content **ngFor="let notification of objectNotifs">
-                        <div class="card notification-card" >
-                            <div class="alert alert-{{notification.category}}">
-                              <button class="close" type="button" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button>
-                              <span>{{notification.date}}"</span> <br>
-                              <span>{{notification.message}}"</span> 
-                            </div>
-                          </div>
-                    </mat-card-content>
-                </mat-card> -->
 
                 <mat-card >
                     <mat-card-header>
@@ -25,10 +11,10 @@
                     <mat-card-content *ngFor="let event of eventsService.events | async">
                         <div >
                             <div class="alert alert-{{event.category}}">
-                              <button class="close" type="button" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button>
-                              <span>{{event.date}} -- {{event.seen}} </span> <br>
+                              <button class="close" (click)="removeEvent(event._id)" type="button" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></button>
+                              <span>{{event.category}}  </span> <br>
                               <span>{{event.type}}</span> <br>
-                              <span>{{event.message}}</span> 
+                              <span>{{event.message}}</span>
                             </div>
                         </div>
                     </mat-card-content>
@@ -36,37 +22,5 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="row" style="margin: 35px 0 20px 0;">
-              <div class="card place">
-                <h4 class="text-center">Notifications Places</h4>
-                <p class="text-center">Click to view notifications</p>
-                <div class="row" style="margin-top: 15px">
-                  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="col-md-4">
-                      <button mat-raised-button class="btn btn-primary btn-block" (click)="btnClick('top-left')">TOP LEFT</button>
-                    </div>
-                    <div class="col-md-4">
-                      <button mat-raised-button class="btn btn-primary btn-block" (click)="btnClick('top-center')">TOP CENTER</button>
-                    </div>
-                    <div class="col-md-4">
-                      <button mat-raised-button class="btn btn-primary btn-block" (click)="btnClick('top-right')">TOP RIGHT</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="row page-title">
-                  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="col-md-4">
-                      <button mat-raised-button class="btn btn-primary btn-block" (click)="btnClick('bottom-left')">BOTTOM LEFT</button>
-                    </div>
-                    <div class="col-md-4">
-                      <button mat-raised-button class="btn btn-primary btn-block" (click)="btnClick('bottom-center')">BOTTOM CENTER</button>
-                    </div>
-                    <div class="col-md-4">
-                      <button mat-raised-button class="btn btn-primary btn-block" (click)="btnClick('bottom-right')">BOTTOM RIGHT</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-          
-          
+
+

@@ -13,11 +13,11 @@ export class NotificationsComponent implements OnInit {
   tokenHeader;
   objectNotifs;
   events;
-  constructor(private auth : AuthService, 
-    private notService:NotificationsService,
+  constructor(private auth: AuthService,
+    private notService: NotificationsService,
     private snackBar: MatSnackBar,
-    private eventsService : EventsService) {
-    this.tokenHeader=auth.tokenHeader;
+    protected eventsService: EventsService) {
+    this.tokenHeader = auth.tokenHeader;
    }
 
   ngOnInit() {
@@ -28,16 +28,20 @@ export class NotificationsComponent implements OnInit {
     console.error(error);
     this.snackBar.open(message, 'close', {duration: 3000});
   }
-  getObjectNotification(serverId,beaconId,objectId) {
-    this.notService.getNotification(this.tokenHeader,serverId,beaconId,objectId)
-    .subscribe( (res:any) => {
+  getObjectNotification(serverId, beaconId, objectId) {
+    this.notService.getNotification(this.tokenHeader, serverId, beaconId, objectId)
+    .subscribe( (res: any) => {
       this.objectNotifs = res;
     }, error => {
       this.handleError(error, 'Unable to retrieve this object notifications!');
-    });  
+    });
   }
   getAllEvents() {
-    this.eventsService.getAllEvents(); 
+    this.eventsService.getAllEvents();
+  }
+
+  removeEvent(eventId) {
+    this.eventsService.removeEvent(eventId);
   }
   btnClick(position) {
     let from = 'top';

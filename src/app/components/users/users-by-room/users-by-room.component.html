@@ -1,7 +1,9 @@
 <mat-tab-group >
     <div *ngFor="let room of home.rooms ">
         <mat-tab label="{{room.name}}" >
-            <app-room-users homeId="{{homeId}}" roomId="{{room._id}}"></app-room-users> 
+            <mat-card>
+                <app-room-users homeId="{{homeId}}" roomId="{{room._id}}"></app-room-users> 
+            </mat-card>
         </mat-tab>
     </div>
 </mat-tab-group> 

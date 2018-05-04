@@ -16,18 +16,18 @@ export class ProfileComponent implements OnInit {
   selectedGender ;
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
-              private auth : AuthService,
-              private snackBar: MatSnackBar  ) { 
+              private auth: AuthService,
+              private snackBar: MatSnackBar  ) {
     this.tokenHeader = auth.tokenHeader;
     this.form = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, emailValid()]],
-      phone:[''],
-      city:[''],
-      country:[''],
-      postCode:[''],
-      gender:['']
+      phone: [''],
+      city: [''],
+      country: [''],
+      postCode: [''],
+      gender: ['']
     });
   }
 
@@ -44,18 +44,18 @@ export class ProfileComponent implements OnInit {
     return this.form.controls[control].isValid  && this.form.controls[control].touched;
   }
 
-  getUser(){
+  getUser() {
     this.userService.getUserProfile(this.tokenHeader)
     .subscribe(res => {
-      this.userProfile=res;
+      this.userProfile = res;
       this.selectedGender = this.userProfile.gender;
     }, error => {
       this.handleError(error, 'Unable to retrieve User');
     });
   }
 
-  updateProfile(){
-    this.userService.updateUserProfile(this.tokenHeader,this.form.value)
+  updateProfile() {
+    this.userService.updateUserProfile(this.tokenHeader, this.form.value );
   }
 }
 

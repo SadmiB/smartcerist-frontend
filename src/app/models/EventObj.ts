@@ -1,6 +1,6 @@
 export class EventObj{
     type:String;
-    date: Date;
+    date: String;
     category: String;
     message: String;
     socketId: any;

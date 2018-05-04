@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth.service';
 import { Observable } from 'rxjs/Observable';
@@ -8,7 +8,6 @@ import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { Permission } from '../../../models/Permission';
 import { Consts } from '../../../models/Consts';
-import { HttpClient} from '@angular/common/http';
 import { EventsService } from '../../../services/events.service';
 @Component({
   selector: 'app-person-add',
@@ -16,13 +15,13 @@ import { EventsService } from '../../../services/events.service';
   styleUrls: ['./person-add.component.scss']
 })
 export class PersonAddComponent implements OnInit {
+  @Input() type;
   tokenHeader;
-  autocompleteItemsAsObjects;
+  @Input() itemsObjects;
   permissions : String [] = []; 
   constructor(private usersService: UserService,
     private snackBar:MatSnackBar,
     private router: ActivatedRoute,
-    private httpClient: HttpClient,
     private eventsService: EventsService,
     private auth:AuthService) {
       this.tokenHeader=auth.tokenHeader;
@@ -30,25 +29,15 @@ export class PersonAddComponent implements OnInit {
 
   ngOnInit() {
     this.getUsersNonInRoom();
-    
-    console.log(this.autocompleteItemsAsObjects)
   }
 
-  getUsersNonInRoom(){
-    this.usersService.getUsersNonInRoom(this.tokenHeader, this.router.snapshot.params.homeId,this.router.snapshot.params.roomId)
-    .subscribe(res => {
-      this.autocompleteItemsAsObjects = res;
-    },error=>{
-      this.handleError(error,"unable to get users");
-    });
-  }
   
   public addUserToRoom(tag){
     try {
       let user= new Permission() ;
       user.homeId = this.router.snapshot.params.homeId;
       user.roomId= this.router.snapshot.params.roomId;
-      user.permission= "user"; 
+      user.permission= this.type; 
       console.log(user);
       this.usersService.addUserToRoom(this.tokenHeader,tag._id,user);
       this.eventsService.joinSocketRoom(user.roomId);
@@ -59,6 +48,15 @@ export class PersonAddComponent implements OnInit {
     } catch (error) {
       this.handleError(error,"Unable to add the User")
     }
+}
+
+getUsersNonInRoom(){
+  this.usersService.getUsersNonInRoom(this.tokenHeader, this.router.snapshot.params.homeId,this.router.snapshot.params.roomId)
+  .subscribe(res => {
+    this.itemsObjects=res;
+  },error=>{
+    this.handleError(error,"unable to get users for this room");
+  });
 }
 
 public addAdminToRoom(tag){

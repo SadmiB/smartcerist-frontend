@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HomesService } from '../../services/homes.service';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material';
-import { SweetAlertService } from 'angular-sweetalert-service/js';
 import { Home } from '../../models/Home';
 
 @Component({
@@ -16,8 +15,7 @@ export class HomesComponent implements OnInit {
 
   constructor(private homeService: HomesService,
     private auth: AuthService,
-    private snackBar: MatSnackBar,
-    private alertService:SweetAlertService) {
+    private snackBar: MatSnackBar) {
     this.tokenHeader = auth.tokenHeader;
   }
 
@@ -35,23 +33,6 @@ export class HomesComponent implements OnInit {
   }
 
   deleteHome(homeId) {
-    console.log('comp delete home..');
-    const options = {
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!'
-    };
-    this.alertService.confirm(options)
-    .then(() => {
-        this.homeService.deleteHome(homeId, this.tokenHeader);
-    
-          this.alertService.success({
-            title: 'Home deleted'
-          });
-        })    
-    .catch(() => console.log('canceled'));
-    }
-
+    this.homeService.deleteHome(homeId, this.tokenHeader);
+  }
 }

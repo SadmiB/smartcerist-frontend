@@ -7,7 +7,6 @@ import {MatTableModule} from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ActivatedRoute } from '@angular/router';
-import { SweetAlertService } from 'angular-sweetalert-service/js';
 import { RoomsService } from '../../services/rooms.service';
 import { HomesService } from '../../services/homes.service';
 
@@ -22,20 +21,19 @@ export class UsersComponent implements OnInit {
   tokenHeader;
   homesId;
   connectedUserHomes;
-  
 
-  constructor(private userService : UserService,
+
+  constructor(private userService: UserService,
     private auth: AuthService,
     private roomService: RoomsService,
-    private route : ActivatedRoute,
+    private route: ActivatedRoute,
     private snackBar: MatSnackBar,
-    private alertService: SweetAlertService,
-    private homesService : HomesService) {
+    private homesService: HomesService) {
     this.tokenHeader = auth.tokenHeader;
-  } 
+  }
   ngOnInit() {
-    //this.getUsersRoom(this.route.snapshot.params.homeId,this.route.snapshot.params.roomId);
-    //this.getUsersHome(this.route.snapshot.params.homeId);
+    // this.getUsersRoom(this.route.snapshot.params.homeId,this.route.snapshot.params.roomId);
+    // this.getUsersHome(this.route.snapshot.params.homeId);
     this.getConnectedUserHomes();
   }
   private handleError(error, message) {
@@ -43,20 +41,20 @@ export class UsersComponent implements OnInit {
     this.snackBar.open(message, 'close', {duration: 3000});
   }
 
-  getConnectedUserHomes(){
+  getConnectedUserHomes() {
     this.homesService.getConnectedUserHomes(this.tokenHeader);
   }
 
 
-getUser(userId){
-    this.userService.getUserById(this.tokenHeader,userId)
+getUser(userId) {
+    this.userService.getUserById(this.tokenHeader, userId)
     .subscribe(res => {
-      res;
+      console.log(res);
     }, error => {
       this.handleError(error, 'Unable to retrieve User');
     });
   }
- 
+
 
 }
 

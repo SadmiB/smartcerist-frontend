@@ -27,7 +27,7 @@ export class ServersComponent implements OnInit {
     this.snackBar.open(message, 'close', {duration: 3000});
   }
 
-  getConnectedUserHomes(){
+  getConnectedUserHomes() {
     this.homesService.getConnectedUserHomes(this.tokenHeader);
   }
 

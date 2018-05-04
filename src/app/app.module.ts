@@ -28,7 +28,6 @@ import { RoomsService } from './services/rooms.service';
 import { HomeComponent } from './components/home/home.component';
 import { ServersService } from './services/servers.service';
 import { ProfileComponent } from './components/profile/profile.component';
-import { SweetAlertService } from 'angular-sweetalert-service';
 import { FilePickerComponent } from './components/file-picker/file-picker.component';
 import { FileHelpersModule } from 'ngx-file-helpers';
 import { MatMenuModule } from '@angular/material/menu';
@@ -60,7 +59,8 @@ import { ServerFormComponent } from './components/servers/home-servers/server-fo
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PersonAddComponent } from './components/room/person-add/person-add.component';
 import { TagInputModule } from 'ngx-chips';
-
+import { RoomUsersExpansionPanelComponent } from './components/room/room-users-expansion-panel/room-users-expansion-panel.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -96,6 +96,7 @@ import { TagInputModule } from 'ngx-chips';
     HomeServersComponent,
     ServerFormComponent,
     PersonAddComponent,
+    RoomUsersExpansionPanelComponent,
   ],
   imports: [
     BrowserModule,
@@ -114,13 +115,15 @@ import { TagInputModule } from 'ngx-chips';
     SocketIoModule.forRoot(config),
     FileUploadModule,
     MatProgressSpinnerModule,
-    TagInputModule, 
+    TagInputModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    MatExpansionModule,
   ],
-
-  providers: [AuthService, HomesService,RoomsService,RoomService, ObjectsService, UserService, ServersService,SweetAlertService, NotificationsService,EventsService,{ provide: 'SnotifyToastConfig', useValue: ToastDefaults},SnotifyService,FileUploadServiceService],
+  providers: [ AuthService, HomesService, RoomsService, RoomService, ObjectsService, UserService, ServersService, NotificationsService,
+    EventsService, { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
+    SnotifyService, FileUploadServiceService],
 
   bootstrap: [AppComponent]
 })
