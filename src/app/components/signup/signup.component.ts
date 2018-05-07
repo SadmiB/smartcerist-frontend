@@ -12,7 +12,7 @@ export class SignupComponent implements OnInit {
 
   form;
 
-  constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router) { 
+  constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router) {
 
     if (auth.isAuthenticated) {
       this.router.navigate(['/dashboard/homes']);
@@ -22,6 +22,7 @@ export class SignupComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, emailValid()]],
+      gender: ['', Validators.required],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required]
     }, {validator: matchingFields('password', 'confirmPassword')});

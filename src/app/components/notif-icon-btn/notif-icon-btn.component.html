@@ -8,4 +8,5 @@
     <div *ngFor="let event of eventsService.events | async">
       <button mat-menu-item class="notification-element" routerLink='/dashboard/notifications'>{{event.type}}</button>
     </div>
+    <span mat-menu-item class="notification-all-elements" routerLink='/dashboard/notifications'>All notifications</span>
   </mat-menu>

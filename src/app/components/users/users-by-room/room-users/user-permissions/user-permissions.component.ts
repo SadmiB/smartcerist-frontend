@@ -9,32 +9,31 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./user-permissions.component.scss']
 })
 export class UserPermissionsComponent implements OnInit {
-  @Input() homeId;
   @Input() roomId;
-  @Input() userId; 
+  @Input() userId;
   tokenHeader;
   userPermissions;
-  constructor(private roomService:RoomsService,
-    private auth:AuthService,
-    private snackBar:MatSnackBar) {
+  constructor(private roomService: RoomsService,
+    private auth: AuthService,
+    private snackBar: MatSnackBar) {
       this.tokenHeader = auth.tokenHeader;
      }
 
   ngOnInit() {
-    this.getUserRoomPermission()
+    this.getUserRoomPermission();
   }
 
   private handleError(error, message) {
     console.error(error);
     this.snackBar.open(message, 'close', {duration: 3000});
   }
-  getUserRoomPermission(){
-    this.roomService.getUserRoomPermission(this.homeId,this.roomId,this.userId,this.tokenHeader)
-    .subscribe(res=> {
-      this.userPermissions=res;
-    },error => {
-      this.handleError(error,'Unable to retrieve user permissions for this room');
-    })
+  getUserRoomPermission() {
+    this.roomService.getUserRoomPermission(this.tokenHeader, this.roomId, this.userId)
+    .subscribe(res => {
+      this.userPermissions =  res;
+    }, error => {
+      this.handleError(error, 'Unable to retrieve user permissions for this room');
+    });
   }
 
 }

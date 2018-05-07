@@ -11,58 +11,58 @@ import { EventObj } from '../models/EventObj';
 @Injectable()
 export class RoomsService {
 
-  private roomStore : Room[]=[];
+  private roomStore: Room[] = [];
   private roomSubject = new Subject();
   rooms = this.roomSubject.asObservable();
 
-  constructor(private httpClient: HttpClient, 
+  constructor(private httpClient: HttpClient,
     private eventsService: EventsService,
     private snackBar: MatSnackBar) {}
 
 
-  getRooms( tokenHeader,homeId) {
+  getRooms( tokenHeader, homeId) {
     return this.httpClient.get<Room[]>(Consts.BASE_URL + `/user/${homeId}/rooms`, {headers: tokenHeader})
     .subscribe(res => {
-      this.roomStore=res;
+      this.roomStore = res;
       console.log(res);
       this.roomSubject.next(this.roomStore);
-    },error=>{
-      this.handleError(error,"unable to get rooms");
+    }, error => {
+      this.handleError(error, 'unable to get rooms');
     });
   }
 
-  getUserRoomPermission(homeId,roomId,userId, tokenHeader) {
-    return this.httpClient.get(Consts.BASE_URL + `/${homeId}/${roomId}/permission/${userId}`, {headers: tokenHeader});
+  getUserRoomPermission(tokenHeader, roomId, userId) {
+    return this.httpClient.get(Consts.BASE_URL + `/rooms/${roomId}/users/permission/${userId}`, {headers: tokenHeader});
   }
 
-  addRoom(tokenHeader,homeId,room){
-    this.httpClient.post<Room>(Consts.BASE_URL + `/user/${homeId}/rooms`, room, {headers:tokenHeader})
+  addRoom(tokenHeader, homeId, room) {
+    this.httpClient.post<Room>(Consts.BASE_URL + `/user/${homeId}/rooms`, room, {headers: tokenHeader})
     .subscribe(res => {
       console.log(res);
       this.roomStore.push(res);
       this.roomSubject.next(this.roomStore);
-      let _event= new EventObj()
-      _event.category="warning";
-      _event.type="new room is added";
-      _event.socketId=homeId;
-      this.eventsService.addEvent(_event)
-      //Consts.socket.emit('new-new-message', {"vous avez une nouvelle notification dans la chambre":String,homeId});
+      const _event = new EventObj();
+      _event.category = 'warning';
+      _event.type = 'new room is added';
+      _event.socketId = homeId;
+      this.eventsService.addEvent(_event);
+      // Consts.socket.emit('new-new-message', {"vous avez une nouvelle notification dans la chambre":String,homeId});
     }, error => {
       this.handleError(error, 'Unable to add room!');
     });
   }
 
-  removeRoom(tokenHeader,homeId,roomId){
-    return this.httpClient.delete(Consts.BASE_URL + `/user/${homeId}/rooms/${roomId}` , {headers:tokenHeader})
-    .subscribe((res : Room) => {
-      let removedRoom = this.roomStore.filter(room=>room._id === roomId);
-      let removedRoomIndex = this.roomStore.indexOf(removedRoom[0]);
+  removeRoom(tokenHeader, homeId, roomId) {
+    return this.httpClient.delete(Consts.BASE_URL + `/user/${homeId}/rooms/${roomId}` , {headers: tokenHeader})
+    .subscribe((res: Room) => {
+      const removedRoom = this.roomStore.filter(room => room._id === roomId);
+      const removedRoomIndex = this.roomStore.indexOf(removedRoom[0]);
       console.log(removedRoomIndex);
-      this.roomStore.splice(removedRoomIndex,1);
+      this.roomStore.splice(removedRoomIndex, 1);
       console.log(this.roomStore);
       this.roomSubject.next(this.roomStore);
     }, error => {
-      this.handleError(error, "unable to remove the room")
+      this.handleError(error, 'unable to remove the room');
     });
   }
 

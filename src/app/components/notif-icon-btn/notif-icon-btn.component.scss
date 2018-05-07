@@ -37,5 +37,11 @@
   .notification-element:hover{
     background-color: #6f2db9;
     color:#FFF;
-    z-index: 1; /* Stay on top */
+    z-index: 2; /* Stay on top */
+  }
+  .notification-all-elements{
+    background-color: #78727e;
+    color:#FFF;
+    z-index: 2; /* Stay on top */
+    height:60%;
   }

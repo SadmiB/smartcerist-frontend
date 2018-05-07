@@ -5,7 +5,7 @@
 
 <mat-grid-list cols="2" rowHeight='150px'>
     <mat-grid-tile  *ngFor="let obj of objects" >
-        
+
         <mat-card class="card">
             <mat-card-header>
                 <mat-card-title>
@@ -25,7 +25,6 @@
 
     </mat-grid-tile>
 </mat-grid-list>
-<app-add-button icon="person" link="users"></app-add-button>
 
 <h3 *ngIf="cameras">Cameras:</h3>
 
@@ -41,4 +40,4 @@
     </mat-card-content>
 </mat-card>
 
-
+<app-add-button icon="person" link="users"></app-add-button>

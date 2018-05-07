@@ -1,5 +1,5 @@
 <app-nav></app-nav>
-<div class="background"></div>  
+<div class="background"></div>
 <mat-card id='card'>
   <mat-card-title class="card-header">
       <h4>Sign Up</h4>
@@ -10,23 +10,27 @@
         <input [ngClass]="{'error' : isValid('firstName')}" matInput placeholder="First Name" formControlName='firstName'>
       </mat-form-field>
       <mat-form-field class="input">
-        <input [ngClass]="{'error' : isValid('lastName')}" matInput placeholder="Last Name" formControlName='lastName'>  
+        <input [ngClass]="{'error' : isValid('lastName')}" matInput placeholder="Last Name" formControlName='lastName'>
       </mat-form-field>
       <mat-form-field class="input">
-        <input [ngClass]="{'error' : isValid('email')}" matInput placeholder="Email" type="email" formControlName='email'>  
+        <input [ngClass]="{'error' : isValid('email')}" matInput placeholder="Email" type="email" formControlName='email'>
       </mat-form-field>
+      <mat-select [ngClass]="{'error' : isValid('gender')}" placeholder="Gender" formControlName='gender'>
+          <mat-option value="male">Male </mat-option>
+          <mat-option value="female">Female </mat-option>
+      </mat-select>
       <mat-form-field class="input">
-        <input [ngClass]="{'error' : isValid('password')}" matInput placeholder="Password" type="password" formControlName='password'>   
+        <input [ngClass]="{'error' : isValid('password')}" matInput placeholder="Password" type="password" formControlName='password'>
       </mat-form-field>
       <mat-form-field class="input">
         <input [ngClass]="{'error' : isValid('confirmPassword')}" matInput placeholder="Confirm Password" type="password" formControlName='confirmPassword'>
       </mat-form-field>
-     
+
       <span *ngIf="form.errors?.mismatchedFields">Password do not match</span>
       <br>
-      <button id='signup-btn' (click)='signup' mat-raised-button color='primary'>Sign Up</button>
+      <button id='signup-btn'  mat-raised-button color='primary'>Sign Up</button>
       <br><hr>
-      <button id='signup-btn' (click)='signup' mat-raised-button color='#fff'>Google</button>      
+      <button id='signup-btn'  mat-raised-button color='#fff'>Google</button>
     </form>
   </mat-card-content>
 </mat-card>
