@@ -20,7 +20,8 @@ export class HistoryComponent implements OnInit {
   secretCode: string;
   tokenHeader;
 
-  constructor(private auth: AuthService, protected chatService: EventsService) {
+  constructor(private auth: AuthService,
+    protected chatService: EventsService) {
     this.secretCode = 'DONT';
     this.tokenHeader = auth.tokenHeader;
   }
