@@ -35,10 +35,9 @@ export class RoomComponent implements OnInit {
       this.getRoom(homeId, roomId);
 
       const canvas = document.getElementById('canvas');
-      const client = new WebSocket('ws://10.1.88.167:9999');
+      const client = new WebSocket('ws://193.194.91.145:9999');
       const player = new jsmpeg(client, { canvas: canvas });
   }
-
 
   putLed(obj) {
     let val;
@@ -56,7 +55,6 @@ export class RoomComponent implements OnInit {
       this.handleError(error, 'Unable to toggle led');
     });
   }
-
 
   async getObjectMesure(object) {
     console.log('getObjectMesure...');

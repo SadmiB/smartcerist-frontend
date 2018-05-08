@@ -2,9 +2,10 @@
 
 <h3 *ngIf="objects">Objects:</h3>
 
+
 <mat-grid-list cols="2" rowHeight='150px'>
     <mat-grid-tile  *ngFor="let obj of objects" >
-        
+
         <mat-card class="card">
             <mat-card-header>
                 <mat-card-title>
@@ -25,7 +26,6 @@
     </mat-grid-tile>
 </mat-grid-list>
 
-
 <h3 *ngIf="cameras">Cameras:</h3>
 
 
@@ -39,3 +39,5 @@
         <canvas id="canvas"></canvas>
     </mat-card-content>
 </mat-card>
+
+<app-add-button icon="person" link="users"></app-add-button>

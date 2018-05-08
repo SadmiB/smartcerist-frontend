@@ -1,1 +1,27 @@
-<app-header title="Notifications" search='false'></app-header >
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+<app-header back="true" title="Notifications" search='false'></app-header >
+    <div class="container">
+            <div class="row page-title">
+              <div class="col-md-6 col-sm-6 col-xs-6">
+
+                <mat-card >
+                    <mat-card-header>
+                        <mat-card-title><h2> Your Events</h2></mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content *ngFor="let event of eventsService.events | async">
+                        <div >
+                            <app-notification-alert type="{{event.type}}"
+                                                    eventId="{{event._id}}"
+                                                    date="{{event.date}}"
+                                                    category="{{event.category}}"
+                                                    message="{{event.message}}">
+
+                            </app-notification-alert>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                </div>
+              </div>
+            </div>
+
+

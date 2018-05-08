@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { RoomsService } from '../../services/rooms.service';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
+import { RoomsService } from '../../services/rooms.service';
 
 @Component({
   selector: 'app-rooms',
@@ -10,20 +10,19 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./rooms.component.scss']
 })
 export class RoomsComponent implements OnInit {
-
-  rooms;
   tokenHeader;
+  homeId;
 
   constructor(private roomsService: RoomsService,
     private auth: AuthService,
     private snackBar: MatSnackBar,
-    private route: ActivatedRoute) {
+    private router: ActivatedRoute) {
     this.tokenHeader = auth.tokenHeader;
   }
 
   ngOnInit() {
-    const homeId = this.route.snapshot.params.homeId;
-    this.getRooms(homeId);
+    this.homeId = this.router.snapshot.params.homeId;
+    this.getRooms(this.homeId);
   }
 
   private handleError(error, message) {
@@ -33,11 +32,11 @@ export class RoomsComponent implements OnInit {
 
 
   getRooms(homeId) {
-    this.roomsService.getRooms(homeId, this.tokenHeader).subscribe( res =>
-      this.rooms = res
-    , error => {
-      this.handleError(error, 'Unable to retrieve rooms');
-    });
+    this.roomsService.getRooms(this.tokenHeader, homeId);
   }
 
+  removeRoom(roomId) {
+    this.roomsService.removeRoom(this.tokenHeader, this.homeId, roomId);
+
+  }
 }

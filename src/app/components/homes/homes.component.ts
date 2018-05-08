@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HomesService } from '../../services/homes.service';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material';
+import { Home } from '../../models/Home';
 
 @Component({
   selector: 'app-homes',
@@ -10,7 +11,6 @@ import { MatSnackBar } from '@angular/material';
 })
 export class HomesComponent implements OnInit {
 
-  homes;
   tokenHeader;
 
   constructor(private homeService: HomesService,
@@ -29,22 +29,10 @@ export class HomesComponent implements OnInit {
   }
 
   getHomes() {
-    this.homeService.getHomes(this.tokenHeader)
-    .subscribe( res => {
-      this.homes = res;
-    }, error => {
-      this.handleError(error, 'Unable to retrieve homes!');
-    });
+    this.homeService.getConnectedUserHomes(this.tokenHeader);
   }
 
   deleteHome(homeId) {
-    console.log('comp delete home..');
-    this.homeService.deleteHome(homeId, this.tokenHeader)
-    .subscribe(
-        res => res
-    , error => {
-      this.handleError(error, 'Unable to delete home!');
-    });
+    this.homeService.deleteHome(homeId, this.tokenHeader);
   }
-
 }

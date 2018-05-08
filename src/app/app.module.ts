@@ -26,13 +26,47 @@ import { UserService } from './services/user.service';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { RoomsService } from './services/rooms.service';
 import { HomeComponent } from './components/home/home.component';
+import { ServersService } from './services/servers.service';
+import { ProfileComponent } from './components/profile/profile.component';
+import { FilePickerComponent } from './components/file-picker/file-picker.component';
+import { FileHelpersModule } from 'ngx-file-helpers';
+import { MatMenuModule } from '@angular/material/menu';
+import { NotifIconBtnComponent } from './components/notif-icon-btn/notif-icon-btn.component';
+import { HomeUsersComponent } from './components/home-users/home-users.component';
+import { HomeRoomsComponent } from './components/home-rooms/home-rooms.component';
+import { UserPermissionsComponent } from './components/users/users-by-room/room-users/user-permissions/user-permissions.component';
+import { RoomUsersComponent } from './components/users/users-by-room/room-users/room-users.component';
 import { RoomComponent } from './components/room/room.component';
 import { RoomService } from './services/room.service';
+import { UsersByRoomComponent } from './components/users/users-by-room/users-by-room.component';
+import { NotificationsService } from './services/notifications.service';
+import { EventsService } from './services/events.service';
+import { RoomsTabsComponent } from './components/home-rooms/rooms-tabs/rooms-tabs.component';
 import { ObjectsService } from './services/objects.service';
+
+import { FileUploadServiceService } from './services/file-upload-service.service';
+import { ChartsModule } from 'ng2-charts';
+import {SnotifyModule, SnotifyService, ToastDefaults} from 'ng-snotify';
+import { FancyImageUploaderModule } from 'ng2-fancy-image-uploader';
+import { ProfilePictureComponent } from './components/profile/profile-picture/profile-picture.component';
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+import { AddButtonComponent } from './components/add-button/add-button.component';
+import { HomeFormComponent } from './components/homes/home-form/home-form.component';
+import { RoomFormComponent } from './components/rooms/room-form/room-form.component';
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+import { FileUploadModule } from 'ng2-file-upload';
+import { HomeServersComponent } from './components/servers/home-servers/home-servers.component';
+import { ServerFormComponent } from './components/servers/home-servers/server-form/server-form.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { PersonAddComponent } from './components/room/person-add/person-add.component';
+import { TagInputModule } from 'ngx-chips';
+import { RoomUsersExpansionPanelComponent } from './components/room/room-users-expansion-panel/room-users-expansion-panel.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { NotificationAlertComponent } from './components/notification-alert/notification-alert.component';
+
 import { CamerasService } from './services/cameras.service';
 import { ObjectsComponent } from './components/objects/objects.component';
 import { CamerasComponent } from './components/cameras/cameras.component';
-
 
 
 
@@ -54,9 +88,28 @@ import { CamerasComponent } from './components/cameras/cameras.component';
     HeaderComponent,
     HistoryComponent,
     HomeComponent,
+    ProfileComponent,
+    FilePickerComponent,
+    NotifIconBtnComponent,
+    HomeUsersComponent,
+    RoomUsersComponent,
+    HomeRoomsComponent,
+    UserPermissionsComponent,
+    UsersByRoomComponent,
     RoomComponent,
+    RoomsTabsComponent,
+    ProfilePictureComponent,
+    AddButtonComponent,
+    HomeFormComponent,
+    RoomFormComponent,
+    HomeServersComponent,
+    ServerFormComponent,
+    PersonAddComponent,
+    RoomUsersExpansionPanelComponent,
+    NotificationAlertComponent,
     ObjectsComponent,
     CamerasComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -67,9 +120,24 @@ import { CamerasComponent } from './components/cameras/cameras.component';
     FormsModule,
     HttpClientModule,
     MatPaginatorModule,
+    FileHelpersModule,
+    MatMenuModule,
+    ChartsModule,
+    SnotifyModule,
+    FancyImageUploaderModule,
+    SocketIoModule.forRoot(config),
+    FileUploadModule,
+    MatProgressSpinnerModule,
+    TagInputModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatExpansionModule,
   ],
-
-  providers: [AuthService, HomesService, RoomsService, RoomService, UserService, ObjectsService, CamerasService],
+  
+  providers: [ AuthService, HomesService, RoomsService, RoomService, ObjectsService, UserService, ServersService, NotificationsService,
+    EventsService, { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
+    SnotifyService, FileUploadServiceService, CamerasService],
 
   bootstrap: [AppComponent]
 })

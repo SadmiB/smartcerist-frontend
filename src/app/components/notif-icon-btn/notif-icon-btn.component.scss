@@ -1,0 +1,47 @@
+.msg-btn{
+    position: relative;
+  }
+
+  .msg-btn i{
+    font-size: 19px;
+    color: #555;
+  }
+
+  .msg-btn span{
+    position: relative;
+    border-radius: 5px;
+    top: 2px;
+    border: 1px solid #FFF;
+    right: 2px;
+    font-size: 9px;
+    background: #f44336;
+    color: #FFF;
+    padding: 0px 5px;
+    height: 20px;
+    text-align: center;
+    line-height: 19px;
+    vertical-align: middle;
+  }
+
+  #notifications-number{
+    height: 17px;
+    width: 9px;
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid #FFF;
+    background: #f44336;
+    color: #FFF;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .notification-element:hover{
+    background-color: #6f2db9;
+    color:#FFF;
+    z-index: 2; /* Stay on top */
+  }
+  .notification-all-elements{
+    background-color: #78727e;
+    color:#FFF;
+    z-index: 2; /* Stay on top */
+    height:60%;
+  }

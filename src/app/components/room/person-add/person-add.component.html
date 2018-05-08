@@ -1,0 +1,19 @@
+<div>
+  <tag-input [ngModel]="[]"
+             [onlyFromAutocomplete]="true"
+             [theme]="'dark'"
+             (onAdd)="addUserToRoom($event)"
+             (onRemove)="removeUserFromRoom($event)"
+             >
+      <tag-input-dropdown [showDropdownIfEmpty]="true"
+                          [dynamicUpdate]="false"
+                          [focusFirstElement]="true"
+                          [displayBy]="'firstName'"
+                          [identifyBy]="'_id'"
+                          [autocompleteItems]="itemsObjects">
+          <ng-template let-item="item" let-index="index">
+              ({{ item.firstName }}): {{ item.lastName }}
+          </ng-template>
+      </tag-input-dropdown>
+  </tag-input>
+</div>

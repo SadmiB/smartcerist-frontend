@@ -14,7 +14,14 @@ import { AnalyticsComponent } from './components/analytics/analytics.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { HomesComponent } from './components/homes/homes.component';
 import { HomeComponent } from './components/home/home.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { RoomComponent } from './components/room/room.component';
+import { UsersByRoomComponent } from './components/users/users-by-room/users-by-room.component';
+import { RoomsTabsComponent } from './components/home-rooms/rooms-tabs/rooms-tabs.component';
+import { HomeFormComponent } from './components/homes/home-form/home-form.component';
+import { RoomFormComponent } from './components/rooms/room-form/room-form.component';
+import { ServerFormComponent } from './components/servers/home-servers/server-form/server-form.component';
+import { RoomUsersExpansionPanelComponent } from './components/room/room-users-expansion-panel/room-users-expansion-panel.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard/homes',  pathMatch: 'full'},
@@ -22,18 +29,23 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: 'dashboard', component: DashboardComponent, children: [
     {path: 'homes', component: HomesComponent},
+    {path: 'homes/form', component: HomeFormComponent},
     {path: 'homes/:homeId', component: HomeComponent},
     {path: 'homes/:homeId/rooms', component: RoomsComponent},
+    {path: 'homes/:homeId/rooms/form', component: RoomFormComponent},
     {path: 'homes/:homeId/rooms/:roomId', component: RoomComponent},
     {path: 'homes/:homeId/users', component: UsersComponent},
-    {path: 'homes/:homeId/rooms/:roomId/users', component: UsersComponent},
+    {path: 'homes/:homeId/rooms/:roomId/users', component: RoomUsersExpansionPanelComponent},
     {path: 'homes/:homeId/servers', component: ServersComponent},
-    {path: 'rooms', component: RoomsComponent}, // to change
+    {path: 'homes/:homeId/servers/form', component: ServerFormComponent},
     {path: 'users', component: UsersComponent},
+    {path: 'rooms', component: RoomsTabsComponent},
+    {path: 'roomsUsers', component: UsersByRoomComponent},
     {path: 'servers', component: ServersComponent},
     {path: 'notifications', component: NotificationsComponent},
     {path: 'history', component: HistoryComponent},
     {path: 'analytics', component: AnalyticsComponent},
+    {path: 'profile', component: ProfileComponent},
     {path: 'settings', component: SettingsComponent}
   ]},
 ];

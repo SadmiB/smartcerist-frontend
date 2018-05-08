@@ -1,0 +1,22 @@
+<app-header back="true" title="Rooms" search="true"></app-header > 
+  <mat-card class="room-form-add" >
+      <mat-card-title class="card-header">
+          <h4>Add Room</h4>
+      </mat-card-title>
+      <mat-card-content>
+        <form  class="room-form" [formGroup]='form' (ngSubmit)='onSubmit()' #roomForm="ngForm">
+          <div class="room-form-div">
+            <mat-form-field>
+              <input [ngClass]="{'error' : isValid('name')}" matInput placeholder="Name" formControlName='name'>
+            </mat-form-field>
+            <mat-form-field>
+              <input [ngClass]="{'error' : isValid('type')}" matInput placeholder="Type" formControlName='type'>
+            </mat-form-field>
+          </div>
+          <br><br>
+          <button type="submit" [disabled]="!roomForm.form.valid" id='signup-btn'  mat-raised-button color='primary'>Add</button>
+          <button type="button" (click)="onCancel()"  mat-raised-button color='accent' >Cancel</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
