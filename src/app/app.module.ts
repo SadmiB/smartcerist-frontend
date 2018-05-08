@@ -43,6 +43,7 @@ import { NotificationsService } from './services/notifications.service';
 import { EventsService } from './services/events.service';
 import { RoomsTabsComponent } from './components/home-rooms/rooms-tabs/rooms-tabs.component';
 import { ObjectsService } from './services/objects.service';
+
 import { FileUploadServiceService } from './services/file-upload-service.service';
 import { ChartsModule } from 'ng2-charts';
 import {SnotifyModule, SnotifyService, ToastDefaults} from 'ng-snotify';
@@ -62,6 +63,13 @@ import { TagInputModule } from 'ngx-chips';
 import { RoomUsersExpansionPanelComponent } from './components/room/room-users-expansion-panel/room-users-expansion-panel.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NotificationAlertComponent } from './components/notification-alert/notification-alert.component';
+
+import { CamerasService } from './services/cameras.service';
+import { ObjectsComponent } from './components/objects/objects.component';
+import { CamerasComponent } from './components/cameras/cameras.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -99,6 +107,9 @@ import { NotificationAlertComponent } from './components/notification-alert/noti
     PersonAddComponent,
     RoomUsersExpansionPanelComponent,
     NotificationAlertComponent,
+    ObjectsComponent,
+    CamerasComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -123,9 +134,10 @@ import { NotificationAlertComponent } from './components/notification-alert/noti
     ReactiveFormsModule,
     MatExpansionModule,
   ],
+  
   providers: [ AuthService, HomesService, RoomsService, RoomService, ObjectsService, UserService, ServersService, NotificationsService,
     EventsService, { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
-    SnotifyService, FileUploadServiceService],
+    SnotifyService, FileUploadServiceService, CamerasService],
 
   bootstrap: [AppComponent]
 })
