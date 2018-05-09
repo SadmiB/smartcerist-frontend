@@ -41,6 +41,7 @@ import { NotificationsService } from './services/notifications.service';
 import { EventsService } from './services/events.service';
 import { RoomsTabsComponent } from './components/home-rooms/rooms-tabs/rooms-tabs.component';
 import { ObjectsService } from './services/objects.service';
+
 import { FileUploadServiceService } from './services/file-upload-service.service';
 import { ChartsModule } from 'ng2-charts';
 import {SnotifyModule, SnotifyService, ToastDefaults} from 'ng-snotify';
@@ -64,6 +65,13 @@ import { HomeEditComponent } from './components/homes/home-edit/home-edit.compon
 import { RoomEditComponent } from './components/rooms/room-edit/room-edit.component';
 import { ServerEditComponent } from './components/servers/home-servers/server-edit/server-edit.component';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+
+import { CamerasService } from './services/cameras.service';
+import { ObjectsComponent } from './components/objects/objects.component';
+import { CamerasComponent } from './components/cameras/cameras.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -106,6 +114,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     HomeEditComponent,
     RoomEditComponent,
     ServerEditComponent,
+    ObjectsComponent,
+    CamerasComponent,
   ],
   imports: [
     BrowserModule,
@@ -129,7 +139,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
   ],
   providers: [ AuthService, HomesService, RoomsService, RoomService, ObjectsService, UserService, ServersService, NotificationsService,
     EventsService, { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
-    SnotifyService, FileUploadServiceService],
+    SnotifyService, FileUploadServiceService, CamerasService],
 
   bootstrap: [AppComponent]
 })

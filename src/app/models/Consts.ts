@@ -4,4 +4,3 @@ export class Consts {
     static readonly socket = io(Consts.BASE_URL);
 }
 
-

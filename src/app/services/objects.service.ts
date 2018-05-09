@@ -10,6 +10,11 @@ export class ObjectsService {
 
   BASE_URL = Consts.BASE_URL + '/api';
 
+  getServerByObjectId(objectId) {
+    return this.httpClient.get(Consts.BASE_URL + '/objects/' + objectId);
+  }
+
+
   getObjectMesure(object) {
     console.log(object.path, object.type);
     return this.httpClient.get(this.BASE_URL + object.path , {responseType: 'text'});
