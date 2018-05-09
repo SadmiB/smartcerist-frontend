@@ -1,5 +1,8 @@
 <app-header back="true" title='Users' search="false"></app-header>
 <h4> Room Users </h4>
+  <app-room-users homeId="{{homeId}}" roomId="{{roomId}}"></app-room-users>
+
+<mat-card>
 <mat-accordion>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -26,5 +29,7 @@
     <app-person-add type="admin"></app-person-add>
   </mat-expansion-panel>
 </mat-accordion>
-<app-room-users homeId="homeId" roomId="roomId"></app-room-users> 
+</mat-card>
+
+
 

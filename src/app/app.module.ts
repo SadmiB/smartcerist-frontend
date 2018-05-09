@@ -57,6 +57,12 @@ import { PersonAddComponent } from './components/room/person-add/person-add.comp
 import { TagInputModule } from 'ngx-chips';
 import { RoomUsersExpansionPanelComponent } from './components/room/room-users-expansion-panel/room-users-expansion-panel.component';
 import { NotificationAlertComponent } from './components/notification-alert/notification-alert.component';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import { NotificationToastComponent } from './components/notification-toast/notification-toast.component';
+import { NotificationDetailsComponent } from './components/notifications/notification-details/notification-details.component';
+import { HomeEditComponent } from './components/homes/home-edit/home-edit.component';
+import { RoomEditComponent } from './components/rooms/room-edit/room-edit.component';
+import { ServerEditComponent } from './components/servers/home-servers/server-edit/server-edit.component';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
@@ -95,6 +101,11 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     PersonAddComponent,
     RoomUsersExpansionPanelComponent,
     NotificationAlertComponent,
+    NotificationToastComponent,
+    NotificationDetailsComponent,
+    HomeEditComponent,
+    RoomEditComponent,
+    ServerEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -114,6 +125,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastModule.forRoot(),
   ],
   providers: [ AuthService, HomesService, RoomsService, RoomService, ObjectsService, UserService, ServersService, NotificationsService,
     EventsService, { provide: 'SnotifyToastConfig', useValue: ToastDefaults },

@@ -155,13 +155,19 @@ export class EventsService {
       this.socket.on('add-room', message => {
         // this.getAllEvents();
         console.log(message);
-        this.snackBar.open(message.toString(), 'close', { duration: 5000 });
+        this.snackBar.open(message.toString(), 'close', {
+          duration: 5000,
+          extraClasses: ['blue-snackbar']
+        });
       });
     });
   }
 
   private handleError(error, message) {
     console.error(error);
-    this.snackBar.open(message, 'close', { duration: 3000 });
+    this.snackBar.open(message, 'close', {
+      duration: 5000,
+      extraClasses: ['blue-snackbar']
+    });
   }
 }

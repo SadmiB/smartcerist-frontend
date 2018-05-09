@@ -1,5 +1,7 @@
+import { MatSnackBar } from '@angular/material';
 import { EventsService } from '../../services/events.service';
 import {Component, OnInit} from '@angular/core';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import * as moment from 'moment';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -21,12 +23,19 @@ export class HistoryComponent implements OnInit {
   tokenHeader;
 
   constructor(private auth: AuthService,
+    private snackBar: MatSnackBar,
     protected chatService: EventsService) {
     this.secretCode = 'DONT';
     this.tokenHeader = auth.tokenHeader;
   }
 
   sendMessage() {
+    this.snackBar.open('hello friends how are you', '', {
+      duration: 5000,
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom',
+      extraClasses: ['danger']
+    });
     this.chatService.sendMessage(this.message);
     this.message = '';
   }

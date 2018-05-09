@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { RoomsService } from '../../services/rooms.service';
 
@@ -13,7 +13,7 @@ export class RoomsComponent implements OnInit {
   tokenHeader;
   homeId;
 
-  constructor(private roomsService: RoomsService,
+  constructor(protected roomsService: RoomsService,
     private auth: AuthService,
     private snackBar: MatSnackBar,
     private router: ActivatedRoute) {

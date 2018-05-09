@@ -12,8 +12,8 @@ export class AnalyticsComponent implements OnInit {
     [28, 48, 40, 19, 86, 27, 90]
   ];
   public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChartType: string = 'line';
-  public pieChartType: string = 'pie';
+  public lineChartType: String = 'line';
+  public pieChartType: String = 'pie';
   // Pie
   public pieChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
   public pieChartData: number[] = [300, 500, 100];

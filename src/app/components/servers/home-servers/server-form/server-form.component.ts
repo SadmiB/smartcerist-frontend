@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { HomeFormComponent } from './../../../homes/home-form/home-form.component';
+import { Component, OnInit, Inject } from '@angular/core';
 import { AuthService } from '../../../../services/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ServersService } from '../../../../services/servers.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-server-form',
@@ -18,10 +19,13 @@ export class ServerFormComponent implements OnInit {
     private serversServices: ServersService,
     private route: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    public dialogRef: MatDialogRef<HomeFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       ipv6: ['', Validators.required],
+      ipv4: ['', Validators.required],
     });
     this.tokenHeader = auth.tokenHeader;
    }
@@ -30,11 +34,10 @@ export class ServerFormComponent implements OnInit {
   }
 
   onSubmit() {
-    const homeId = this.route.snapshot.params.homeId;
+    const homeId = this.data.homeId;
     try {
       this.serversServices.addHomeServer(this.tokenHeader, homeId, this.form.value);
-      this.redirect('/dashboard/servers/form');
-      this.redirect('/dashboard/servers');
+      this.dialogRef.close();
     } catch (error) {
       this.handleError(error, 'unable to add the server to the home');
     }
@@ -44,8 +47,8 @@ export class ServerFormComponent implements OnInit {
     return this.form.controls[control].isValid  && this.form.controls[control].touched;
   }
 
-  redirect(link) {
-    this.router.navigate([link]);
+  close() {
+    this.dialogRef.close();
   }
   private handleError(error, message) {
     console.error(error);

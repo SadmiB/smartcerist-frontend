@@ -20,7 +20,7 @@ import {
   MatTooltipModule,
   MatListModule,
   MatButtonToggleModule,
-  MatTableModule
+  MatTableModule,
 } from '@angular/material';
 
 @NgModule({

@@ -1,3 +1,4 @@
+import { HomeFormComponent } from './home-form/home-form.component';
 import { Component, OnInit } from '@angular/core';
 import { HomesService } from '../../services/homes.service';
 import { AuthService } from '../../services/auth.service';
@@ -13,7 +14,7 @@ export class HomesComponent implements OnInit {
 
   tokenHeader;
 
-  constructor(private homeService: HomesService,
+  constructor(protected homeService: HomesService,
     private auth: AuthService,
     private snackBar: MatSnackBar) {
     this.tokenHeader = auth.tokenHeader;
@@ -35,4 +36,5 @@ export class HomesComponent implements OnInit {
   deleteHome(homeId) {
     this.homeService.deleteHome(homeId, this.tokenHeader);
   }
+
 }

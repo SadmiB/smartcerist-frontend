@@ -1,9 +1,4 @@
-<app-header back="true" title="Homes" search="true"></app-header > 
-  <mat-card class="home-form-add" >
-      <mat-card-title class="card-header">
-          <h4>Add Home</h4>
-      </mat-card-title>
-      <mat-card-content>
+<h2 mat-dialog-title> Add Home </h2>
         <form  class="home-form" [formGroup]='form' (ngSubmit)='onSubmit()' #homeForm="ngForm">
           <div class="home-form-div">
             <mat-form-field>
@@ -18,7 +13,7 @@
             <mat-form-field>
               <input [ngClass]="{'error' : isValid('phone')}" matInput placeholder="Phone Number" formControlName='phone'>
             </mat-form-field>
-            
+
             <mat-form-field>
               <mat-select [ngClass]="{'error' : isValid('country')}" placeholder="Country" formControlName='country'>
                 <mat-option value="algeria">Algeria</mat-option>
@@ -29,9 +24,7 @@
             </mat-form-field>
           </div>
           <br><br>
-          <button type="submit" id='signup-btn' (click)='signup' [disabled]="!homeForm.form.valid" mat-raised-button color='primary'>Add</button>
-          <button type="button" (click)="redirect('/dashboard/homes')"  mat-raised-button color='accent' >Cancel</button>
+          <button type="submit" id='signup-btn'  [disabled]="!homeForm.form.valid" mat-raised-button color='primary'>Add</button>
+          <button type="button" (click)="onNoClick()"  mat-raised-button color='accent' >Cancel</button>
         </form>
-      </mat-card-content>
-    </mat-card>
 
