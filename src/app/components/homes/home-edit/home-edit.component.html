@@ -1,3 +1,28 @@
-<p>
-  home-edit works!
-</p>
+<h2 mat-dialog-title> Edit {{home.name}} </h2>
+        <form  class="home-form" [formGroup]='form' (ngSubmit)='onSubmit()' #homeForm="ngForm">
+          <div class="home-form-div">
+            <mat-form-field>
+              <input [ngClass]="{'error' : isValid('name')}" matInput value="{{home.name}}" formControlName='name'>
+            </mat-form-field>
+            <mat-form-field>
+              <input [ngClass]="{'error' : isValid('address')}" matInput value="{{home.address}}" formControlName='address'>
+            </mat-form-field>
+            <mat-form-field>
+              <input [ngClass]="{'error' : isValid('email')}"  matInput value="{{home.email}}" type="email" formControlName='email'>
+            </mat-form-field>
+            <mat-form-field>
+              <input [ngClass]="{'error' : isValid('phone')}" matInput value="{{home.phone}}" formControlName='phone'>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select [ngClass]="{'error' : isValid('country')}" placeholder="Country" [(value)]="country" formControlName='country'>
+                <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+              </mat-select>
+              <p>You selected: {{country}}</p>
+            </mat-form-field>
+          </div>
+          <br><br>
+          <button type="submit" id='signup-btn'  [disabled]="!homeForm.form.valid" mat-raised-button color='primary'>Edit</button>
+          <button type="button" (click)="onNoClick()"  mat-raised-button color='accent' >Cancel</button>
+        </form>
+
+

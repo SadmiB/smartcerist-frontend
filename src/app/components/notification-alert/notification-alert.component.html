@@ -1,7 +1,7 @@
 <div class="{{category}}" >
       <span class="closebtn" (click)="removeEvent(eventId)" type="button" data-dismiss="alert" aria-label="Close"><i class="material-icons">close</i></span>
       <span class="closebtn" routerLink='/dashboard/notifications/{{eventId}}' type="button" data-dismiss="alert" aria-label="Info"><i class="material-icons">info</i></span>
-      <p><strong>{{category}}: </strong> <span>{{date}}  </span> </p>
+      <i><mat-icon>info</mat-icon></i> <p><strong>{{category}}: </strong> <span>{{date}}  </span> </p>
       <span>{{type}}</span> <br>
       <span>{{message}}</span>
 </div>

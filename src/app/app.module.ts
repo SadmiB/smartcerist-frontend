@@ -64,11 +64,12 @@ import { NotificationDetailsComponent } from './components/notifications/notific
 import { HomeEditComponent } from './components/homes/home-edit/home-edit.component';
 import { RoomEditComponent } from './components/rooms/room-edit/room-edit.component';
 import { ServerEditComponent } from './components/servers/home-servers/server-edit/server-edit.component';
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
-
 import { CamerasService } from './services/cameras.service';
 import { ObjectsComponent } from './components/objects/objects.component';
 import { CamerasComponent } from './components/cameras/cameras.component';
+
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+
 
 
 
@@ -140,7 +141,11 @@ import { CamerasComponent } from './components/cameras/cameras.component';
   providers: [ AuthService, HomesService, RoomsService, RoomService, ObjectsService, UserService, ServersService, NotificationsService,
     EventsService, { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
     SnotifyService, FileUploadServiceService, CamerasService],
-
+  entryComponents: [
+      HomeEditComponent,
+      RoomEditComponent,
+      ServerEditComponent,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

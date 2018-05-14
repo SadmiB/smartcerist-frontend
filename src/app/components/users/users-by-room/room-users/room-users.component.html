@@ -1,4 +1,4 @@
-  <div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 div class="example-container mat-elevation-z8">
+  <div>
     <div class="example-header">
      <mat-form-field>
        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
@@ -7,7 +7,7 @@
 
    <mat-table #table [dataSource]="dataSource">
 
-     <ng-container matColumnDef="select">
+     <!-- <ng-container matColumnDef="select">
        <mat-header-cell *matHeaderCellDef>
          <mat-checkbox (change)="$event ? masterToggle() : null"
                        [checked]="selection.hasValue() && isAllSelected()"
@@ -20,7 +20,7 @@
                        [checked]="selection.isSelected(row)">
          </mat-checkbox>
        </mat-cell>
-     </ng-container>
+     </ng-container> -->
 
      <ng-container matColumnDef="email">
          <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
@@ -45,14 +45,13 @@
          </mat-cell>
        </ng-container>
 
-     <ng-container matColumnDef="manage">
-       <mat-header-cell *matHeaderCellDef>
-           <button mat-icon-button ><mat-icon>edit</mat-icon></button>
-           <button mat-icon-button ><mat-icon>delete</mat-icon></button>
+     <ng-container matColumnDef="manage"  >
+       <mat-header-cell *matHeaderCellDef> Edit/Delete
        </mat-header-cell>
-       <mat-cell *matCellDef="let element">
-           <button mat-icon-button (click)="editUser(element._id)"><mat-icon>edit</mat-icon></button>
-           <button mat-icon-button (click)="deleteUser(element._id)" ><mat-icon>delete</mat-icon></button>
+       <mat-cell *matCellDef="let element"  >
+           <button mat-icon-button *ngIf="modify === 'true'" (click)="editUser(element._id)"><mat-icon>edit</mat-icon></button>
+           <button mat-icon-button *ngIf="modify === 'true'" (click)="deleteUser(element._id)" ><mat-icon>delete</mat-icon></button>
+           <span *ngIf="modify === 'false'">-</span>
        </mat-cell>
      </ng-container>
 

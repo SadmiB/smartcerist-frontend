@@ -16,10 +16,7 @@
 
             <mat-form-field>
               <mat-select [ngClass]="{'error' : isValid('country')}" placeholder="Country" formControlName='country'>
-                <mat-option value="algeria">Algeria</mat-option>
-                <mat-option value="france">France</mat-option>
-                <mat-option value="usa">USA</mat-option>
-                <mat-option value="spain">Spain</mat-option>
+                <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>

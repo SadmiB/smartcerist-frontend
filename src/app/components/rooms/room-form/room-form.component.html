@@ -9,9 +9,6 @@
               <input [ngClass]="{'error' : isValid('name')}" matInput placeholder="Name" formControlName='name'>
             </mat-form-field>
             <mat-form-field>
-              <input [ngClass]="{'error' : isValid('type')}" matInput placeholder="Type" formControlName='type'>
-            </mat-form-field>
-            <mat-form-field>
               <mat-select [ngClass]="{'error' : isValid('type')}" placeholder="Type" formControlName='type'>
                 <mat-option value="bedRoom">Bed room</mat-option>
                 <mat-option value="kitchen">Kitchen</mat-option>
