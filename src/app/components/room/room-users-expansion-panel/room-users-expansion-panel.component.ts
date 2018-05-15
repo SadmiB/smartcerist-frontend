@@ -16,24 +16,24 @@ export class RoomUsersExpansionPanelComponent implements OnInit {
   nonRoomUsers;
   tokenHeader;
   constructor(private usersService: UserService,
-    private snackBar:MatSnackBar,
+    private snackBar: MatSnackBar,
     private router: ActivatedRoute,
     private eventsService: EventsService,
-    private auth:AuthService) { 
-      this.tokenHeader=auth.tokenHeader;
+    private auth: AuthService) {
+      this.tokenHeader = auth.tokenHeader;
     }
 
   ngOnInit() {
     this.getUsersNonInRoom();
   }
 
-  getUsersNonInRoom(){
-    this.usersService.getUsersNonInRoom(this.tokenHeader, this.homeId,this.roomId)
+  getUsersNonInRoom() {
+    this.usersService.getUsersNonInRoom(this.tokenHeader, this.homeId, this.roomId)
     .subscribe(res => {
-      this.nonRoomUsers=res;
-      console.log(this.nonRoomUsers)
-    },error=>{
-      this.handleError(error,"unable to get users for this room");
+      this.nonRoomUsers = res;
+      console.log(this.nonRoomUsers);
+    }, error => {
+      this.handleError(error, 'unable to get users for this room');
     });
   }
   private handleError(error, message) {

@@ -2,7 +2,7 @@
 <mat-tab-group >
      <div *ngFor="let home of homesService.homes | async">
        <mat-tab label="{{home.name}}" >
-           <app-home-rooms homeId="{{home._id}}"  ></app-home-rooms>
+           <app-home-rooms homeId="{{home._id}}" modify="false"  ></app-home-rooms>
        </mat-tab>
      </div>
 </mat-tab-group>

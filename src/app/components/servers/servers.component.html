@@ -2,10 +2,8 @@
     <mat-tab-group >
         <div *ngFor="let home of homesService.homes | async">
           <mat-tab label="{{home.name}}" >
-              <app-home-servers homeId="{{home._id}}" ></app-home-servers>
-              <app-add-button link="/dashboard/homes/{{home._id}}/servers/form"></app-add-button>
+              <app-home-servers homeId="{{home._id}}" type="static" ></app-home-servers>
           </mat-tab>
         </div>
    </mat-tab-group>
-   
-   
+

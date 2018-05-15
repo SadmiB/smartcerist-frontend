@@ -14,6 +14,7 @@ import { HomesService } from '../../services/homes.service';
 })
 export class HomeRoomsComponent implements OnInit {
   home: Home;
+  @Input() modify;
   @Input() homeId;
   tokenHeader;
 
@@ -44,7 +45,6 @@ export class HomeRoomsComponent implements OnInit {
 
   removeRoom(roomId) {
     this.roomsService.removeRoom(this.tokenHeader, this.homeId, roomId);
-    this.redirect('/dashboard/rooms');
   }
 
   redirect(link) {

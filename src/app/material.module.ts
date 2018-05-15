@@ -1,5 +1,10 @@
 import {NgModule} from '@angular/core';
+
 import {
+  MatMenuModule,
+  MatProgressSpinnerModule,
+  MatExpansionModule,
+  MatPaginatorModule,
   MatInputModule,
   MatGridListModule,
   MatTabsModule,
@@ -15,11 +20,15 @@ import {
   MatTooltipModule,
   MatListModule,
   MatButtonToggleModule,
-  MatTableModule
+  MatTableModule,
 } from '@angular/material';
 
 @NgModule({
   imports: [
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    MatExpansionModule,
+    MatPaginatorModule,
     MatButtonModule,
     MatCheckboxModule,
     MatSidenavModule,
@@ -39,6 +48,10 @@ import {
     MatTableModule
   ],
   exports: [
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    MatExpansionModule,
+    MatPaginatorModule,
     MatButtonModule,
     MatCheckboxModule,
     MatSidenavModule,

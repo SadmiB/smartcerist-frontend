@@ -19,7 +19,8 @@ export class RoomComponent implements OnInit {
   objects: IotObject[] = [];
   cameras = [];
   room;
-
+  roomId;
+  homeId;
   constructor(private roomService: RoomService,
     private snackBar: MatSnackBar,
     private router: ActivatedRoute,
@@ -30,9 +31,9 @@ export class RoomComponent implements OnInit {
 
     ngOnInit() {
 
-      const roomId = this.router.snapshot.params.roomId;
-      const homeId = this.router.snapshot.params.homeId;
-      this.getRoom(homeId, roomId);
+      this.roomId = this.router.snapshot.params.roomId;
+      this.homeId = this.router.snapshot.params.homeId;
+      this.getRoom(this.homeId, this.roomId);
 
       const canvas = document.getElementById('canvas');
       const client = new WebSocket('ws://193.194.91.145:9999');

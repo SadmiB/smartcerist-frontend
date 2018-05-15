@@ -13,7 +13,7 @@ export class ServersComponent implements OnInit {
   tokenHeader;
 
   constructor(private auth: AuthService,
-    private homesService: HomesService,
+    protected homesService: HomesService,
     private snackBar: MatSnackBar) {
     this.tokenHeader = auth.tokenHeader;
   }

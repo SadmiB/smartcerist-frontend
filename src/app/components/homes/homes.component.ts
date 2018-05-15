@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HomesService } from '../../services/homes.service';
 import { AuthService } from '../../services/auth.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog, MatDialogConfig } from '@angular/material';
 import { Home } from '../../models/Home';
+import { HomeEditComponent } from './home-edit/home-edit.component';
 
 @Component({
   selector: 'app-homes',
@@ -13,8 +14,9 @@ export class HomesComponent implements OnInit {
 
   tokenHeader;
 
-  constructor(private homeService: HomesService,
+  constructor(protected homeService: HomesService,
     private auth: AuthService,
+    private dialog: MatDialog,
     private snackBar: MatSnackBar) {
     this.tokenHeader = auth.tokenHeader;
   }
@@ -35,4 +37,17 @@ export class HomesComponent implements OnInit {
   deleteHome(homeId) {
     this.homeService.deleteHome(homeId, this.tokenHeader);
   }
+
+  editHome(homeCmp) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.closeOnNavigation = true;
+    dialogConfig.role = 'dialog';
+    dialogConfig.height = '550px';
+    dialogConfig.width = '350px';
+    dialogConfig.data = {home: homeCmp};
+    this.dialog.open(HomeEditComponent, dialogConfig);
+  }
+
 }

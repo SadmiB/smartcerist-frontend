@@ -1,8 +1,10 @@
+import { Server } from './../../../models/Serser';
 import { Component, OnInit, Input } from '@angular/core';
 import { ServersService } from '../../../services/servers.service';
 import { AuthService } from '../../../services/auth.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialogConfig, MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ServerEditComponent } from './server-edit/server-edit.component';
 
 
 @Component({
@@ -13,19 +15,25 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class HomeServersComponent implements OnInit {
 
   @Input() homeId;
-  servers;
+  @Input() type;
+  servers: Server[] = [];
   tokenHeader;
 
-  constructor(private serversService: ServersService,
+  constructor(protected serversService: ServersService,
     private auth: AuthService,
     private snackBar: MatSnackBar,
     private route: ActivatedRoute,
+    private dialog: MatDialog,
     private router: Router) {
     this.tokenHeader = auth.tokenHeader;
   }
 
   ngOnInit() {
-    this.getServers();
+    if (this.type === 'static') {
+      this.getStaticServers();
+    } else {
+      this.getServers();
+    }
   }
 
   private handleError(error, message) {
@@ -35,12 +43,19 @@ export class HomeServersComponent implements OnInit {
 
 
   getServers() {
-    this.serversService.getHomeServers(this.tokenHeader, this.homeId).subscribe( res => {
-        this.servers = res;
-      }
-    , error => {
-      this.handleError(error, 'Unable to retrieve rooms');
-    });
+    try {
+      this.serversService.getHomeServers(this.tokenHeader, this.homeId);
+    } catch (error) {
+      this.handleError(error, 'Servers unreachable');
+    }
+  }
+
+  getStaticServers() {
+      this.serversService.getHomeStaticServers(this.tokenHeader, this.homeId)
+      .subscribe(res => { this.servers = res; }
+      , error => {
+        this.handleError(error, 'Servers unreachable');
+      });
   }
 
   removeServer(serverId) {
@@ -50,6 +65,20 @@ export class HomeServersComponent implements OnInit {
       this.handleError(error, 'Unable to remove the server');
     }
   }
+
+  editServer(serverCmp) {
+    console.log('je vais pas ouvrir');
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.closeOnNavigation = true;
+    dialogConfig.role = 'dialog';
+    dialogConfig.height = '350px';
+    dialogConfig.width = '300px';
+    dialogConfig.data = {homeId: this.homeId, server: serverCmp};
+    this.dialog.open(ServerEditComponent, dialogConfig);
+  }
+
   redirect(link) {
     this.router.navigate([link]);
   }
