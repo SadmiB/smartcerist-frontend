@@ -29,14 +29,15 @@ export class RoomComponent implements OnInit {
     }
 
     ngOnInit() {
-
       const roomId = this.router.snapshot.params.roomId;
       const homeId = this.router.snapshot.params.homeId;
       this.getRoom(homeId, roomId);
+    }
 
-      const canvas = document.getElementById('canvas');
-      const client = new WebSocket('ws://193.194.91.145:9999');
-      const player = new jsmpeg(client, { canvas: canvas });
+  getCameraStream(camera) {
+    camera.canvas = document.getElementById('canvas' + camera._id);
+    camera.client = new WebSocket(`ws://${camera.server_ip4}:${camera.port}`);
+    camera.player = new jsmpeg(camera.client, { canvas: camera.canvas });
   }
 
   putLed(obj) {
@@ -96,7 +97,11 @@ export class RoomComponent implements OnInit {
       this.camerasService.getServerByCameraId(cameraId)
       .subscribe(res => {
             const server = res;
-            this.cameras.push(server.cameras[0]);
+            const camera = server.cameras[0];
+            camera.server_ip4 = server.ipv4;
+            camera.server_ip6 = server.ipv6;
+            this.cameras.push(camera);
+            this.getCameraStream(camera);
         }, error => {
         this.handleError(error, 'Unable to get cameras');
       });

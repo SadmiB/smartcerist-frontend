@@ -7,8 +7,13 @@ export class Camera {
     port: Number;
     username: string;
     password: string;
+    server_ip4: string;
+    server_ip6: string;
+    canvas: any;
+    client: any;
+    player: any;
     main_stream: string;
     sub_stream: string;
     ddns: string;
-    history:[CameraHistory];
+    history: [CameraHistory];
 }

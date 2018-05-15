@@ -8,13 +8,13 @@ import { Server } from '../models/Serser';
 @Injectable()
 export class ServersService {
 
-  private serverStore : Server[];
+  private serverStore: Server[];
   private serverSubject = new Subject();
   servers = this.serverSubject.asObservable();
 
   constructor(private httpClient: HttpClient, private snackBar:MatSnackBar) { }
 
-  getHomeServers(tokenHeader, homeId){
+  getHomeServers(tokenHeader, homeId) {
     return this.httpClient.get(Consts.BASE_URL + '/' + homeId + '/servers', {headers:tokenHeader});
   }
 
