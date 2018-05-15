@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { HomeFormComponent } from './../../homes/home-form/home-form.component';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { RoomsService } from '../../../services/rooms.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-room-form',
@@ -18,7 +19,9 @@ export class RoomFormComponent implements OnInit {
     private roomsServices: RoomsService,
     private route: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    public dialogRef: MatDialogRef<HomeFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       type: ['', Validators.required],
@@ -27,14 +30,14 @@ export class RoomFormComponent implements OnInit {
    }
 
   ngOnInit() {
+    console.log(this.data.homeId);
   }
 
   onSubmit() {
-    const homeId = this.route.snapshot.params.homeId;
     try {
+      const homeId = this.data.homeId;
       this.roomsServices.addRoom(this.tokenHeader, homeId, this.form.value);
-      this.redirect(`/dashboard/homes/${this.route.snapshot.params.homeId}/rooms/form`);
-      this.redirect(`/dashboard/homes/${this.route.snapshot.params.homeId}/rooms`);
+      this.dialogRef.close();
     } catch (error) {
       this.handleError(error, 'Unable to add the room');
     }
@@ -51,6 +54,10 @@ export class RoomFormComponent implements OnInit {
 
   redirect(link) {
     this.router.navigate([link]);
+  }
+
+  close() {
+    this.dialogRef.close();
   }
 
   private handleError(error, message) {

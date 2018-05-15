@@ -1,0 +1,30 @@
+      <!-- <mat-card-title class="card-title"> -->
+        <h2 mat-dialog-title>Edit {{room.name}}</h2>
+        <!-- </mat-card-title> -->
+
+          <form  class="room-form" [formGroup]='form' (ngSubmit)='onSubmit()' #roomForm="ngForm">
+            <mat-dialog-content>
+            <div class="room-form-div">
+              <mat-form-field>
+                <input [ngClass]="{'error' : isValid('name')}" matInput value="{{room.name}}" formControlName='name'>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-select [ngClass]="{'error' : isValid('type')}" placeholder="Type" formControlName='type'>
+                  <mat-option value="bedRoom">Bed room</mat-option>
+                  <mat-option value="kitchen">Kitchen</mat-option>
+                  <mat-option value="livingRoom">Living room</mat-option>
+                  <mat-option value="bathroom">Bathroom</mat-option>
+                  <mat-option value="classroom">Classroom</mat-option>
+                  <mat-option value="desktop">Desktop</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <br><br>
+          </mat-dialog-content>
+          <mat-dialog-actions>
+            <button type="submit" [disabled]="!roomForm.form.valid" id='signup-btn'  mat-raised-button color='primary'>Edit</button>
+            <button type="button" (click)="close()"  mat-raised-button color='accent' >Cancel</button>
+          </mat-dialog-actions>
+          </form>
+
+

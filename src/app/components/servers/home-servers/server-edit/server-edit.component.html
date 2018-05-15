@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Edit {{server.name}} </h2>
+<mat-dialog-content>
+  <form  class="room-form" [formGroup]='form' (ngSubmit)='onSubmit()' #serverForm="ngForm">
+    <div class="room-form-div">
+      <mat-form-field>
+        <input [ngClass]="{'error' : isValid('name')}" matInput value="{{server.name}}" formControlName='name'>
+      </mat-form-field>
+      <mat-form-field>
+        <input [ngClass]="{'error' : isValid('ipv6')}" matInput value="{{server.ipv6}}" formControlName='ipv6'>
+      </mat-form-field>
+      <mat-form-field>
+        <input [ngClass]="{'error' : isValid('ipv4')}" matInput value="{{server.ipv4}}" formControlName='ipv4'>
+      </mat-form-field>
+    </div>
+    <br><br>
+    <button type="submit" [disabled]="!serverForm.form.valid" id='signup-btn' mat-raised-button color='primary'>Add</button>
+    <button type="button" (click)="close()"  mat-raised-button color='accent' >Cancel</button>
+  </form>
+</mat-dialog-content>

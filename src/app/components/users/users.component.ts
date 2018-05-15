@@ -28,7 +28,7 @@ export class UsersComponent implements OnInit {
     private roomService: RoomsService,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
-    private homesService: HomesService) {
+    protected homesService: HomesService) {
     this.tokenHeader = auth.tokenHeader;
   }
   ngOnInit() {

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HomesService } from '../../../services/homes.service';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-home-form',
@@ -13,11 +13,22 @@ import { MatSnackBar } from '@angular/material';
 export class HomeFormComponent implements OnInit {
   form;
   tokenHeader;
+  states = [
+    'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware',
+    'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky',
+    'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
+    'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico',
+    'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
+    'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+    'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+  ];
   constructor(private auth: AuthService,
     private formBuilder: FormBuilder,
     private homesServices: HomesService,
     private router: Router,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    public dialogRef: MatDialogRef<HomeFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       address: ['', Validators.required],
@@ -34,10 +45,14 @@ export class HomeFormComponent implements OnInit {
   onSubmit() {
     try {
       this.homesServices.addHome(this.tokenHeader, this.form.value);
-      this.redirect('/dashboard/homes/form');
+      this.dialogRef.close();
     } catch (error) {
       this.handleError(error, 'Unable to add the home');
     }
+}
+
+onNoClick(): void {
+  this.dialogRef.close();
 }
 
   isValid(control) {

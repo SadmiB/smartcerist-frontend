@@ -12,10 +12,9 @@ import { HomesService } from '../../../services/homes.service';
 })
 export class RoomsTabsComponent implements OnInit {
   tokenHeader;
-  
 
   constructor(private auth: AuthService,
-    private homesService: HomesService,
+    protected homesService: HomesService,
     private snackBar: MatSnackBar) {
     this.tokenHeader = auth.tokenHeader;
   }
@@ -29,7 +28,7 @@ export class RoomsTabsComponent implements OnInit {
     this.snackBar.open(message, 'close', {duration: 3000});
   }
 
-  getConnectedUserHomes(){
+  getConnectedUserHomes() {
     this.homesService.getConnectedUserHomes(this.tokenHeader);
   }
 }

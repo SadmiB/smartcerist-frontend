@@ -1,5 +1,11 @@
-<app-header back="true" title='Home details' search="fasle"></app-header>
-
-<p>
-  home works!
-</p>
+<app-header title='Home details' search="fasle"></app-header>
+<mat-tab-group >
+    <mat-tab label="Rooms" >
+        <app-rooms homeId="{{homeId}}" ></app-rooms>
+        <app-add-button type="addRoom" homeId="{{homeId}}"></app-add-button>
+    </mat-tab>
+    <mat-tab label="Servers">
+        <app-home-servers homeId="{{homeId}}" type="dynamic" ></app-home-servers>
+        <app-add-button type="addServer" homeId="{{homeId}}"></app-add-button>
+    </mat-tab>
+</mat-tab-group>

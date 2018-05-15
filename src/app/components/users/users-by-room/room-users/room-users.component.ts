@@ -11,8 +11,9 @@ import { AuthService } from '../../../../services/auth.service';
 export class RoomUsersComponent implements OnInit {
   @Input() roomId: String;
   @Input() homeId: String;
+  @Input() modify;
   tokenHeader;
-  displayedColumns = ['select', 'email', 'firstName', 'lastName', 'permission', 'manage'];
+  displayedColumns = ['email', 'firstName', 'lastName', 'permission', 'manage'];
   dataSource ;
   selection = new SelectionModel<Element>(true, []);
 
@@ -54,7 +55,7 @@ export class RoomUsersComponent implements OnInit {
 isAllSelected() {
   const numSelected = this.selection.selected.length;
   const numRows = this.dataSource.data.length;
-  return numSelected == numRows;
+  return numSelected === numRows;
 }
 
 /** Selects all rows if they are not all selected; otherwise clear selection. */
@@ -82,5 +83,7 @@ export interface Element {
   firstName: string;
   lastName: string;
   email: string;
+  permission: string;
+  manage: string;
 }
 
