@@ -2,7 +2,7 @@
     position: relative;
   }
 
-  .msg-btn i{
+  .msg-btn {
     font-size: 19px;
     color: #555;
   }
@@ -38,10 +38,18 @@
     background-color: #6f2db9;
     color:#FFF;
     z-index: 2; /* Stay on top */
+    box-shadow: 1px 1px 1px 1px  grey;
   }
-  .notification-all-elements{
-    background-color: #78727e;
-    color:#FFF;
+  mat-menu-item{
+    height : 30%;
+  }
+  #notification-all-elements{
+    background-color: #d1ced4;
     z-index: 2; /* Stay on top */
-    height:60%;
+  }
+  #notification-menu {
+    z-index: 2;
+    border-radius: 10%;
+    box-shadow: 5px 5px grey;
+    margin-top:80%;
   }

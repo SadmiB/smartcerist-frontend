@@ -19,7 +19,8 @@ export class RoomComponent implements OnInit {
   objects: IotObject[] = [];
   cameras = [];
   room;
-
+  roomId;
+  homeId;
   constructor(private roomService: RoomService,
     private snackBar: MatSnackBar,
     private router: ActivatedRoute,

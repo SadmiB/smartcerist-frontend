@@ -7,6 +7,7 @@
     <input [(ngModel)]="message" (keyup)="$event.keyCode == 13 && sendMessage()" />
     <button (click)="sendMessage()">Send</button>
 
-    <div *ngFor="let roomId of chatService.roomsIds | async">
+    <!-- <div *ngFor="let roomId of chatService.roomsIds | async">
         {{roomId}}
-    </div>
+    </div> -->
+<app-notification-toast></app-notification-toast>

@@ -39,11 +39,26 @@ export class RoomsService {
     this.httpClient.post<Room>(Consts.BASE_URL + `/user/${homeId}/rooms`, room, {headers: tokenHeader})
     .subscribe(res => {
       console.log(res);
-      this.roomStore.push(res);
-      this.roomSubject.next(this.roomStore);
+      this.getRooms(tokenHeader, homeId);
       const _event = new EventObj();
       _event.category = 'warning';
-      _event.type = 'new room is added';
+      _event.type = 'room updated';
+      _event.socketId = homeId;
+      this.eventsService.addEvent(_event);
+      // Consts.socket.emit('new-new-message', {"vous avez une nouvelle notification dans la chambre":String,homeId});
+    }, error => {
+      this.handleError(error, 'Unable to add room!');
+    });
+  }
+
+  updateRoom(tokenHeader, homeId, roomId, room) {
+    this.httpClient.put<Room>(Consts.BASE_URL + `/user/${homeId}/rooms/${roomId}`, room, {headers: tokenHeader})
+    .subscribe(res => {
+      console.log(res);
+      this.getRooms(tokenHeader, homeId);
+      const _event = new EventObj();
+      _event.category = 'warning';
+      _event.type = `room ${room.name} is modified` ;
       _event.socketId = homeId;
       this.eventsService.addEvent(_event);
       // Consts.socket.emit('new-new-message', {"vous avez une nouvelle notification dans la chambre":String,homeId});

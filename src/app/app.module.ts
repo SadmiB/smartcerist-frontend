@@ -23,14 +23,12 @@ import { AnalyticsComponent } from './components/analytics/analytics.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HistoryComponent } from './components/history/history.component';
 import { UserService } from './services/user.service';
-import {MatPaginatorModule} from '@angular/material/paginator';
 import { RoomsService } from './services/rooms.service';
 import { HomeComponent } from './components/home/home.component';
 import { ServersService } from './services/servers.service';
 import { ProfileComponent } from './components/profile/profile.component';
 import { FilePickerComponent } from './components/file-picker/file-picker.component';
 import { FileHelpersModule } from 'ngx-file-helpers';
-import { MatMenuModule } from '@angular/material/menu';
 import { NotifIconBtnComponent } from './components/notif-icon-btn/notif-icon-btn.component';
 import { HomeUsersComponent } from './components/home-users/home-users.component';
 import { HomeRoomsComponent } from './components/home-rooms/home-rooms.component';
@@ -53,20 +51,25 @@ import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 import { AddButtonComponent } from './components/add-button/add-button.component';
 import { HomeFormComponent } from './components/homes/home-form/home-form.component';
 import { RoomFormComponent } from './components/rooms/room-form/room-form.component';
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 import { FileUploadModule } from 'ng2-file-upload';
 import { HomeServersComponent } from './components/servers/home-servers/home-servers.component';
 import { ServerFormComponent } from './components/servers/home-servers/server-form/server-form.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PersonAddComponent } from './components/room/person-add/person-add.component';
 import { TagInputModule } from 'ngx-chips';
 import { RoomUsersExpansionPanelComponent } from './components/room/room-users-expansion-panel/room-users-expansion-panel.component';
-import {MatExpansionModule} from '@angular/material/expansion';
 import { NotificationAlertComponent } from './components/notification-alert/notification-alert.component';
-
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import { NotificationToastComponent } from './components/notification-toast/notification-toast.component';
+import { NotificationDetailsComponent } from './components/notifications/notification-details/notification-details.component';
+import { HomeEditComponent } from './components/homes/home-edit/home-edit.component';
+import { RoomEditComponent } from './components/rooms/room-edit/room-edit.component';
+import { ServerEditComponent } from './components/servers/home-servers/server-edit/server-edit.component';
 import { CamerasService } from './services/cameras.service';
 import { ObjectsComponent } from './components/objects/objects.component';
 import { CamerasComponent } from './components/cameras/cameras.component';
+
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+
 
 
 
@@ -107,9 +110,13 @@ import { CamerasComponent } from './components/cameras/cameras.component';
     PersonAddComponent,
     RoomUsersExpansionPanelComponent,
     NotificationAlertComponent,
+    NotificationToastComponent,
+    NotificationDetailsComponent,
+    HomeEditComponent,
+    RoomEditComponent,
+    ServerEditComponent,
     ObjectsComponent,
     CamerasComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -119,26 +126,26 @@ import { CamerasComponent } from './components/cameras/cameras.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    MatPaginatorModule,
     FileHelpersModule,
-    MatMenuModule,
     ChartsModule,
     SnotifyModule,
     FancyImageUploaderModule,
     SocketIoModule.forRoot(config),
     FileUploadModule,
-    MatProgressSpinnerModule,
     TagInputModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    MatExpansionModule,
+    ToastModule.forRoot(),
   ],
-  
   providers: [ AuthService, HomesService, RoomsService, RoomService, ObjectsService, UserService, ServersService, NotificationsService,
     EventsService, { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
     SnotifyService, FileUploadServiceService, CamerasService],
-
+  entryComponents: [
+      HomeEditComponent,
+      RoomEditComponent,
+      ServerEditComponent,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
