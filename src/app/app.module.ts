@@ -58,7 +58,6 @@ import { PersonAddComponent } from './components/room/person-add/person-add.comp
 import { TagInputModule } from 'ngx-chips';
 import { RoomUsersExpansionPanelComponent } from './components/room/room-users-expansion-panel/room-users-expansion-panel.component';
 import { NotificationAlertComponent } from './components/notification-alert/notification-alert.component';
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { NotificationToastComponent } from './components/notification-toast/notification-toast.component';
 import { NotificationDetailsComponent } from './components/notifications/notification-details/notification-details.component';
 import { HomeEditComponent } from './components/homes/home-edit/home-edit.component';
@@ -135,8 +134,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     TagInputModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule,
-    ToastModule.forRoot(),
+    ReactiveFormsModule
   ],
   providers: [ AuthService, HomesService, RoomsService, RoomService, ObjectsService, UserService, ServersService, NotificationsService,
     EventsService, { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
