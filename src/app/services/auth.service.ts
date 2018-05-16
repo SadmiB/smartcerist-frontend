@@ -55,6 +55,16 @@ export class AuthService {
     });
   }
 
+  changePassword(tokenHeader, password) {
+    delete password.confirmPassword;
+    this.httpClient.put(Consts.BASE_URL + '/changePwd', password, {headers : tokenHeader} )
+    .subscribe(res => {
+      console.log(res);
+    }, error => {
+      this.handleError(error, 'Unable to change the password');
+    });
+  }
+
   signout() {
     localStorage.removeItem(this.NAME_KEY);
     localStorage.removeItem(this.TOKEN_KEY);

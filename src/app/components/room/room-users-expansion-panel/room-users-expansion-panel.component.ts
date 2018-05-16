@@ -15,7 +15,7 @@ export class RoomUsersExpansionPanelComponent implements OnInit {
   roomId = this.router.snapshot.params.roomId;
   nonRoomUsers;
   tokenHeader;
-  constructor(private usersService: UserService,
+  constructor(protected usersService: UserService,
     private snackBar: MatSnackBar,
     private router: ActivatedRoute,
     private eventsService: EventsService,
@@ -24,6 +24,7 @@ export class RoomUsersExpansionPanelComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.getUsers();
     this.getUsersNonInRoom();
   }
 
@@ -36,6 +37,18 @@ export class RoomUsersExpansionPanelComponent implements OnInit {
       this.handleError(error, 'unable to get users for this room');
     });
   }
+
+  getUsers() {
+    this.usersService.getRoomUsers(this.tokenHeader, this.homeId, this.roomId);
+  }
+
+  deleteUser(userId) {
+    this.usersService.removeRoomUser(this.tokenHeader, this.homeId, this.roomId, userId);
+  }
+
+  editUser(userId) {
+  }
+
   private handleError(error, message) {
     console.error(error);
     this.snackBar.open(message, 'close', {duration: 3000});

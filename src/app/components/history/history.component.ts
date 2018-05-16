@@ -1,7 +1,6 @@
 import { MatSnackBar } from '@angular/material';
 import { EventsService } from '../../services/events.service';
 import {Component, OnInit} from '@angular/core';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import * as moment from 'moment';
 import 'rxjs/add/operator/distinctUntilChanged';
