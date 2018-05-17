@@ -67,6 +67,8 @@ import { CamerasService } from './services/cameras.service';
 import { ObjectsComponent } from './components/objects/objects.component';
 import { CamerasComponent } from './components/cameras/cameras.component';
 import { PasswordChangeComponent } from './components/password-change/password-change.component';
+import { PersonEditComponent } from './components/room/person-edit/person-edit.component';
+import { WarningDiagComponent } from './components/warning-diag/warning-diag.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -118,6 +120,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     ObjectsComponent,
     CamerasComponent,
     PasswordChangeComponent,
+    PersonEditComponent,
+    WarningDiagComponent,
   ],
   imports: [
     BrowserModule,
@@ -145,6 +149,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
       HomeEditComponent,
       RoomEditComponent,
       ServerEditComponent,
+      PersonEditComponent,
+      WarningDiagComponent,
   ],
   bootstrap: [AppComponent]
 })

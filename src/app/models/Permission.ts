@@ -1,5 +1,5 @@
-export class Permission{
+export class Permission {
     homeId: String;
-    roomId:String;
+    roomId: String;
     permission: String;
 }

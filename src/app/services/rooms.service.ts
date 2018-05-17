@@ -34,6 +34,9 @@ export class RoomsService {
   getUserRoomPermission(tokenHeader, roomId, userId) {
     return this.httpClient.get(Consts.BASE_URL + `/rooms/${roomId}/users/permission/${userId}`, {headers: tokenHeader});
   }
+  getConnectedUserRoomPermission(tokenHeader, roomId) {
+    return this.httpClient.get(Consts.BASE_URL + `/rooms/${roomId}/permission/user`, {headers: tokenHeader});
+  }
 
   addRoom(tokenHeader, homeId, room) {
     this.httpClient.post<Room>(Consts.BASE_URL + `/user/${homeId}/rooms`, room, {headers: tokenHeader})

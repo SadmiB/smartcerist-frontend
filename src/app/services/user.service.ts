@@ -95,6 +95,15 @@ export class UserService {
     });
   }
 
+  updateUserRoomPermission(tokenHeader, homeId, roomId, userId, permission) {
+    return this.httpClient.put(Consts.BASE_URL + `/rooms/${roomId}/users/permission/${userId}`, permission, {headers: tokenHeader})
+    .subscribe(res => {
+      this.getRoomUsers(tokenHeader, homeId, roomId);
+    }, error => {
+      this.handleError(error, 'Unable to update user permission');
+    }) ;
+  }
+
   removeUserAccount(tokenHeader) {
     return this.httpClient.delete(Consts.BASE_URL + '/users/user' , {headers: tokenHeader});
   }

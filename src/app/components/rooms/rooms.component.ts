@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { RoomsService } from '../../services/rooms.service';
 import { RoomEditComponent } from './room-edit/room-edit.component';
+import { WarningDiagComponent } from '../warning-diag/warning-diag.component';
 
 @Component({
   selector: 'app-rooms',
@@ -36,9 +37,18 @@ export class RoomsComponent implements OnInit {
     this.roomsService.getRooms(this.tokenHeader, homeId);
   }
 
-  removeRoom(roomId) {
-    this.roomsService.removeRoom(this.tokenHeader, this.homeId, roomId);
+  removeRoom(roomId, roomName) {
+    const dialogRef = this.dialog.open(WarningDiagComponent, {
+      width: '250px',
+      data : {message : 'Are you sure to remove ' + roomName},
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+          console.log('The dialog was closed');
+          this.roomsService.removeRoom(this.tokenHeader, this.homeId, roomId);
+      }
+    });
   }
 
   editRoom(homeCmpId, roomCmp) {

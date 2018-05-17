@@ -6,10 +6,9 @@
             </mat-card-title>
             <mat-card-content>
                     <h4>{{room.name}}</h4>
-                    <h5>{{room.type}}</h5>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-icon-button (click)="removeRoom(room._id)"><mat-icon>delete</mat-icon></button>
+                <button mat-icon-button (click)="removeRoom(room._id, room.name)"><mat-icon>delete</mat-icon></button>
                 <button mat-icon-button (click)="editRoom(homeId, room)"><mat-icon>settings</mat-icon></button>
             </mat-card-actions>
         </mat-card>
