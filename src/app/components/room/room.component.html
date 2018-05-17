@@ -1,7 +1,6 @@
 <app-header back="true" title='Room details' search="false"></app-header>
 
-<!-- <h2 >hi : {{permission}}</h2> -->
-<h3 *ngIf="objects">Objects: </h3>
+<h3 *ngIf="objects.length">Objects:</h3>
 
 
 <mat-grid-list cols="2" rowHeight='150px'>
@@ -14,10 +13,12 @@
                     <mat-icon *ngIf="obj.type==='LIGHT'"> highlight </mat-icon>
                     <mat-icon *ngIf="obj.type==='PRESENCE'"> remove_red_eye </mat-icon>
                     <mat-icon *ngIf="obj.type==='POWER'" > power </mat-icon>
+                    <mat-icon *ngIf="obj.type==='TEMPERTURE'" > toll </mat-icon>
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content>
                 <h4>{{obj.name}}</h4>
+                <button mat-icon-button *ngIf="obj.status" (click)='getObjectMesure(obj)'><mat-icon>refresh</mat-icon></button>
                 <button mat-raised-button *ngIf="obj.type==='LED' && obj.status" (click)='putLed(obj)'>ON/OFF</button>
                 <p *ngIf="obj.status==='Disconnected'">STATUS: {{obj.status}}</p>
                 <p *ngIf="obj.mesure">Measure: {{obj.mesure}}</p>
@@ -27,17 +28,17 @@
     </mat-grid-tile>
 </mat-grid-list>
 
-<h3 *ngIf="cameras">Cameras:</h3>
+<h3 *ngIf="cameras.length">Cameras:</h3>
 
 
-<mat-card class="cam-card">
+<mat-card class="cam-card" *ngFor="let camera of cameras">
     <mat-card-header>
         <mat-card-title>
             <h4>Dahua Camera:</h4>
         </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <canvas id="canvas"></canvas>
+        <canvas id='canvas'+camera._id></canvas>
     </mat-card-content>
 </mat-card>
 

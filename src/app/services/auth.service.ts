@@ -13,12 +13,12 @@ export class AuthService {
     private router: Router,
     private snackBar: MatSnackBar) { }
 
-  NAME_KEY = 'name';
+  EMAIL_KEY = 'email';
   TOKEN_KEY = 'token';
 
 
-  get name() {
-    return localStorage.getItem(this.NAME_KEY);
+  get email() {
+    return localStorage.getItem(this.EMAIL_KEY);
   }
 
   get isAuthenticated() {
@@ -66,7 +66,7 @@ export class AuthService {
   }
 
   signout() {
-    localStorage.removeItem(this.NAME_KEY);
+    localStorage.removeItem(this.EMAIL_KEY);
     localStorage.removeItem(this.TOKEN_KEY);
     this.router.navigate(['/signin']);
   }
@@ -77,7 +77,7 @@ export class AuthService {
       return;
     }
     localStorage.setItem(this.TOKEN_KEY, authResponse.token);
-    localStorage.setItem(this.NAME_KEY, authResponse.firstName);
+    localStorage.setItem(this.EMAIL_KEY, authResponse.email);
     this.router.navigate(['/dashboard/homes']);
   }
 

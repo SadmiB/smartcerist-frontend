@@ -11,7 +11,6 @@ export class NotificationToastComponent implements OnInit {
   constructor() {
  }
 
-
   ngOnInit() {
   }
 

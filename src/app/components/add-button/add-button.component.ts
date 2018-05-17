@@ -47,6 +47,7 @@ export class AddButtonComponent implements OnInit {
         this.dialog.open(ServerFormComponent, dialogConfig);
       break;
       case 'addUser':
+        console.log(this.link);
         this.router.navigate([this.link]);
       break;
 
