@@ -1,6 +1,7 @@
 import { CameraHistory } from './CameraHistory';
 
 export class Camera {
+    _id: string;
     name: string;
     ipv4: string;
     ipv6: string;
@@ -12,8 +13,8 @@ export class Camera {
     canvas: any;
     client: any;
     player: any;
-    main_stream: string;
-    sub_stream: string;
+    mainStream: string;
+    subStream: string;
     ddns: string;
     history: [CameraHistory];
 }

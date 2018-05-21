@@ -14,7 +14,7 @@
                     <mat-icon *ngIf="obj.type==='LIGHT'"> highlight </mat-icon>
                     <mat-icon *ngIf="obj.type==='PRESENCE'"> remove_red_eye </mat-icon>
                     <mat-icon *ngIf="obj.type==='POWER'" > power </mat-icon>
-                    <mat-icon *ngIf="obj.type==='TEMPERTURE'" > toll </mat-icon>
+                    <mat-icon *ngIf="obj.type==='TEMPERATURE'" > toll </mat-icon>
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content>
@@ -22,7 +22,7 @@
                 <button mat-icon-button *ngIf="obj.status" (click)='getObjectMesure(obj)'><mat-icon>refresh</mat-icon></button>
                 <button mat-raised-button *ngIf="obj.type==='LED' && obj.status" (click)='putLed(obj)'>ON/OFF</button>
                 <p *ngIf="obj.status==='Disconnected'">STATUS: {{obj.status}}</p>
-                <p *ngIf="obj.mesure">Measure: {{obj.mesure}}</p>
+                <p *ngIf="obj.mesure">Measure: {{obj.measure}}</p>
             </mat-card-content>
         </mat-card>
 
