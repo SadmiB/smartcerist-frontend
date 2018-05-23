@@ -1,11 +1,11 @@
-<button matTooltip="notifications" mat-icon-button class="msg-btn" [matMenuTriggerFor]="menu">
-    <span *ngIf="(eventsService.eventsNumbers > 0)"  id ="notifications-number" >{{ eventsService.eventsNumbers }}</span>
+<button matTooltip="notifications" mat-icon-button class="msg-btn" [matMenuTriggerFor]="menu" (click)="removeNotifications()"  >
+    <span *ngIf="((notifsService.notifsNumber ) > 0)"  id ="notifications-number" >{{ notifsService.notifsNumber }}</span>
     <i class="material-icons icon-btn">{{ icon }}</i>
 </button>
 
-  <mat-menu #menu="matMenu" id="notification-menu">
-    <div *ngFor="let event of eventsService.events | async">
-      <span mat-menu-item class="notification-element" routerLink='/dashboard/notifications'>{{event.type}}</span>
+  <mat-menu #menu="matMenu" id="notification-menu" >
+    <div *ngFor="let event of notifsService.notifications | async">
+      <span mat-menu-item class="notification-element" (click)="getLink(event)">{{event.type}}</span>
     </div>
     <span mat-menu-item id="notification-all-elements" routerLink='/dashboard/notifications'>All notifications</span>
   </mat-menu>
