@@ -78,6 +78,7 @@ export class HomeEditComponent implements OnInit {
     this.tokenHeader = auth.tokenHeader;
     this.home = this.data.home;
     this.country = this.home.country;
+    // dialogRef.disableClose = true;
    }
 
   ngOnInit() {

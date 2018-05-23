@@ -1,9 +1,6 @@
 <app-header back="true" title='Users' search="false"></app-header>
-<h4> Room Users </h4>
-  <app-room-users homeId="{{homeId}}" roomId="{{roomId}}" modify="true"></app-room-users>
-
-<mat-card>
-<mat-accordion>
+<mat-card *ngIf="permission"  >
+<mat-accordion *ngIf="((permission == 'owner') || (permission == 'admin'))" >
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -29,7 +26,28 @@
     <app-person-add type="admin"></app-person-add>
   </mat-expansion-panel>
 </mat-accordion>
+
+<table >
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Email</th>
+    <th>Permissions</th>
+    <th *ngIf="(permission == 'owner')">Settings</th>
+  </tr>
+    <tr *ngFor="let user of usersService.users | async ">
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.email}}</td>
+      <td><app-user-permissions  roomId="{{roomId}}" userId="{{user._id}}"></app-user-permissions></td>
+
+      <td>
+        <button mat-icon-button  (click)="editUser(user)" ><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button  (click)="deleteUser(user._id)" ><mat-icon>delete</mat-icon></button>
+      </td>
+    </tr>
+
+    <!-- <app-current-room-users homeId="{{homeId}}" roomId="{{roomId}}" user="{{user}}"></app-current-room-users> -->
+  </table>
+
 </mat-card>
-
-
-

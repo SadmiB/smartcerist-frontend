@@ -1,0 +1,23 @@
+      <!-- <mat-card-title class="card-title"> -->
+        <h2 mat-dialog-title>Edit {{user.firstName}}</h2>
+        <!-- </mat-card-title> -->
+
+          <form  class="room-form" [formGroup]='form' (ngSubmit)='onSubmit()' #roomForm="ngForm">
+            <mat-dialog-content>
+            <div class="room-form-div">
+              <mat-form-field>
+                <mat-select [ngClass]="{'error' : isValid('permission')}" placeholder="permission" formControlName='permission'>
+                  <mat-option value="user">User</mat-option>
+                  <mat-option value="admin">admin</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <br><br>
+          </mat-dialog-content>
+          <mat-dialog-actions>
+            <button type="submit" [disabled]="!roomForm.form.valid" id='signup-btn'  mat-raised-button color='primary'>Edit</button>
+            <button type="button" (click)="close()"  mat-raised-button color='accent' >Cancel</button>
+          </mat-dialog-actions>
+          </form>
+
+

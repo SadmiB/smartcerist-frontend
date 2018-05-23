@@ -18,73 +18,73 @@ export class PersonAddComponent implements OnInit {
   @Input() type;
   tokenHeader;
   @Input() itemsObjects;
-  permissions : String [] = []; 
+  permissions: String [] = [];
   constructor(private usersService: UserService,
-    private snackBar:MatSnackBar,
+    private snackBar: MatSnackBar,
     private router: ActivatedRoute,
     private eventsService: EventsService,
-    private auth:AuthService) {
-      this.tokenHeader=auth.tokenHeader;
+    private auth: AuthService) {
+      this.tokenHeader = auth.tokenHeader;
      }
 
   ngOnInit() {
     this.getUsersNonInRoom();
   }
 
-  
-  public addUserToRoom(tag){
+
+  public addUserToRoom(tag) {
     try {
-      let user= new Permission() ;
+      const user = new Permission() ;
       user.homeId = this.router.snapshot.params.homeId;
-      user.roomId= this.router.snapshot.params.roomId;
-      user.permission= this.type; 
+      user.roomId = this.router.snapshot.params.roomId;
+      user.permission = this.type;
       console.log(user);
-      this.usersService.addUserToRoom(this.tokenHeader,tag._id,user);
+      this.usersService.addUserToRoom(this.tokenHeader, tag._id, user);
       this.eventsService.joinSocketRoom(user.roomId);
       this.eventsService.joinSocketRoom(user.homeId);
-      // this.getUsersNonInRoom(); 
-      console.log("done");
+      // this.getUsersNonInRoom();
+      console.log('done');
       return of(tag);
     } catch (error) {
-      this.handleError(error,"Unable to add the User")
+      this.handleError(error, 'Unable to add the User');
     }
 }
 
-getUsersNonInRoom(){
-  this.usersService.getUsersNonInRoom(this.tokenHeader, this.router.snapshot.params.homeId,this.router.snapshot.params.roomId)
+getUsersNonInRoom() {
+  this.usersService.getUsersNonInRoom(this.tokenHeader, this.router.snapshot.params.homeId, this.router.snapshot.params.roomId)
   .subscribe(res => {
-    this.itemsObjects=res;
-  },error=>{
-    this.handleError(error,"unable to get users for this room");
+    this.itemsObjects = res;
+  }, error => {
+    this.handleError(error, 'unable to get users for this room');
   });
 }
 
-public addAdminToRoom(tag){
+public addAdminToRoom(tag) {
   try {
-    let user= new Permission() ;
+    const user = new Permission() ;
     user.homeId = this.router.snapshot.params.homeId;
-    user.roomId= this.router.snapshot.params.roomId;
-    user.permission= "admin"; 
+    user.roomId = this.router.snapshot.params.roomId;
+    user.permission = 'admin';
     console.log(user);
-    this.usersService.addUserToRoom(this.tokenHeader,tag._id,user);
+    this.usersService.addUserToRoom(this.tokenHeader, tag._id, user);
     // this.getUsersNonInRoom();
     this.eventsService.joinSocketRoom(user.roomId);
     this.eventsService.joinSocketRoom(user.homeId);
-    console.log("done");
+    console.log('done');
     return of(tag);
   } catch (error) {
-    this.handleError(error,"Unable to add the Admin")
-  }  
+    this.handleError(error, 'Unable to add the Admin');
+  }
 }
 
-public removeUserFromRoom(tag){
+public removeUserFromRoom(tag) {
   try {
-    this.usersService.removeRoomUser(this.tokenHeader,this.router.snapshot.params.homeId,this.router.snapshot.params.roomId,tag._id);
+    this.usersService.removeRoomUser(this.tokenHeader, this.router.snapshot.params.homeId, this.router.snapshot.params.roomId, tag._id);
     this.eventsService.leaveSocketRoom(this.router.snapshot.params.roomId);
     this.eventsService.leaveSocketRoom(this.router.snapshot.params.homeId);
-    //this.getUsersNonInRoom();
+    // this.getUsersNonInRoom();
   } catch (error) {
-    this.handleError(error,"Unable to remove the user from the room")
+    this.handleError(error, 'Unable to remove the user from the room');
   }
 }
 

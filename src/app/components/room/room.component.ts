@@ -1,3 +1,4 @@
+import { Permission } from './../../models/Permission';
 import { Component, OnInit, Input } from '@angular/core';
 import { forEach } from '@angular/router/src/utils/collection';
 import { RoomService } from '../../services/room.service';
@@ -7,6 +8,8 @@ import { IotObject } from '../../models/IotObject';
 import { UpperCasePipe } from '@angular/common';
 import { ObjectsService } from '../../services/objects.service';
 import { CamerasService } from '../../services/cameras.service';
+import { RoomsService } from '../../services/rooms.service';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -21,12 +24,16 @@ export class RoomComponent implements OnInit {
   room;
   roomId;
   homeId;
+  permission;
+  tokenHeader;
   constructor(private roomService: RoomService,
+    private auth: AuthService,
+    private roomsService: RoomsService,
     private snackBar: MatSnackBar,
     private router: ActivatedRoute,
     private objectsService: ObjectsService,
     private camerasService: CamerasService) {
-
+      this.tokenHeader = auth.tokenHeader;
     }
 
     ngOnInit() {
@@ -39,6 +46,15 @@ export class RoomComponent implements OnInit {
     camera.canvas = document.getElementById('canvas' + camera._id);
     camera.client = new WebSocket(`ws://${camera.server_ip4}:${camera.port}`);
     camera.player = new jsmpeg(camera.client, { canvas: camera.canvas });
+  }
+
+  getUserPermission() {
+    this.roomsService.getConnectedUserRoomPermission(this.tokenHeader, this.roomId)
+    .subscribe((res: Permission) => {
+      this.permission = res;
+    }, error => {
+      this.handleError(error, 'Enable to get the permission for this room');
+    });
   }
 
   putLed(obj) {

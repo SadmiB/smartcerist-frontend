@@ -50,7 +50,7 @@ export class ProfileComponent implements OnInit {
       this.userProfile = res;
       this.selectedGender = this.userProfile.gender;
     }, error => {
-      this.handleError(error, 'Unable to retrieve User');
+      this.handleError(error, 'Unable to retrieve User profile');
     });
   }
 

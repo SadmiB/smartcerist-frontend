@@ -1,7 +1,7 @@
-import { Permission } from "./Permission";
+import { Permission } from './Permission';
 
-export class User{
-    _id : String;
+export class User {
+    _id: String;
     firstName: String;
     lastName: String;
     email:  String;
@@ -11,8 +11,8 @@ export class User{
     country: String;
     city: String;
     postCode: String;
-    status:Boolean;
-    picture:String;
+    status: Boolean;
+    picture: String;
     homes: String[];
-    rooms:Permission[];
-}
+    rooms: Permission[];
+  }
