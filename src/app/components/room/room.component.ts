@@ -59,8 +59,8 @@ export class RoomComponent implements OnInit {
 
   putLed(obj) {
     let val;
-    this.getObjectMesure(obj);
-    if (obj.mesure === '1') {
+    this.getObjectMeasure(obj);
+    if (obj.measure === '1') {
       val = '0';
     } else {
       val = '1';
@@ -68,17 +68,17 @@ export class RoomComponent implements OnInit {
     console.log('putLed..', val);
     this.objectsService.putLed(val)
     .subscribe(res => {
-      this.getObjectMesure(obj);
+      this.getObjectMeasure(obj);
     }, error => {
       this.handleError(error, 'Unable to toggle led');
     });
   }
 
-  async getObjectMesure(object) {
-    console.log('getObjectMesure...');
-      await this.objectsService.getObjectMesure(object)
+  async getObjectMeasure(object) {
+    console.log('getObjectMeasure...');
+      await this.objectsService.getObjectMeasure(object)
     .subscribe(res => {
-      object.mesure = res;
+      object.measure = res;
       object.status = 'Connected';
     }, error => {
       object.status = 'Disconnected';
@@ -102,7 +102,7 @@ export class RoomComponent implements OnInit {
           const object = this.getObject(server, objectId);
           this.objects.push(object);
           console.log('this.objects:' , this.objects);
-          this.getObjectMesure(object);
+          this.getObjectMeasure(object);
         }, error => {
           this.handleError(error, 'Unable to get objects');
       });
@@ -130,7 +130,7 @@ export class RoomComponent implements OnInit {
     const theOject = new IotObject();
     server.beacons[0].objects.some(object => {
         if (object._id === objectId) {
-          theOject.id = object._id;
+          theOject._id = object._id;
           theOject.name = object.name;
           theOject.path = object.path;
           theOject.type = object.type.toUpperCase();

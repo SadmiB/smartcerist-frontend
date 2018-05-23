@@ -1,7 +1,7 @@
 import { ObjectsTypes } from './ObjectsTypes';
 
 export class IotObject {
-    id: string;
+    _id: string;
     name: string;
     path: string;
     type: ObjectsTypes;
@@ -11,5 +11,5 @@ export class IotObject {
     server_ipv4: string;
     server_lipv4: string;
     status: string;
-    mesure: string;
+    measure: string;
 }

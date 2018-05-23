@@ -8,20 +8,20 @@ export class ObjectsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  BASE_URL = Consts.BASE_URL + '/api';
+  BASE_URL = Consts.BASE_URL + '/api/';
 
   getServerByObjectId(objectId) {
     return this.httpClient.get(Consts.BASE_URL + '/objects/' + objectId);
   }
 
 
-  getObjectMesure(object) {
+  getObjectMeasure(object) {
     console.log(object.path, object.type);
     return this.httpClient.get(this.BASE_URL + object.path , {responseType: 'text'});
   }
 
   putLed(val) {
-    return this.httpClient.put(this.BASE_URL + '/lights/led3', {'payload': val} , {responseType: 'text'} );
+    return this.httpClient.put(this.BASE_URL + 'lights/led3', {'payload': val} , {responseType: 'text'} );
   }
 
 }
