@@ -1,18 +1,18 @@
 import { Permission } from './Permission';
 
 export class User {
-    _id: String;
-    firstName: String;
-    lastName: String;
-    email:  String;
-    password: String;
-    phone:  String;
-    gender: String;
-    country: String;
-    city: String;
-    postCode: String;
+    _id: string;
+    firstName: string;
+    lastName: string;
+    email:  string;
+    password: string;
+    phone:  string;
+    gender: string;
+    country: string;
+    city: string;
+    postCode: string;
     status: Boolean;
-    picture: String;
-    homes: String[];
+    picture: string;
+    homes: string[];
     rooms: Permission[];
   }

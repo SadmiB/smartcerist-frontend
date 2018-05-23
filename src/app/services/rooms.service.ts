@@ -43,11 +43,6 @@ export class RoomsService {
     .subscribe(res => {
       console.log(res);
       this.getRooms(tokenHeader, homeId);
-      const _event = new EventObj();
-      _event.category = 'warning';
-      _event.type = 'room updated';
-      _event.socketId = homeId;
-      this.eventsService.addEvent(_event);
       // Consts.socket.emit('new-new-message', {"vous avez une nouvelle notification dans la chambre":String,homeId});
     }, error => {
       this.handleError(error, 'Unable to add room!');
@@ -59,11 +54,6 @@ export class RoomsService {
     .subscribe(res => {
       console.log(res);
       this.getRooms(tokenHeader, homeId);
-      const _event = new EventObj();
-      _event.category = 'warning';
-      _event.type = `room ${room.name} is modified` ;
-      _event.socketId = homeId;
-      this.eventsService.addEvent(_event);
       // Consts.socket.emit('new-new-message', {"vous avez une nouvelle notification dans la chambre":String,homeId});
     }, error => {
       this.handleError(error, 'Unable to add room!');
@@ -72,13 +62,14 @@ export class RoomsService {
 
   removeRoom(tokenHeader, homeId, roomId) {
     return this.httpClient.delete(Consts.BASE_URL + `/user/${homeId}/rooms/${roomId}` , {headers: tokenHeader})
-    .subscribe((res: Room) => {
-      const removedRoom = this.roomStore.filter(room => room._id === roomId);
-      const removedRoomIndex = this.roomStore.indexOf(removedRoom[0]);
-      console.log(removedRoomIndex);
-      this.roomStore.splice(removedRoomIndex, 1);
-      console.log(this.roomStore);
-      this.roomSubject.next(this.roomStore);
+    .subscribe(res => {
+      // const removedRoom = this.roomStore.filter(room => room._id === roomId);
+      // const removedRoomIndex = this.roomStore.indexOf(removedRoom[0]);
+      // console.log(removedRoomIndex);
+      // this.roomStore.splice(removedRoomIndex, 1);
+      // console.log(this.roomStore);
+      // this.roomSubject.next(this.roomStore);
+      this.getRooms(tokenHeader, homeId);
     }, error => {
       this.handleError(error, 'unable to remove the room');
     });

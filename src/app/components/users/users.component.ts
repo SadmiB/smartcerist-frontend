@@ -42,7 +42,7 @@ export class UsersComponent implements OnInit {
   }
 
   getConnectedUserHomes() {
-    this.homesService.getConnectedUserHomes(this.tokenHeader);
+    this.homesService.getHomes(this.tokenHeader);
   }
 
 

@@ -1,5 +1,7 @@
 import { EventsService } from './../../services/events.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { NotificationsService } from '../../services/notifications.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-notification-alert',
@@ -7,18 +9,23 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./notification-alert.component.scss']
 })
 export class NotificationAlertComponent implements OnInit {
-  @Input() eventId;
+  @Input() notifId;
   @Input() category;
   @Input() date ;
   @Input() type ;
+  @Input() resume ;
   @Input() message ;
-  constructor(protected eventsService: EventsService) { }
+  tokenHeader;
+  constructor(private auth: AuthService,
+    protected notifsService: NotificationsService) {
+      this.tokenHeader = auth.tokenHeader;
+    }
 
   ngOnInit() {
   }
 
   removeEvent(eventId) {
-    this.eventsService.removeEvent(eventId);
+    this.notifsService.removeNotification(this.tokenHeader, eventId);
   }
 
 }

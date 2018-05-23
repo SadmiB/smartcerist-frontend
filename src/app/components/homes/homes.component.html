@@ -8,9 +8,9 @@
         <mat-card-content>
           <h4>{{home.name}}</h4>
         </mat-card-content>
-        <mat-card-actions>
+        <mat-card-actions  >
+          <button mat-icon-button (click)='editHome(home)' *ngIf="home.permission == 'owner'"><mat-icon>settings</mat-icon></button>
           <button mat-icon-button (click)='deleteHome(home._id)'><mat-icon>delete</mat-icon></button>
-          <button mat-icon-button (click)='editHome(home)' ><mat-icon>settings</mat-icon></button>
         </mat-card-actions>
       </mat-card>
    </mat-grid-tile>
