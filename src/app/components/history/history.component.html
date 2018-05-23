@@ -1,13 +1,25 @@
 <app-header back="true" title="History" search='true'></app-header >
+  <mat-tab-group  >
+    <mat-tab *ngFor="let home of homesService.homesOwner | async"  label="{{home.name}}" >
+      <mat-card *ngFor="let room of home.rooms" >
+        <table >
+          <tr>
+            <th colspan="4" class="roomName"><h2>{{room.name}}</h2></th>
+          </tr>
+          <tr>
+            <th>User</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Event</th>
+          </tr>
+          <tr *ngFor="let event of room.events ">
+            <td>{{event.userName}}</td>
+            <td>{{event.date}}</td>
+            <td>{{event.category}}</td>
+            <td>{{event.message}}</td>
+          </tr>
+          </table>
+        </mat-card>
+    </mat-tab>
+</mat-tab-group>
 
-    <div *ngFor="let message of messages">
-        {{message}}
-    </div>
-
-    <input [(ngModel)]="message" (keyup)="$event.keyCode == 13 && sendMessage()" />
-    <button (click)="sendMessage()">Send</button>
-
-    <!-- <div *ngFor="let roomId of chatService.roomsIds | async">
-        {{roomId}}
-    </div> -->
-<app-notification-toast></app-notification-toast>

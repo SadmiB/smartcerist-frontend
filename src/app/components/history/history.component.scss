@@ -1,0 +1,23 @@
+app-room-users {
+  margin-top: 10%;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.roomName{
+  background-color: rgb(122, 127, 145);
+}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: rgb(139, 145, 167);
+  color: white;
+}
