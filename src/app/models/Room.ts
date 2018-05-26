@@ -1,8 +1,10 @@
-import {Permission} from './Permission'
-export class Room{
-    _id : String;
-    name: String;
-    type:  String;
-    objects : String[];
-    users: String[];
+import {Permission} from './Permission';
+import { EventObj } from './EventObj';
+export class Room {
+    _id: string;
+    name: string;
+    type:  string;
+    objects: string[];
+    users: string[];
+    events: EventObj[];
 }

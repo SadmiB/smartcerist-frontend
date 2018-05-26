@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HomesService } from '../../services/homes.service';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +10,15 @@ import { ActivatedRoute } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   homeId;
-  constructor(private router: ActivatedRoute) { }
+  permission;
+  constructor(private router: ActivatedRoute,
+    private homesService: HomesService) {
+      this.homeId = this.router.snapshot.params.homeId;
+     }
 
   ngOnInit() {
     this.homeId = this.router.snapshot.params.homeId;
+    this.permission = this.homesService.getHomeFromArray(this.homeId)[0].permission;
   }
 
 }

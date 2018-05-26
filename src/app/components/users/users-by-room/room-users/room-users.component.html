@@ -7,21 +7,6 @@
 
    <mat-table #table [dataSource]="dataSource">
 
-     <!-- <ng-container matColumnDef="select">
-       <mat-header-cell *matHeaderCellDef>
-         <mat-checkbox (change)="$event ? masterToggle() : null"
-                       [checked]="selection.hasValue() && isAllSelected()"
-                       [indeterminate]="selection.hasValue() && !isAllSelected()">
-         </mat-checkbox>
-       </mat-header-cell>
-       <mat-cell *matCellDef="let row">
-         <mat-checkbox (click)="$event.stopPropagation()"
-                       (change)="$event ? selection.toggle(row) : null"
-                       [checked]="selection.isSelected(row)">
-         </mat-checkbox>
-       </mat-cell>
-     </ng-container> -->
-
      <ng-container matColumnDef="email">
          <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
          <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
@@ -43,17 +28,7 @@
          <mat-cell *matCellDef="let element">
              <app-user-permissions  roomId="{{roomId}}" userId="{{element._id}}"></app-user-permissions>
          </mat-cell>
-       </ng-container>
-
-     <ng-container matColumnDef="manage"  >
-       <mat-header-cell *matHeaderCellDef> Edit/Delete
-       </mat-header-cell>
-       <mat-cell *matCellDef="let element"  >
-           <button mat-icon-button *ngIf="modify === 'true'" (click)="editUser(element._id)"><mat-icon>edit</mat-icon></button>
-           <button mat-icon-button *ngIf="modify === 'true'" (click)="deleteUser(element._id)" ><mat-icon>delete</mat-icon></button>
-           <span *ngIf="modify === 'false'">-</span>
-       </mat-cell>
-     </ng-container>
+        </ng-container>
 
 
      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

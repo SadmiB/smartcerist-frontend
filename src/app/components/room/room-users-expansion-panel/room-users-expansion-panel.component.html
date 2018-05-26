@@ -14,7 +14,8 @@
     <app-person-add type="user"></app-person-add>
   </mat-expansion-panel>
   <mat-expansion-panel (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false">
+                       (closed)="panelOpenState = false"
+                       *ngIf="(permission == 'owner')">
     <mat-expansion-panel-header>
       <mat-panel-title>
         Add an Admin
@@ -33,7 +34,7 @@
     <th>Last name</th>
     <th>Email</th>
     <th>Permissions</th>
-    <th *ngIf="(permission == 'owner')">Settings</th>
+    <th *ngIf="((permission == 'owner') || (permission == 'admin'))">Settings</th>
   </tr>
     <tr *ngFor="let user of usersService.users | async ">
       <td>{{user.firstName}}</td>
@@ -41,7 +42,7 @@
       <td>{{user.email}}</td>
       <td><app-user-permissions  roomId="{{roomId}}" userId="{{user._id}}"></app-user-permissions></td>
 
-      <td>
+      <td *ngIf="((permission == 'owner') || (permission == 'admin'))">
         <button mat-icon-button  (click)="editUser(user)" ><mat-icon>edit</mat-icon></button>
         <button mat-icon-button  (click)="deleteUser(user._id)" ><mat-icon>delete</mat-icon></button>
       </td>

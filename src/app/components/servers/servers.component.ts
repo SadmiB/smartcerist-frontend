@@ -28,7 +28,7 @@ export class ServersComponent implements OnInit {
   }
 
   getConnectedUserHomes() {
-    this.homesService.getConnectedUserHomes(this.tokenHeader);
+    this.homesService.getHomes(this.tokenHeader);
   }
 
 }

@@ -13,9 +13,8 @@ import { HomeEditComponent } from './home-edit/home-edit.component';
 export class HomesComponent implements OnInit {
 
   tokenHeader;
-
   constructor(protected homeService: HomesService,
-    private auth: AuthService,
+    protected auth: AuthService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar) {
     this.tokenHeader = auth.tokenHeader;
@@ -31,11 +30,11 @@ export class HomesComponent implements OnInit {
   }
 
   getHomes() {
-    this.homeService.getConnectedUserHomes(this.tokenHeader);
+    this.homeService.getHomes(this.tokenHeader);
   }
 
   deleteHome(homeId) {
-    this.homeService.deleteHome(homeId, this.tokenHeader);
+    this.homeService.deleteHome(this.tokenHeader, homeId);
   }
 
   editHome(homeCmp) {

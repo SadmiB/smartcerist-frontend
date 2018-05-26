@@ -132,7 +132,8 @@ export class EventsService {
   }
 
   public sendMessage(message) {
-    this.socket.emit('new-message', message);
+    this.socket.emit('room', {room: 'room', message: message});
+    // this.socket.emit('remove-room', message);
   }
   private joinUserSocketRooms() {
     this.roomIdStore.forEach(socketId => {
@@ -140,24 +141,33 @@ export class EventsService {
       this.socket.emit('join', { room: socketId });
     });
   }
-  public getMessages = () => {
-    return Observable.create(observer => {
-      this.socket.on('add-room', message => {
-        observer.next(message);
-        console.log(message);
-        this.getAllEvents();
-      });
-    });
-  }
+  // public getMessages = () => {
+  //   return Observable.create(observer => {
+  //     this.socket.on('add-room', message => {
+  //       observer.next(message);
+  //       console.log(message);
+  //       this.getAllEvents();
+  //     });
+  //     this.socket.on('remove-room', message => {
+  //       this.getAllEvents();
+  //     });
+  //   });
+  // }
 
   public getEvents = () => {
     return Observable.create(observer => {
-      this.socket.on('add-room', message => {
-        // this.getAllEvents();
+      this.socket.on('remove-room', message => {
         console.log(message);
         this.snackBar.open(message.toString(), 'close', {
           duration: 5000,
-          extraClasses: ['blue-snackbar']
+          extraClasses: ['info']
+        });
+      });
+      this.socket.on('room', message => {
+        console.log(message);
+        this.snackBar.open(message.toString(), 'close', {
+          duration: 5000,
+          extraClasses: ['danger']
         });
       });
     });

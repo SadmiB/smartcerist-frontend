@@ -69,10 +69,6 @@ export class UserService {
     return this.httpClient.get(Consts.BASE_URL + '/users/user' , {headers: tokenHeader});
   }
 
-  updateUser(tokenHeader, userId) {
-    return this.httpClient.put(Consts.BASE_URL + '/users/' + userId , {headers: tokenHeader});
-  }
-
   updateUserProfile(tokenHeader, user) {
       this.httpClient.put<User>(Consts.BASE_URL + '/users/user', user , {headers: tokenHeader})
       .subscribe(res => {
@@ -80,10 +76,6 @@ export class UserService {
       }, error => {
         this.handleError(error, 'Unable to update user profile!');
       });
-  }
-
-  removeUser(tokenHeader, userId) {
-    return this.httpClient.delete(Consts.BASE_URL + '/users/' + userId , {headers: tokenHeader});
   }
 
   removeRoomUser(tokenHeader, homeId, roomId, userId) {
@@ -108,17 +100,6 @@ export class UserService {
     return this.httpClient.delete(Consts.BASE_URL + '/users/user' , {headers: tokenHeader});
   }
 
-  addUser(tokenHeader, userId) {
-    return this.httpClient.post<User>(Consts.BASE_URL + '/users', {headers: tokenHeader});
-    // .subscribe(res => {
-    //   console.log(res);
-    //   this.userStore.push(res);
-    //   this.userSubject.next(this.userStore);
-    // }, error => {
-    //   this.handleError(error, 'Unable to add user!');
-    // });
-}
-
 addUserToRoom(tokenHeader, userId, user) {
   console.log('i\'m here');
   return this.httpClient.put(Consts.BASE_URL + `/rooms/room/users/${userId}`, user , {headers: tokenHeader})
@@ -126,12 +107,6 @@ addUserToRoom(tokenHeader, userId, user) {
     console.log(res);
     const _event = new EventObj();
     this.getRoomUsers(tokenHeader, user.homeId, user.roomId);
-    _event.category = 'info';
-    _event.type = 'join room notification';
-    _event.date = Date.now.toString();
-    _event.message = 'you have been added to new room  ';
-    _event.socketId = userId;
-    this.eventsService.addEvent(_event);
   }, error => {
     this.handleError(error, 'Unable to add the User to the Room');
   });
