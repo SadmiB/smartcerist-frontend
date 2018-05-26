@@ -3,7 +3,7 @@
 <h3 *ngIf="objects.length">Objects:</h3>
 
 
-<mat-grid-list cols="2" rowHeight='150px'>
+<mat-grid-list cols="2" rowHeight='150px' *ngIf="objects.length">
     <mat-grid-tile  *ngFor="let obj of objects" >
 
         <mat-card class="card">
@@ -30,15 +30,14 @@
 
 <h3 *ngIf="cameras.length">Cameras:</h3>
 
-
-<mat-card class="cam-card" *ngFor="let camera of cameras">
+<mat-card class="cam-card" >
     <mat-card-header>
         <mat-card-title>
             <h4>Dahua Camera:</h4>
         </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <canvas id='canvas'+camera._id></canvas>
+        <canvas id='canvas'></canvas>
     </mat-card-content>
 </mat-card>
 

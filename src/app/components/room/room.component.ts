@@ -40,12 +40,14 @@ export class RoomComponent implements OnInit {
       this.roomId = this.router.snapshot.params.roomId;
       this.homeId = this.router.snapshot.params.homeId;
       this.getRoom(this.homeId, this.roomId);
+
+      this.getCameraStream('cam');
     }
 
   getCameraStream(camera) {
-    camera.canvas = document.getElementById('canvas' + camera._id);
-    camera.client = new WebSocket(`ws://${camera.server_ip4}:${camera.port}`);
-    camera.player = new jsmpeg(camera.client, { canvas: camera.canvas });
+    const canvas = document.getElementById('canvas');
+    const client = new WebSocket('ws://localhost:9999');
+    const player = new jsmpeg(client, { canvas: canvas });
   }
 
   getUserPermission() {
@@ -76,7 +78,7 @@ export class RoomComponent implements OnInit {
 
   async getObjectMeasure(object) {
     console.log('getObjectMeasure...');
-      await this.objectsService.getObjectMeasure(object)
+    await this.objectsService.getObjectMeasure(object)
     .subscribe(res => {
       object.measure = res;
       object.status = 'Connected';
@@ -120,7 +122,7 @@ export class RoomComponent implements OnInit {
             this.cameras.push(camera);
             this.getCameraStream(camera);
         }, error => {
-        this.handleError(error, 'Unable to get cameras');
+            this.handleError(error, 'Unable to get cameras');
       });
     });
   }
