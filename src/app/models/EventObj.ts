@@ -1,8 +1,8 @@
-export class EventObj{
-    type:String;
-    date: String;
-    category: String;
-    message: String;
-    socketId: any;
-    seen:Boolean;
+export class EventObj {
+    type: string;
+    date: string;
+    category: string;
+    message: string;
+    userId: string;
+    userName: string;
 }

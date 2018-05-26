@@ -30,7 +30,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { FilePickerComponent } from './components/file-picker/file-picker.component';
 import { FileHelpersModule } from 'ngx-file-helpers';
 import { NotifIconBtnComponent } from './components/notif-icon-btn/notif-icon-btn.component';
-import { HomeUsersComponent } from './components/home-users/home-users.component';
 import { HomeRoomsComponent } from './components/home-rooms/home-rooms.component';
 import { UserPermissionsComponent } from './components/users/users-by-room/room-users/user-permissions/user-permissions.component';
 import { RoomUsersComponent } from './components/users/users-by-room/room-users/room-users.component';
@@ -96,7 +95,6 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     ProfileComponent,
     FilePickerComponent,
     NotifIconBtnComponent,
-    HomeUsersComponent,
     RoomUsersComponent,
     HomeRoomsComponent,
     UserPermissionsComponent,

@@ -11,9 +11,8 @@ import { AuthService } from '../../../../services/auth.service';
 export class RoomUsersComponent implements OnInit {
   @Input() roomId: String;
   @Input() homeId: String;
-  @Input() modify;
   tokenHeader;
-  displayedColumns = ['email', 'firstName', 'lastName', 'permission', 'manage'];
+  displayedColumns = ['email', 'firstName', 'lastName', 'permission'];
   dataSource ;
   selection = new SelectionModel<Element>(true, []);
 

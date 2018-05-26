@@ -80,8 +80,8 @@ public addAdminToRoom(tag) {
 public removeUserFromRoom(tag) {
   try {
     this.usersService.removeRoomUser(this.tokenHeader, this.router.snapshot.params.homeId, this.router.snapshot.params.roomId, tag._id);
-    this.eventsService.leaveSocketRoom(this.router.snapshot.params.roomId);
-    this.eventsService.leaveSocketRoom(this.router.snapshot.params.homeId);
+    // this.eventsService.leaveSocketRoom(this.router.snapshot.params.roomId);
+    // this.eventsService.leaveSocketRoom(this.router.snapshot.params.homeId);
     // this.getUsersNonInRoom();
   } catch (error) {
     this.handleError(error, 'Unable to remove the user from the room');
