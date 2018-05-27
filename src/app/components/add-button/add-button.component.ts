@@ -41,7 +41,7 @@ export class AddButtonComponent implements OnInit {
         this.dialog.open(RoomFormComponent, dialogConfig);
       break;
       case 'addServer':
-        dialogConfig.height = '350px';
+        dialogConfig.height = '360px';
         dialogConfig.width = '350px';
         dialogConfig.data = {homeId: this.homeId};
         this.dialog.open(ServerFormComponent, dialogConfig);

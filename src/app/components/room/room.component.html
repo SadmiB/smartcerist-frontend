@@ -18,10 +18,10 @@
             </mat-card-header>
             <mat-card-content>
                 <h4>{{obj.name}}</h4>
-                <button mat-icon-button *ngIf="obj.status" (click)='getObjectMesure(obj)'><mat-icon>refresh</mat-icon></button>
+                <button mat-icon-button *ngIf="obj.status" (click)='getObjectMeasure(obj)'><mat-icon>refresh</mat-icon></button>
                 <button mat-raised-button *ngIf="obj.type==='LED' && obj.status" (click)='putLed(obj)'>ON/OFF</button>
                 <p *ngIf="obj.status==='Disconnected'">STATUS: {{obj.status}}</p>
-                <p *ngIf="obj.mesure">Measure: {{obj.measure}}</p>
+                <p *ngIf="obj.measure">Measure: {{obj.measure}}</p>
             </mat-card-content>
         </mat-card>
 
@@ -43,3 +43,12 @@
 </mat-card>
 
 <app-add-button icon="person" link='/dashboard/homes/{{homeId}}/rooms/{{roomId}}/users' type="addUser"></app-add-button>
+
+<div class="dropdown" >
+  <button mat-button class="dropbtn"><mat-icon>add_to_photos</mat-icon>Objects</button>
+  <div class="dropdown-content">
+    <a href="#">Link 1 <mat-icon class="mat-18">folder</mat-icon></a>
+    <a href="#">Link 2 <mat-icon class="mat-18">folder</mat-icon></a>
+    <a href="#">Link 3 <mat-icon class="mat-18">folder</mat-icon></a>
+  </div>
+</div>
