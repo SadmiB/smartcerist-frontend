@@ -69,6 +69,7 @@ import { PasswordChangeComponent } from './components/password-change/password-c
 import { PersonEditComponent } from './components/room/person-edit/person-edit.component';
 import { WarningDiagComponent } from './components/warning-diag/warning-diag.component';
 import { ServerComponent } from './components/servers/server/server.component';
+import { ObjectAnalyticsComponent } from './components/analytics/object-analytics/object-analytics.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -122,6 +123,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     PersonEditComponent,
     WarningDiagComponent,
     ServerComponent,
+    ObjectAnalyticsComponent,
   ],
   imports: [
     BrowserModule,

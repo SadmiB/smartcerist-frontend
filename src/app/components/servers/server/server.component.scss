@@ -1,40 +1,40 @@
-.card {
-  position: relative;
-  width: 100%;
-  height: 80px;
-  padding: 16px;
-  margin: 8px;
-  border-radius: 5%;
-}
+// .card {
+//   position: relative;
+//   width: 100%;
+//   height: 80px;
+//   padding: 16px;
+//   margin: 8px;
+//   border-radius: 5%;
+// }
 
-.tile {
-  height: inherit;
-}
+// .tile {
+//   height: inherit;
+// }
 
-.card > mat-card-actions > button {
-  float: right;
-}
+// .card > mat-card-actions > button {
+//   float: right;
+// }
 
-.header {
-  position: relative;
-  top: -40px;
-  float: left;
-  text-align: center;
-  box-shadow: rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-  padding: 15px;
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-}
+// .header {
+//   position: relative;
+//   top: -40px;
+//   float: left;
+//   text-align: center;
+//   box-shadow: rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.2);
+//   border-radius: 3px;
+//   padding: 15px;
+//   position: relative;
+//   cursor: pointer;
+//   overflow: hidden;
+// }
 
 
-.header mat-icon {
-  font-size: 46px;
-  line-height: 56px;
-  width: 66px;
-  height: 66px;
-  color: #fff;
-  background: linear-gradient(60deg, #0c66a1, #37474f);
-  border-radius: 5px;
-}
+// .header mat-icon {
+//   font-size: 46px;
+//   line-height: 56px;
+//   width: 66px;
+//   height: 66px;
+//   color: #fff;
+//   background: linear-gradient(60deg, #0c66a1, #37474f);
+//   border-radius: 5px;
+// }
