@@ -13,13 +13,13 @@ export class ObjectAnalyticsComponent implements OnInit {
   public lineChartData: Array<any>;
   public lineChartLabels: Array<any>;
   public lineChartType: String = 'line';
-  public pieChartType: String = 'pie';
+  // public pieChartType: String = 'pie';
   // Pie
-  public pieChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
-  public pieChartData: number[] = [300, 500, 100];
+  // public pieChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
+  // public pieChartData: number[] = [300, 500, 100];
   public randomizeType(): void {
     this.lineChartType = this.lineChartType === 'line' ? 'bar' : 'line';
-    this.pieChartType = this.pieChartType === 'doughnut' ? 'pie' : 'doughnut';
+    // this.pieChartType = this.pieChartType === 'doughnut' ? 'pie' : 'doughnut';
   }
   public chartClicked(e: any): void {
     console.log(e);

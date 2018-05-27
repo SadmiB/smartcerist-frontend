@@ -75,6 +75,24 @@ export class RoomsService {
     });
   }
 
+  addObjectToRoom(tokenHeader, homeId, roomId, objectId) {
+    return this.httpClient.post(Consts.BASE_URL + `/${homeId}/rooms/${roomId}/objects/${objectId}`, objectId, {headers: tokenHeader})
+    .subscribe(res =>  {
+      console.log(res);
+    },
+      error => {
+        this.handleError(error, 'Unable to add the object to the room');
+      });
+  }
+
+  removeObjectFromRoom(tokenHeader, homeId, roomId, objectId) {
+    return this.httpClient.delete(Consts.BASE_URL + `/${homeId}/rooms/${roomId}/objects/${objectId}` , {headers: tokenHeader})
+    .subscribe( res => res,
+    error => {
+      this.handleError(error, 'Unalbe to remove the object');
+    });
+  }
+
   private handleError(error, message) {
     console.error(error);
     this.snackBar.open(message, 'close', {duration: 3000});

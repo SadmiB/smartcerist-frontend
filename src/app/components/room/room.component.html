@@ -18,8 +18,10 @@
             </mat-card-header>
             <mat-card-content>
                 <h4>{{obj.name}}</h4>
-                <button mat-icon-button *ngIf="obj.status" (click)='getObjectMeasure(obj)'><mat-icon>refresh</mat-icon></button>
                 <button mat-raised-button *ngIf="obj.type==='LED' && obj.status" (click)='putLed(obj)'>ON/OFF</button>
+                <button mat-icon-button ><mat-icon class="mat-18">settings</mat-icon></button>
+                <button mat-icon-button (click)="removeObject(obj)" ><mat-icon>delete</mat-icon> </button>
+                <button mat-icon-button *ngIf="obj.status" (click)='getObjectMeasure(obj)'><mat-icon>refresh</mat-icon></button>
                 <p *ngIf="obj.status==='Disconnected'">STATUS: {{obj.status}}</p>
                 <p *ngIf="obj.measure">Measure: {{obj.measure}}</p>
             </mat-card-content>

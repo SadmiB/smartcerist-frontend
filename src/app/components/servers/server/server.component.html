@@ -1,22 +1,30 @@
 <div *ngIf="server">
 <app-header back='true' title="{{server.name}}" search="true"></app-header >
-<div cols="4" *ngFor="let beacon of server.beacons" >
-  <div *ngFor='let object of beacon.objects ' class="tile">
-      <!-- <mat-card class="card">
-          <mat-card-title  class="header" > -->
-              <app-object-analytics [object]="object"></app-object-analytics>
-              <!-- <mat-icon>toys</mat-icon>
+<mat-grid-list cols="4" *ngFor="let beacon of server.beacons" >
+  <mat-grid-tile *ngFor='let object of beacon.objects ' class="tile">
+      <mat-card class="card">
+          <mat-card-title  class="header" >
+              <mat-icon>toys</mat-icon>
           </mat-card-title>
           <mat-card-content>
                   <h4>{{object.name}}</h4>
           </mat-card-content>
           <mat-card-actions  >
-              <button mat-icon-button ><mat-icon>delete</mat-icon></button>
-              <button mat-icon-button ><mat-icon>settings</mat-icon></button>
-              <button mat-icon-button ><mat-icon>add</mat-icon></button>
+
+            <button mat-icon-button ><mat-icon>settings</mat-icon></button>
+            <mat-menu #menu="matMenu" >
+              <button mat-menu-item *ngFor="let room of home.rooms" (click)="addObjectToRoom(room._id, object._id)">
+                <span>{{room.name}}</span>
+              </button>
+            </mat-menu>
+            <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="objectNonAffected(object._id)" >
+              <mat-icon>add</mat-icon>
+            </button>
+
               <button mat-icon-button ><mat-icon>assessment</mat-icon></button>
           </mat-card-actions>
-      </mat-card> -->
-  </div>
+      </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
 </div>
-</div>
+<!-- <app-object-analytics   [object]="object"></app-object-analytics> -->

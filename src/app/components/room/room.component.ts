@@ -2,14 +2,15 @@ import { Permission } from './../../models/Permission';
 import { Component, OnInit, Input } from '@angular/core';
 import { forEach } from '@angular/router/src/utils/collection';
 import { RoomService } from '../../services/room.service';
-import { MatSnackBar } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IotObject } from '../../models/IotObject';
 import { UpperCasePipe } from '@angular/common';
 import { ObjectsService } from '../../services/objects.service';
 import { CamerasService } from '../../services/cameras.service';
 import { RoomsService } from '../../services/rooms.service';
 import { AuthService } from '../../services/auth.service';
+import { WarningDiagComponent } from '../warning-diag/warning-diag.component';
 
 
 @Component({
@@ -30,7 +31,9 @@ export class RoomComponent implements OnInit {
     private auth: AuthService,
     private roomsService: RoomsService,
     private snackBar: MatSnackBar,
+    private dialog: MatDialog,
     private router: ActivatedRoute,
+    private route: Router,
     private objectsService: ObjectsService,
     private camerasService: CamerasService) {
       this.tokenHeader = auth.tokenHeader;
@@ -157,5 +160,19 @@ export class RoomComponent implements OnInit {
       }, error => {
         this.handleError(error, 'Unable to get room');
       });
+  }
+
+  removeObject(object) {
+    const dialogRef = this.dialog.open(WarningDiagComponent, {
+      width: '250px',
+      data : {message : 'Are you sure to remove ' + object.name},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+          console.log('The dialog was closed');
+          this.roomsService.removeObjectFromRoom(this.tokenHeader, this.homeId, this.roomId, object._id);
+          this.route.navigate([`/dashboard/homes/${this.homeId}/rooms/${this.roomId}`]);
+      }
+    });
   }
 }

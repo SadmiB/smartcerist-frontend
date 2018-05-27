@@ -1,8 +1,11 @@
+import { RoomsService } from './../../../services/rooms.service';
 import { MatSnackBar } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { ServersService } from '../../../services/servers.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { HomesService } from '../../../services/homes.service';
+import { Home } from '../../../models/Home';
 
 @Component({
   selector: 'app-server',
@@ -14,7 +17,10 @@ export class ServerComponent implements OnInit {
   tokenHeader;
   serverId;
   server;
+  home: Home;
   constructor(private serversService: ServersService,
+    private homesService: HomesService,
+    private roomsService: RoomsService,
     private auth: AuthService,
     private snackBar: MatSnackBar,
     private route: ActivatedRoute) {
@@ -23,6 +29,7 @@ export class ServerComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.getHome();
     this.getServer();
   }
 
@@ -36,6 +43,25 @@ export class ServerComponent implements OnInit {
     });
   }
 
+  getHome () {
+    console.log(this.route.snapshot.params.homeId);
+    this.home = this.homesService.getHomeFromArray(this.route.snapshot.params.homeId)[0];
+    console.log(this.home);
+  }
+
+  objectNonAffected(objectId) {
+    let result = true;
+    this.home.rooms.forEach(room => {
+      if (room.objects.includes(objectId)) {
+        result = false;
+      }
+    });
+    return result;
+  }
+
+  addObjectToRoom(roomId, objectId) {
+    this.roomsService.addObjectToRoom(this.tokenHeader, this.route.snapshot.params.homeId, roomId, objectId );
+  }
   private handleError(error, message) {
     console.error(error);
     this.snackBar.open(message, 'close', {duration: 3000});
