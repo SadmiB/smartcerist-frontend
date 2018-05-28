@@ -44,9 +44,7 @@ export class ServerComponent implements OnInit {
   }
 
   getHome () {
-    console.log(this.route.snapshot.params.homeId);
     this.home = this.homesService.getHomeFromArray(this.route.snapshot.params.homeId)[0];
-    console.log(this.home);
   }
 
   objectNonAffected(objectId) {

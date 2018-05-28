@@ -1,3 +1,4 @@
+import { HomesService } from './../../services/homes.service';
 import { Permission } from './../../models/Permission';
 import { Component, OnInit, Input } from '@angular/core';
 import { forEach } from '@angular/router/src/utils/collection';
@@ -11,6 +12,7 @@ import { CamerasService } from '../../services/cameras.service';
 import { RoomsService } from '../../services/rooms.service';
 import { AuthService } from '../../services/auth.service';
 import { WarningDiagComponent } from '../warning-diag/warning-diag.component';
+import { ServersService } from '../../services/servers.service';
 
 
 @Component({
@@ -27,21 +29,29 @@ export class RoomComponent implements OnInit {
   homeId;
   permission;
   tokenHeader;
+  nonAffectedObject = [];
+  home;
+  servers ;
   constructor(private roomService: RoomService,
     private auth: AuthService,
     private roomsService: RoomsService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
+    private homesService: HomesService,
+    protected serversService: ServersService,
     private router: ActivatedRoute,
     private route: Router,
     private objectsService: ObjectsService,
     private camerasService: CamerasService) {
       this.tokenHeader = auth.tokenHeader;
+      this.servers = this.serversService.servers;
     }
 
     ngOnInit() {
       this.roomId = this.router.snapshot.params.roomId;
       this.homeId = this.router.snapshot.params.homeId;
+      this.home = this.homesService.getHomeFromArray(this.homeId)[0];
+      this.serversService.getHomeServers(this.tokenHeader, this.homeId);
       this.getRoom(this.homeId, this.roomId);
     }
 
@@ -174,5 +184,19 @@ export class RoomComponent implements OnInit {
           this.route.navigate([`/dashboard/homes/${this.homeId}/rooms/${this.roomId}`]);
       }
     });
+  }
+
+  objectNonAffected(objectId) {
+    let result = true;
+    this.home.rooms.forEach(room => {
+      if (room.objects.includes(objectId)) {
+        result = false;
+      }
+    });
+    return result;
+  }
+
+  addObjectToRoom(objectId) {
+    this.roomsService.addObjectToRoom(this.tokenHeader, this.homeId, this.roomId, objectId );
   }
 }
