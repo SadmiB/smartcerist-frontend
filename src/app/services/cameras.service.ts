@@ -27,6 +27,16 @@ export class CamerasService {
     ;
   }
 
+  addCameraToRoom(tokenHeader, homeId, roomId, cameraId) {
+    return this.httpClient.post<Camera>(Consts.BASE_URL + `/${homeId}/${roomId}/cameras/${cameraId}`, cameraId, {headers: tokenHeader})
+    .subscribe(res => {
+      console.log(res);
+    }, error => {
+      this.handleError(error, 'Unable to add the camera');
+    })
+    ;
+  }
+
   private handleError(error, message) {
     console.error(error);
     this.snackBar.open(message, 'close', {duration: 3000});

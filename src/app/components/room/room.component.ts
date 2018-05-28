@@ -166,7 +166,9 @@ export class RoomComponent implements OnInit {
       .subscribe(res => {
         this.room = res;
         this.getObjects(this.room.objects);
-        // this.getCameras(this.room.cameras);
+        console.log('----------- this.room.cameras----------------------');
+        console.log(this.room.cameras);
+        this.getCameras(this.room.cameras);
       }, error => {
         this.handleError(error, 'Unable to get room');
       });
@@ -198,5 +200,19 @@ export class RoomComponent implements OnInit {
 
   addObjectToRoom(objectId) {
     this.roomsService.addObjectToRoom(this.tokenHeader, this.homeId, this.roomId, objectId );
+  }
+
+  cameraNonAffected(cameraId) {
+    let result = true;
+    this.home.rooms.forEach(room => {
+      if (room.cameras.includes(cameraId)) {
+        result = false;
+      }
+    });
+    return result;
+  }
+
+  addCameraToRoom(cameraId) {
+    this.camerasService.addCameraToRoom(this.tokenHeader, this.homeId, this.roomId, cameraId );
   }
 }
