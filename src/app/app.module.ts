@@ -70,6 +70,7 @@ import { PersonEditComponent } from './components/room/person-edit/person-edit.c
 import { WarningDiagComponent } from './components/warning-diag/warning-diag.component';
 import { ServerComponent } from './components/servers/server/server.component';
 import { ObjectAnalyticsComponent } from './components/analytics/object-analytics/object-analytics.component';
+import { AddCameraComponent } from './components/cameras/add-camera/add-camera.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -124,6 +125,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     WarningDiagComponent,
     ServerComponent,
     ObjectAnalyticsComponent,
+    AddCameraComponent,
   ],
   imports: [
     BrowserModule,
@@ -153,6 +155,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
       ServerEditComponent,
       PersonEditComponent,
       WarningDiagComponent,
+      AddCameraComponent,
   ],
   bootstrap: [AppComponent]
 })
