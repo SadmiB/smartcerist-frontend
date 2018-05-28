@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { HomesService } from '../../../services/homes.service';
 import { Home } from '../../../models/Home';
+import { CamerasService } from '../../../services/cameras.service';
 
 @Component({
   selector: 'app-server',
@@ -21,6 +22,7 @@ export class ServerComponent implements OnInit {
   constructor(private serversService: ServersService,
     private homesService: HomesService,
     private roomsService: RoomsService,
+    private camerasService: CamerasService,
     private auth: AuthService,
     private snackBar: MatSnackBar,
     private route: ActivatedRoute) {
@@ -57,6 +59,16 @@ export class ServerComponent implements OnInit {
     return result;
   }
 
+  cameraNonAffected(cameraId) {
+    let result = true;
+    this.home.rooms.forEach(room => {
+      if (room.cameras.includes(cameraId)) {
+        result = false;
+      }
+    });
+    return result;
+  }
+
   addObjectToRoom(roomId, objectId) {
     this.roomsService.addObjectToRoom(this.tokenHeader, this.route.snapshot.params.homeId, roomId, objectId );
   }
@@ -65,4 +77,9 @@ export class ServerComponent implements OnInit {
     this.snackBar.open(message, 'close', {duration: 3000});
 
   }
+
+  addCameraToRoom(roomId, cameraId) {
+    this.camerasService.addCameraToRoom(this.tokenHeader, this.route.snapshot.params.homeId, roomId, cameraId );
+  }
 }
+

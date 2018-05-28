@@ -43,11 +43,11 @@
 
               <button mat-icon-button ><mat-icon>settings</mat-icon></button>
               <mat-menu #menu="matMenu" >
-                <button mat-menu-item *ngFor="let room of home.rooms" (click)="addObjectToRoom(room._id, camera._id)">
+                <button mat-menu-item *ngFor="let room of home.rooms" (click)="addCameraToRoom(room._id, camera._id)">
                   <span>{{room.name}}</span>
                 </button>
               </mat-menu>
-              <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="objectNonAffected(camera._id)" >
+              <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="cameraNonAffected(camera._id)" >
                 <mat-icon>add</mat-icon>
               </button>
 
