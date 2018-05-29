@@ -1,0 +1,15 @@
+
+<mat-tab-group >
+    <div *ngFor="let server of servers">
+      <mat-tab label="{{server.name}}" >
+        <div *ngFor="let beacon of server.beacons">
+          <div *ngFor="let object of beacon.objects" >
+              <h2 class="object-name">{{object.name}}</h2>
+              <app-object-analytics [object]="object" ></app-object-analytics>
+              <br>
+              <mat-divider></mat-divider>
+          </div>
+        </div>
+      </mat-tab>
+    </div>
+  </mat-tab-group>

@@ -1,5 +1,5 @@
 <app-header back="true" title="Analytics" search='true'></app-header >
-  <div class="col-md-6">
+  <!-- <div class="col-md-6">
 
     <canvas baseChart
                 [data]="lineChartData"
@@ -18,4 +18,12 @@
   </div>
   <div class="col-md-12 text-center" style="margin-top: 10px;height: 50%">
     <button mat-button (click)="randomizeType()" style="display: inline-block">Toggle</button>
-  </div>
+  </div> -->
+
+  <mat-tab-group >
+      <div *ngFor="let home of homesService.homesOwner | async">
+        <mat-tab label="{{home.name}}" >
+          <app-server-analytics homeId="{{home._id}}" ></app-server-analytics>
+        </mat-tab>
+      </div>
+    </mat-tab-group>

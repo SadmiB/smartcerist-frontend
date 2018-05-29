@@ -71,6 +71,7 @@ import { WarningDiagComponent } from './components/warning-diag/warning-diag.com
 import { ServerComponent } from './components/servers/server/server.component';
 import { ObjectAnalyticsComponent } from './components/analytics/object-analytics/object-analytics.component';
 import { AddCameraComponent } from './components/cameras/add-camera/add-camera.component';
+import { ServerAnalyticsComponent } from './components/analytics/server-analytics/server-analytics.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -126,6 +127,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     ServerComponent,
     ObjectAnalyticsComponent,
     AddCameraComponent,
+    ServerAnalyticsComponent,
   ],
   imports: [
     BrowserModule,
