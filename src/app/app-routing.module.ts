@@ -23,6 +23,7 @@ import { RoomFormComponent } from './components/rooms/room-form/room-form.compon
 import { ServerFormComponent } from './components/servers/home-servers/server-form/server-form.component';
 import { RoomUsersExpansionPanelComponent } from './components/room/room-users-expansion-panel/room-users-expansion-panel.component';
 import { NotificationDetailsComponent } from './components/notifications/notification-details/notification-details.component';
+import { ServerComponent } from './components/servers/server/server.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard/homes',  pathMatch: 'full'},
@@ -38,6 +39,7 @@ const routes: Routes = [
     {path: 'homes/:homeId/users', component: UsersComponent},
     {path: 'homes/:homeId/rooms/:roomId/users', component: RoomUsersExpansionPanelComponent},
     {path: 'homes/:homeId/servers', component: ServersComponent},
+    {path: 'homes/:homeId/servers/:serverId', component: ServerComponent},
     {path: 'homes/:homeId/servers/form', component: ServerFormComponent},
     {path: 'users', component: UsersComponent},
     {path: 'rooms', component: RoomsTabsComponent},

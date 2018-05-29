@@ -4,6 +4,7 @@ import { HomeFormComponent } from '../homes/home-form/home-form.component';
 import { RoomFormComponent } from '../rooms/room-form/room-form.component';
 import { ServerFormComponent } from '../servers/home-servers/server-form/server-form.component';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AddCameraComponent } from '../cameras/add-camera/add-camera.component';
 
 @Component({
   selector: 'app-add-button',
@@ -16,6 +17,7 @@ export class AddButtonComponent implements OnInit {
   @Input() type ;
   @Input() homeId;
   @Input() roomId;
+  @Input() serverId;
   constructor(private dialog: MatDialog, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -41,10 +43,16 @@ export class AddButtonComponent implements OnInit {
         this.dialog.open(RoomFormComponent, dialogConfig);
       break;
       case 'addServer':
-        dialogConfig.height = '350px';
+        dialogConfig.height = '370px';
         dialogConfig.width = '350px';
         dialogConfig.data = {homeId: this.homeId};
         this.dialog.open(ServerFormComponent, dialogConfig);
+      break;
+      case 'addCamera':
+        dialogConfig.height = '650px';
+        dialogConfig.width = '350px';
+        dialogConfig.data = {serverId: this.serverId};
+        this.dialog.open(AddCameraComponent, dialogConfig);
       break;
       case 'addUser':
         console.log(this.link);

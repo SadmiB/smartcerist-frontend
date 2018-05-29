@@ -68,6 +68,10 @@ import { CamerasComponent } from './components/cameras/cameras.component';
 import { PasswordChangeComponent } from './components/password-change/password-change.component';
 import { PersonEditComponent } from './components/room/person-edit/person-edit.component';
 import { WarningDiagComponent } from './components/warning-diag/warning-diag.component';
+import { ServerComponent } from './components/servers/server/server.component';
+import { ObjectAnalyticsComponent } from './components/analytics/object-analytics/object-analytics.component';
+import { AddCameraComponent } from './components/cameras/add-camera/add-camera.component';
+import { ServerAnalyticsComponent } from './components/analytics/server-analytics/server-analytics.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -120,6 +124,10 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     PasswordChangeComponent,
     PersonEditComponent,
     WarningDiagComponent,
+    ServerComponent,
+    ObjectAnalyticsComponent,
+    AddCameraComponent,
+    ServerAnalyticsComponent,
   ],
   imports: [
     BrowserModule,
@@ -149,6 +157,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
       ServerEditComponent,
       PersonEditComponent,
       WarningDiagComponent,
+      AddCameraComponent,
   ],
   bootstrap: [AppComponent]
 })

@@ -2,7 +2,7 @@
   <mat-tab-group  >
     <mat-tab *ngFor="let home of homesService.homesOwner | async"  label="{{home.name}}" >
       <mat-card *ngFor="let room of home.rooms" >
-        <table >
+        <table *ngIf="room.events.length > 0" >
           <tr>
             <th colspan="4" class="roomName"><h2>{{room.name}}</h2></th>
           </tr>

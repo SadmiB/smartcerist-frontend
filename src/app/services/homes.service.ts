@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Consts } from '../models/Consts';
 import { Home } from '../models/Home';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()
@@ -42,6 +42,7 @@ export class HomesService {
     console.log('serv delete home..');
     this.httpClient.delete<Home>(Consts.BASE_URL + '/user/homes/' + homeId, {headers: tokenHeader})
     .subscribe((res: Home) => {
+      this.showSnackBar('warning', 'The home is removed');
       this.getHomes(tokenHeader);
     }, error => {
       this.handleError(error, 'unable to remove the home');
@@ -59,6 +60,7 @@ export class HomesService {
   addHome (tokenHeader, home) {
     this.httpClient.post<Home>(Consts.BASE_URL + '/user/homes', home, {headers: tokenHeader})
     .subscribe(res => {
+      this.showSnackBar('success', 'The home is added');
       this.getHomes(tokenHeader);
     }, error => {
       this.handleError(error, 'Unable to add home!');
@@ -69,6 +71,7 @@ export class HomesService {
     this.httpClient.put<Home>(Consts.BASE_URL + `/user/homes/${homeId}`, home, {headers: tokenHeader})
     .subscribe(res => {
       console.log(res);
+      this.showSnackBar('info', 'The home is updated');
       this.getHomes(tokenHeader);
     }, error => {
       this.handleError(error, 'Unable to add home!');
@@ -78,5 +81,15 @@ export class HomesService {
   private handleError(error, message) {
     console.error(error);
     this.snackBar.open(message, 'close', {duration: 3000});
+  }
+
+  showSnackBar(classType, message) {
+    const config = new MatSnackBarConfig();
+    config.extraClasses = [classType];
+    config.duration = 3000;
+    config.direction = 'ltr';
+    config.horizontalPosition = 'center';
+    config.verticalPosition = 'top';
+    this.snackBar.open(message, 'close', config);
   }
 }

@@ -7,10 +7,6 @@
               <mat-card-content>
                       <h4>{{room.name}}</h4>
               </mat-card-content>
-              <mat-card-actions *ngIf="(modify === 'true')" >
-                  <button mat-icon-button (click)="removeRoom(room._id)"><mat-icon>delete</mat-icon></button>
-                  <button mat-icon-button ><mat-icon>settings</mat-icon></button>
-              </mat-card-actions>
           </mat-card>
       </mat-grid-tile>
   </mat-grid-list>

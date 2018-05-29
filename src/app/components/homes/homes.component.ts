@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { MatSnackBar, MatDialog, MatDialogConfig } from '@angular/material';
 import { Home } from '../../models/Home';
 import { HomeEditComponent } from './home-edit/home-edit.component';
+import { WarningDiagComponent } from '../warning-diag/warning-diag.component';
 
 @Component({
   selector: 'app-homes',
@@ -33,8 +34,18 @@ export class HomesComponent implements OnInit {
     this.homeService.getHomes(this.tokenHeader);
   }
 
-  deleteHome(homeId) {
-    this.homeService.deleteHome(this.tokenHeader, homeId);
+  deleteHome(homeId, homeName) {
+    const dialogRef = this.dialog.open(WarningDiagComponent, {
+      width: '300px',
+      data : {message : 'Are you sure to remove ' + homeName},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+          console.log('The dialog was closed');
+          this.homeService.deleteHome(this.tokenHeader, homeId);
+      }
+    });
   }
 
   editHome(homeCmp) {
