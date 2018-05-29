@@ -1,5 +1,16 @@
 <app-header title="Homes" search="true"></app-header >
-  <mat-grid-list cols="3" >
+<div class="example-selected-value">
+  <mat-button-toggle-group #group="matButtonToggleGroup" value = "list">
+      <mat-button-toggle value="list" (click)="homeService.getHomes(tokenHeader)" >
+        <mat-icon>view_list</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="module" (click)="homeService.getHomes(tokenHeader)">
+        <mat-icon>view_module</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <br><br>
+  <mat-grid-list  cols="3" *ngIf="group.value == 'module'" >
     <mat-grid-tile *ngFor="let home of homeService.homes | async" class="tile">
       <mat-card class="card">
         <mat-card-title class="header" [routerLink]="[home._id]">
@@ -10,9 +21,31 @@
         </mat-card-content>
         <mat-card-actions  >
           <button mat-icon-button (click)='editHome(home)' *ngIf="home.permission == 'owner'"><mat-icon>settings</mat-icon></button>
-          <button mat-icon-button (click)='deleteHome(home._id)'><mat-icon>delete</mat-icon></button>
+          <button mat-icon-button (click)='deleteHome(home._id,home.name)'><mat-icon>delete</mat-icon></button>
         </mat-card-actions>
       </mat-card>
    </mat-grid-tile>
   </mat-grid-list>
   <app-add-button type="addHome" ></app-add-button>
+
+
+
+  <mat-card  *ngIf="group.value == 'list'"  >
+      <table *ngIf="homeService.homes">
+        <tr>
+          <th>Home</th>
+          <th>Mail</th>
+          <th>Owner</th>
+          <th>Country</th>
+          <th>Manage</th>
+        </tr>
+        <tr *ngFor="let home of homeService.homes | async"  >
+          <td [routerLink]="[home._id]" style="cursor: pointer">{{home.name}}</td>
+          <td>{{home.email}}</td>
+          <td>{{home.owner}}</td>
+          <td>{{home.country}}</td>
+          <td> <button mat-icon-button (click)='editHome(home)' *ngIf="home.permission == 'owner'"><mat-icon>settings</mat-icon></button>
+            <button mat-icon-button (click)='deleteHome(home._id,home.name)'><mat-icon>delete</mat-icon></button></td>
+        </tr>
+        </table>
+      </mat-card>

@@ -1,0 +1,61 @@
+<app-header back='true' *ngIf="server" title="{{server.name}}" search="true"></app-header >
+<h2>Objects</h2>
+<div *ngIf="server">
+<mat-grid-list cols="4" *ngFor="let beacon of server.beacons" >
+  <mat-grid-tile *ngFor='let object of beacon.objects ' class="tile">
+      <mat-card class="card">
+          <mat-card-title  class="header" >
+              <mat-icon>toys</mat-icon>
+          </mat-card-title>
+          <mat-card-content>
+                  <h4>{{object.name}}</h4>
+          </mat-card-content>
+          <mat-card-actions *ngIf="home"   >
+
+            <button mat-icon-button ><mat-icon>settings</mat-icon></button>
+            <mat-menu #menu="matMenu" >
+              <button mat-menu-item *ngFor="let room of home.rooms" (click)="addObjectToRoom(room._id, object._id)">
+                <span>{{room.name}}</span>
+              </button>
+            </mat-menu>
+            <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="objectNonAffected(object._id)" >
+              <mat-icon>add</mat-icon>
+            </button>
+
+              <button mat-icon-button ><mat-icon>assessment</mat-icon></button>
+          </mat-card-actions>
+      </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+</div>
+<h2>Cameras</h2>
+<div *ngIf="server">
+  <mat-grid-list cols="4" >
+    <mat-grid-tile class="tile" *ngFor="let camera of server.cameras">
+        <mat-card class="card" >
+            <mat-card-title  class="header" >
+                <mat-icon>camera</mat-icon>
+            </mat-card-title>
+            <mat-card-content>
+                    <h4>{{camera.name}}</h4>
+            </mat-card-content>
+            <mat-card-actions *ngIf="home"   >
+
+              <button mat-icon-button ><mat-icon>settings</mat-icon></button>
+              <mat-menu #menu="matMenu" >
+                <button mat-menu-item *ngFor="let room of home.rooms" (click)="addCameraToRoom(room._id, camera._id)">
+                  <span>{{room.name}}</span>
+                </button>
+              </mat-menu>
+              <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="cameraNonAffected(camera._id)" >
+                <mat-icon>add</mat-icon>
+              </button>
+
+                <button mat-icon-button ><mat-icon>assessment</mat-icon></button>
+            </mat-card-actions>
+        </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  </div>
+<app-add-button  type="addCamera" *ngIf="server" serverId="{{server._id}}" icon="camera"></app-add-button>
+<!-- <app-object-analytics   [object]="object"></app-object-analytics> -->

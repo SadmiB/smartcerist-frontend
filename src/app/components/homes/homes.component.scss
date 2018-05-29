@@ -26,10 +26,44 @@
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-}   
-  
+}
+
 .header img{
     position: relative;
     max-width: 100%;
     border-radius: 6px;
+}
+
+////////// display type ////////////////::
+.example-selected-value {
+  margin: 15px 0;
+}
+
+mat-button-toggle-group {
+  float: right;
+  margin: 15px 0;
+  position:absolute;
+  top: 15%;
+}
+
+/////////////////// display table /////////////////////:
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+
+th, td {
+  text-align: center;
+  padding: 8px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(95, 93, 93);
+  border-bottom-width: 1px;
+}
+
+tr{color: #313131}
+
+th {
+  background-color: rgb(245, 246, 247);
+  color: black;
 }

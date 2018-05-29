@@ -5,6 +5,7 @@ import { AuthService } from '../../../services/auth.service';
 import { MatSnackBar, MatDialogConfig, MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServerEditComponent } from './server-edit/server-edit.component';
+import { WarningDiagComponent } from '../../warning-diag/warning-diag.component';
 
 
 @Component({
@@ -58,16 +59,20 @@ export class HomeServersComponent implements OnInit {
       });
   }
 
-  removeServer(serverId) {
-    try {
-      this.serversService.removeHomeServer(this.tokenHeader, this.homeId, serverId);
-    } catch (error) {
-      this.handleError(error, 'Unable to remove the server');
-    }
+  removeServer(serverId, ServerName) {
+      const dialogRef = this.dialog.open(WarningDiagComponent, {
+        width: '250px',
+        data : {message : 'Are you sure to remove ' + ServerName},
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+            console.log('The dialog was closed');
+            this.serversService.removeHomeServer(this.tokenHeader, this.homeId, serverId);
+        }
+      });
   }
 
   editServer(serverCmp) {
-    console.log('je vais pas ouvrir');
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.hasBackdrop = true;

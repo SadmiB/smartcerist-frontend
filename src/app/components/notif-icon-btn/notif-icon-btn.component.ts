@@ -1,9 +1,11 @@
+import { Observable } from 'rxjs/Observable';
 import { Component, OnInit, Input } from '@angular/core';
 import { EventsService } from '../../services/events.service';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material';
 import { NotificationsService } from '../../services/notifications.service';
 import { Router } from '@angular/router';
+import 'rxjs/add/observable/interval';
 
 @Component({
   selector: 'app-notif-icon-btn',
@@ -24,12 +26,11 @@ export class NotifIconBtnComponent implements OnInit {
      }
 
   ngOnInit() {
-    // this.eventsService.getAllEvents();
-    this.notifsService.getNotificationsBtn(this.tokenHeader);
-    this.eventsService.getSocketRooms(this.tokenHeader);
-    this.eventsService.getEvents()
-      .throttleTime(1000)
-      .subscribe();
+    Observable.interval(30000)
+     .subscribe((val) => {
+      this.notifsService.getNotificationsBtn(this.tokenHeader);
+     }, error => {
+    });
   }
   private handleError(error, message) {
     console.error(error);

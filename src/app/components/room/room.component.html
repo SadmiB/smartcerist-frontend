@@ -51,3 +51,25 @@
 </mat-card>
 
 <app-add-button icon="person" link='/dashboard/homes/{{homeId}}/rooms/{{roomId}}/users' type="addUser"></app-add-button>
+<div class="dropdown" >
+  <button mat-button class="dropbtn"><mat-icon>add_to_photos</mat-icon>Objects</button>
+  <div class="dropdown-content" >
+    <div *ngFor="let server of serversService.servers | async" >
+      <div *ngFor="let beacon of server.beacons" >
+        <div *ngFor="let object of beacon.objects" >
+            <span mat-menu-item class="notification-element"  *ngIf="objectNonAffected(object._id)" (click)="addObjectToRoom(object._id)"> {{object.name}} </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="dropdownCamera" >
+  <button mat-button class="dropbtnCamera" ><mat-icon>videocam</mat-icon>Cameras</button>
+  <div class="dropdown-content-camera" >
+    <div *ngFor="let server of serversService.servers | async" >
+      <div *ngFor="let camera of server.cameras" >
+            <span mat-menu-item class="notification-element"  *ngIf="cameraNonAffected(camera._id)" (click)="addCameraToRoom(camera._id)"> {{camera.name}} </span>
+      </div>
+    </div>
+  </div>
+</div>

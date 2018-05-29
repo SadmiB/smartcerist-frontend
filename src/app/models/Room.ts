@@ -6,5 +6,6 @@ export class Room {
     type:  string;
     objects: string[];
     users: string[];
+    cameras: string[];
     events: EventObj[];
 }

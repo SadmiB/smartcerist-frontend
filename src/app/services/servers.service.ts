@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Consts } from '../models/Consts';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { Subject } from 'rxjs/Subject';
 import { Server } from '../models/Serser';
 
@@ -37,6 +37,7 @@ export class ServersService {
     return this.httpClient.put(Consts.BASE_URL + '/servers/' + serverId, server, {headers: tokenHeader})
     .subscribe(res => {
       console.log(res);
+      this.showSnackBar('info', 'The server in updated');
       this.getHomeServers(tokenHeader, homeId);
      }, error => {
        this.handleError(error, 'Unable to add Server!');
@@ -47,6 +48,7 @@ export class ServersService {
     return this.httpClient.delete(Consts.BASE_URL + '/' + homeId + '/servers' + '/' + serverId, {headers : tokenHeader})
     .subscribe(res => {
       console.log(res);
+      this.showSnackBar('warning', 'The server in removed');
       this.getHomeServers(tokenHeader, homeId);
     }, error => {
       this.handleError(error, 'Unable to remove the server');
@@ -57,6 +59,7 @@ export class ServersService {
     this.httpClient.post(Consts.BASE_URL  + '/' + homeId + '/servers', server, {headers: tokenHeader})
     .subscribe(res => {
      console.log(res);
+     this.showSnackBar('success', 'The server is added');
      this.getHomeServers(tokenHeader, homeId);
     }, error => {
       this.handleError(error, 'Unable to add Server!');
@@ -67,5 +70,13 @@ export class ServersService {
     this.snackBar.open(message, 'close', {duration: 3000});
 
   }
-
+  showSnackBar(classType, message) {
+    const config = new MatSnackBarConfig();
+    config.extraClasses = [classType];
+    config.duration = 3000;
+    config.direction = 'ltr';
+    config.horizontalPosition = 'center';
+    config.verticalPosition = 'top';
+    this.snackBar.open(message, 'close', config);
+  }
 }
