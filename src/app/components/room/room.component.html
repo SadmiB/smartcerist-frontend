@@ -3,7 +3,7 @@
 <h3 *ngIf="objects.length">Objects:</h3>
 
 
-<mat-grid-list cols="2" rowHeight='150px'>
+<mat-grid-list cols="2" rowHeight='150px' *ngIf="objects.length">
     <mat-grid-tile  *ngFor="let obj of objects" >
 
         <mat-card class="card">
@@ -18,10 +18,9 @@
             </mat-card-header>
             <mat-card-content>
                 <h4>{{obj.name}}</h4>
-                <button mat-raised-button *ngIf="obj.type==='LED' && obj.status" (click)='putLed(obj)'>ON/OFF</button>
-                <button mat-icon-button ><mat-icon class="mat-18">settings</mat-icon></button>
-                <button mat-icon-button (click)="removeObject(obj)" ><mat-icon>delete</mat-icon> </button>
                 <button mat-icon-button *ngIf="obj.status" (click)='getObjectMeasure(obj)'><mat-icon>refresh</mat-icon></button>
+                <button mat-raised-button *ngIf="obj.type==='LED' && obj.status" (click)='putLed(obj)'>ON/OFF</button>
+                <button mat-icon-button (click)="removeObject(obj)" ><mat-icon>delete</mat-icon> </button>
                 <p *ngIf="obj.status==='Disconnected'">STATUS: {{obj.status}}</p>
                 <p *ngIf="obj.measure">Measure: {{obj.measure}}</p>
             </mat-card-content>
@@ -32,15 +31,14 @@
 
 <h3 *ngIf="cameras.length">Cameras:</h3>
 
-
-<mat-card class="cam-card" *ngFor="let camera of cameras">
+<mat-card class="cam-card" >
     <mat-card-header>
         <mat-card-title>
             <h4>Dahua Camera:</h4>
         </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <canvas id='canvas'+camera._id></canvas>
+        <canvas id='canvas'></canvas>
     </mat-card-content>
 </mat-card>
 
