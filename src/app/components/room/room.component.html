@@ -18,11 +18,20 @@
             </mat-card-header>
             <mat-card-content>
                 <h4>{{obj.name}}</h4>
+                <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon id="settings">more_vert</mat-icon></button>
                 <button mat-icon-button *ngIf="obj.status" (click)='getObjectMeasure(obj)'><mat-icon>refresh</mat-icon></button>
-                <button mat-raised-button *ngIf="obj.type==='LED' && obj.status" (click)='putLed(obj)'>ON/OFF</button>
+                <button mat-icon-button *ngIf="obj.type==='LED' && obj.status" (click)='putLed(obj)'><mat-icon>power_settings_new</mat-icon></button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                        <mat-icon>settings</mat-icon>
+                        <span>settings</span>
+                    </button>
+                </mat-menu>
                 <p *ngIf="obj.status==='Disconnected'">STATUS: {{obj.status}}</p>
                 <p *ngIf="obj.measure">Measure: {{obj.measure}}</p>
+
             </mat-card-content>
+            
         </mat-card>
 
     </mat-grid-tile>

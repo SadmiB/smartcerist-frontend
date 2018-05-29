@@ -68,6 +68,7 @@ import { CamerasComponent } from './components/cameras/cameras.component';
 import { PasswordChangeComponent } from './components/password-change/password-change.component';
 import { PersonEditComponent } from './components/room/person-edit/person-edit.component';
 import { WarningDiagComponent } from './components/warning-diag/warning-diag.component';
+import { ObjectSettingsComponent } from './components/objects/object-settings/object-settings.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -120,6 +121,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     PasswordChangeComponent,
     PersonEditComponent,
     WarningDiagComponent,
+    ObjectSettingsComponent,
   ],
   imports: [
     BrowserModule,
