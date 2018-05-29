@@ -60,21 +60,30 @@ h3 {
   border-bottom-style: solid;
   border-bottom-color: black;
   font-size: 16px;
-  border: none;
+  border-bottom-width: medium;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(63, 62, 62);
 }
 
 .dropdown {
-  position: fixed;
+  position: absolute;
   right: 5%;
   top: 15%;
   display: inline-block;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(63, 62, 62);
 }
 
 .dropdownCamera {
-  position: fixed;
+  position: absolute;
   right: 15%;
   top: 15%;
+  background: #e7e6e9;
   display: inline-block;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(63, 62, 62);
 }
 
 .dropdown-content  {

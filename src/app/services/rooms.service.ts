@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { Consts } from '../models/Consts';
 import { Room } from '../models/Room';
 import { Subject } from 'rxjs/Subject';
@@ -42,8 +42,8 @@ export class RoomsService {
     this.httpClient.post<Room>(Consts.BASE_URL + `/user/${homeId}/rooms`, room, {headers: tokenHeader})
     .subscribe(res => {
       console.log(res);
+      this.showSnackBar('success', 'The room is added');
       this.getRooms(tokenHeader, homeId);
-      // Consts.socket.emit('new-new-message', {"vous avez une nouvelle notification dans la chambre":String,homeId});
     }, error => {
       this.handleError(error, 'Unable to add room!');
     });
@@ -53,8 +53,8 @@ export class RoomsService {
     this.httpClient.put<Room>(Consts.BASE_URL + `/user/${homeId}/rooms/${roomId}`, room, {headers: tokenHeader})
     .subscribe(res => {
       console.log(res);
+      this.showSnackBar('info', 'The room is updated');
       this.getRooms(tokenHeader, homeId);
-      // Consts.socket.emit('new-new-message', {"vous avez une nouvelle notification dans la chambre":String,homeId});
     }, error => {
       this.handleError(error, 'Unable to add room!');
     });
@@ -63,12 +63,7 @@ export class RoomsService {
   removeRoom(tokenHeader, homeId, roomId) {
     return this.httpClient.delete(Consts.BASE_URL + `/user/${homeId}/rooms/${roomId}` , {headers: tokenHeader})
     .subscribe(res => {
-      // const removedRoom = this.roomStore.filter(room => room._id === roomId);
-      // const removedRoomIndex = this.roomStore.indexOf(removedRoom[0]);
-      // console.log(removedRoomIndex);
-      // this.roomStore.splice(removedRoomIndex, 1);
-      // console.log(this.roomStore);
-      // this.roomSubject.next(this.roomStore);
+      this.showSnackBar('warning', 'The room is removed');
       this.getRooms(tokenHeader, homeId);
     }, error => {
       this.handleError(error, 'unable to remove the room');
@@ -96,5 +91,15 @@ export class RoomsService {
   private handleError(error, message) {
     console.error(error);
     this.snackBar.open(message, 'close', {duration: 3000});
+  }
+
+  showSnackBar(classType, message) {
+    const config = new MatSnackBarConfig();
+    config.extraClasses = [classType];
+    config.duration = 3000;
+    config.direction = 'ltr';
+    config.horizontalPosition = 'center';
+    config.verticalPosition = 'top';
+    this.snackBar.open(message, 'close', config);
   }
 }

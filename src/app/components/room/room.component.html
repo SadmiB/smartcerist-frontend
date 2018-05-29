@@ -58,7 +58,7 @@
   </div>
 </div>
 <div class="dropdownCamera" >
-  <button mat-button class="dropbtnCamera"><mat-icon>videocam</mat-icon>Cameras</button>
+  <button mat-button class="dropbtnCamera" ><mat-icon>videocam</mat-icon>Cameras</button>
   <div class="dropdown-content-camera" >
     <div *ngFor="let server of serversService.servers | async" >
       <div *ngFor="let camera of server.cameras" >

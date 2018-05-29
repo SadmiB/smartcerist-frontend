@@ -215,4 +215,5 @@ export class RoomComponent implements OnInit {
   addCameraToRoom(cameraId) {
     this.camerasService.addCameraToRoom(this.tokenHeader, this.homeId, this.roomId, cameraId );
   }
+
 }
