@@ -1,7 +1,7 @@
 
 <h3 *ngIf="cameras.length">Cameras:</h3>
 
-<mat-card class="cam-card" >
+<mat-card class="cam-card" *ngFor="let camera of cameras">
     <mat-card-header>
         <mat-card-title>
             <h4>Dahua Camera:</h4>

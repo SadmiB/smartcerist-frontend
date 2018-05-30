@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { IotObject } from '../../models/IotObject';
 import { CamerasService } from '../../services/cameras.service';
 import { Camera } from '../../models/Camera';
@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material';
   templateUrl: './cameras.component.html',
   styleUrls: ['./cameras.component.scss']
 })
-export class CamerasComponent implements OnInit {
+export class CamerasComponent implements OnInit, OnChanges {
 
   @Input() camerasIds: string[];
 
@@ -19,7 +19,13 @@ export class CamerasComponent implements OnInit {
     private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    this.getCameraStream('cam');
+
+  }
+
+  ngOnChanges(change: SimpleChanges) {
+    if (change['camerasIds'] && this.camerasIds) {
+      this.getCameras(this.camerasIds);
+    }
   }
 
 

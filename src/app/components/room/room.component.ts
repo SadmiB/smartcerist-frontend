@@ -32,10 +32,14 @@ export class RoomComponent implements OnInit {
   home;
   servers ;
   constructor(private roomService: RoomService,
-    private auth: AuthService,
-    private roomsService: RoomsService,
-    private snackBar: MatSnackBar,
-    private router: ActivatedRoute) {
+        private auth: AuthService,
+        private roomsService: RoomsService,
+        private snackBar: MatSnackBar,
+        private dialog: MatDialog,
+        private route: Router,
+        private router: ActivatedRoute,
+        private serversService: ServersService,
+        private camerasService: CamerasService) {
       this.tokenHeader = auth.tokenHeader;
   }
 
@@ -68,5 +72,47 @@ export class RoomComponent implements OnInit {
       this.handleError(error, 'Unable to get room');
     });
   }
+
+  removeObject(object) {
+    const dialogRef = this.dialog.open(WarningDiagComponent, {
+      width: '250px',
+      data : {message : 'Are you sure to remove ' + object.name},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+          console.log('The dialog was closed');
+          this.roomsService.removeObjectFromRoom(this.tokenHeader, this.homeId, this.roomId, object._id);
+          this.route.navigate([`/dashboard/homes/${this.homeId}/rooms/${this.roomId}`]);
+      }
+    });
+  }
+
+  objectNonAffected(objectId) {
+    let result = true;
+    this.home.rooms.forEach(room => {
+      if (room.objects.includes(objectId)) {
+        result = false;
+      }
+    });
+    return result;
+  }
+
+  addObjectToRoom(objectId) {
+    this.roomsService.addObjectToRoom(this.tokenHeader, this.homeId, this.roomId, objectId );
+  }
+
+  cameraNonAffected(cameraId) {
+    let result = true;
+    this.home.rooms.forEach(room => {
+      if (room.cameras.includes(cameraId)) {
+        result = false;
+      }
+    });
+    return result;
+  }
+
+  addCameraToRoom(cameraId) {
+    this.camerasService.addCameraToRoom(this.tokenHeader, this.homeId, this.roomId, cameraId );
+}
 
 }
