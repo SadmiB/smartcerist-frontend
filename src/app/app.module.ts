@@ -73,6 +73,7 @@ import { ServerComponent } from './components/servers/server/server.component';
 import { ObjectAnalyticsComponent } from './components/analytics/object-analytics/object-analytics.component';
 import { AddCameraComponent } from './components/cameras/add-camera/add-camera.component';
 import { ServerAnalyticsComponent } from './components/analytics/server-analytics/server-analytics.component';
+import { ObjectService } from './services/object.service';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -152,7 +153,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
   ],
   providers: [ AuthService, HomesService, RoomsService, RoomService, ObjectsService, UserService, ServersService, NotificationsService,
     EventsService, { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
-    SnotifyService, FileUploadServiceService, CamerasService],
+    SnotifyService, FileUploadServiceService, CamerasService, ObjectService],
   entryComponents: [
       HomeEditComponent,
       RoomEditComponent,
@@ -160,6 +161,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
       PersonEditComponent,
       WarningDiagComponent,
       AddCameraComponent,
+      ObjectSettingsComponent
   ],
   bootstrap: [AppComponent]
 })
