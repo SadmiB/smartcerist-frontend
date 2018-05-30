@@ -20,7 +20,7 @@ export class RoomFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private snackBar: MatSnackBar,
-    public dialogRef: MatDialogRef<HomeFormComponent>,
+    public dialogRef: MatDialogRef<RoomFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],

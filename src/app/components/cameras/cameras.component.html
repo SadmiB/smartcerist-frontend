@@ -1,3 +1,13 @@
-<p>
-  cameras works!
-</p>
+
+<h3 *ngIf="cameras.length">Cameras:</h3>
+
+<mat-card class="cam-card" >
+    <mat-card-header>
+        <mat-card-title>
+            <h4>Dahua Camera:</h4>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <canvas id='canvas'></canvas>
+    </mat-card-content>
+</mat-card>

@@ -69,6 +69,7 @@ import { PasswordChangeComponent } from './components/password-change/password-c
 import { PersonEditComponent } from './components/room/person-edit/person-edit.component';
 import { WarningDiagComponent } from './components/warning-diag/warning-diag.component';
 import { ObjectSettingsComponent } from './components/objects/object-settings/object-settings.component';
+import { ObjectService } from './services/object.service';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -144,13 +145,14 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
   ],
   providers: [ AuthService, HomesService, RoomsService, RoomService, ObjectsService, UserService, ServersService, NotificationsService,
     EventsService, { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
-    SnotifyService, FileUploadServiceService, CamerasService],
+    SnotifyService, FileUploadServiceService, CamerasService, ObjectService],
   entryComponents: [
       HomeEditComponent,
       RoomEditComponent,
       ServerEditComponent,
       PersonEditComponent,
       WarningDiagComponent,
+      ObjectSettingsComponent
   ],
   bootstrap: [AppComponent]
 })
