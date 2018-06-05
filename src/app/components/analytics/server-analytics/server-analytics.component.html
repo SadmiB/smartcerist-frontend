@@ -3,12 +3,18 @@
     <div *ngFor="let server of servers">
       <mat-tab label="{{server.name}}" >
         <div *ngFor="let beacon of server.beacons">
-          <div *ngFor="let object of beacon.objects" >
-              <h2 class="object-name">{{object.name}}</h2>
-              <app-object-analytics [object]="object" ></app-object-analytics>
-              <br>
-              <mat-divider></mat-divider>
-          </div>
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let object of beacon.objects" >
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h3 class="object-name">{{object.name}}</h3>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+
+                  <app-object-analytics [object]="object" ></app-object-analytics>
+
+                </mat-expansion-panel>
+              </mat-accordion>
         </div>
       </mat-tab>
     </div>
