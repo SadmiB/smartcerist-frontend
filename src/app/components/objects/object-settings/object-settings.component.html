@@ -1,0 +1,14 @@
+<h3>Settings:</h3>
+<div mat-dialog-content [formGroup]="form">
+    <mat-form-field>
+        <input matInput type="number" placeholder="Min threshold" formControlName="min_threshold" min="0">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="number" placeholder="Max threshold" formControlName="max_threshold" min="0">
+    </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="data" cdkFocusInitial color="primary" (click)='save()'>Save</button>
+    <button mat-raised-button (click)='cancel()'>Cancel</button>
+</div>

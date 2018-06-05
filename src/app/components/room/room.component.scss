@@ -1,126 +1,72 @@
-.card {
-    width: 100%;
-    height: 70px;
-    margin: 16px;
-    display: flex;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-canvas {
-    height: 100%;
-    width: 100%;
-}
-
-.card > mat-card-header {
-    background-image: linear-gradient(to right, #4cc4ff, #4ca6ff);
-    box-shadow: 0 0 0 0 #419cdb, 0 0 0 0 #4cb5ff;
-    border-radius: 10px;
-}
-
-.card > mat-card-header{
-    color: white;
-    height: 70px;
-    width: 80px;
-
-}
-
-.card >  mat-card-header mat-card-title mat-icon{
-    margin-left: 12px;
-    margin-top: 20px;
-}
-
-.card > mat-card-content {
-   margin-left: 16px;
-   width: inherit;
-   button {
-      float: right;
-
-   }
-}
-
-h3 {
-    margin-left: 8px;
-    color: grey;
-}
-
-
-.cam-card {
-    width: 90%;
-    height: 100%;
-    margin: 16px;
-}
-
 // non-affected objects
 .dropbtn .dropbtnCamera {
-  background-color: rgb(218, 222, 226);
-  color: rgb(75, 71, 71);
-  padding-left: 20px;
-  padding-right: 20px;
-  border-bottom-style: solid;
-  border-bottom-color: black;
-  font-size: 16px;
-  border-bottom-width: medium;
-  border-bottom-style: solid;
-  border-bottom-color: rgb(63, 62, 62);
-}
-
-.dropdown {
-  position: absolute;
-  right: 5%;
-  top: 15%;
-  display: inline-block;
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
-  border-bottom-color: rgb(63, 62, 62);
-}
-
-.dropdownCamera {
-  position: absolute;
-  right: 15%;
-  top: 15%;
-  background: #e7e6e9;
-  display: inline-block;
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
-  border-bottom-color: rgb(63, 62, 62);
-}
-
-.dropdown-content  {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content-camera  {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-
-.dropdown:hover .dropdown-content  {
-  display: block;
-}
-
-.dropdownCamera:hover .dropdown-content-camera{
-  display: block;
-}
-
-.dropdown:hover .dropbtn .dropdownCamera:hover .dropbtnCamera {
-  background-color: #eaeef3;
-}
-
-.notification-element:hover {
-  background-color: #fafafa;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-}
-mat-menu-item{
+    background-color: rgb(218, 222, 226);
+    color: rgb(75, 71, 71);
+    padding-left: 20px;
+    padding-right: 20px;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    font-size: 16px;
+    border-bottom-width: medium;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(63, 62, 62);
+  }
+  
+  .dropdown {
+    position: absolute;
+    right: 5%;
+    top: 15%;
+    display: inline-block;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(63, 62, 62);
+  }
+  
+  .dropdownCamera {
+    position: absolute;
+    right: 15%;
+    top: 15%;
+    display: inline-block;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(63, 62, 62);
+  }
+  
+  .dropdown-content  {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content-camera  {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  
+  .dropdown:hover .dropdown-content  {
+    display: block;
+  }
+  
+  .dropdownCamera:hover .dropdown-content-camera{
+    display: block;
+  }
+  
+  .dropdown:hover .dropbtn .dropdownCamera:hover .dropbtnCamera {
+    background-color: #eaeef3;
+  }
+  
+  .notification-element:hover {
+    background-color: #fafafa;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  }
+  mat-menu-item{
   height : 30%;
-}
+  }

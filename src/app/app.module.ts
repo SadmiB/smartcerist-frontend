@@ -68,11 +68,13 @@ import { CamerasComponent } from './components/cameras/cameras.component';
 import { PasswordChangeComponent } from './components/password-change/password-change.component';
 import { PersonEditComponent } from './components/room/person-edit/person-edit.component';
 import { WarningDiagComponent } from './components/warning-diag/warning-diag.component';
+import { ObjectSettingsComponent } from './components/objects/object-settings/object-settings.component';
 import { ServerComponent } from './components/servers/server/server.component';
 import { ObjectAnalyticsComponent } from './components/analytics/object-analytics/object-analytics.component';
 import { AddCameraComponent } from './components/cameras/add-camera/add-camera.component';
 import { ServerAnalyticsComponent } from './components/analytics/server-analytics/server-analytics.component';
 import { HomesDisplayComponent } from './components/homes/homes-display/homes-display.component';
+import { ObjectService } from './services/object.service';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -125,6 +127,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     PasswordChangeComponent,
     PersonEditComponent,
     WarningDiagComponent,
+    ObjectSettingsComponent,
     ServerComponent,
     ObjectAnalyticsComponent,
     AddCameraComponent,
@@ -152,7 +155,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
   ],
   providers: [ AuthService, HomesService, RoomsService, RoomService, ObjectsService, UserService, ServersService, NotificationsService,
     EventsService, { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
-    SnotifyService, FileUploadServiceService, CamerasService],
+    SnotifyService, FileUploadServiceService, CamerasService, ObjectService],
   entryComponents: [
       HomeEditComponent,
       RoomEditComponent,
@@ -160,6 +163,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
       PersonEditComponent,
       WarningDiagComponent,
       AddCameraComponent,
+      ObjectSettingsComponent
   ],
   bootstrap: [AppComponent]
 })
