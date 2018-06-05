@@ -1,6 +1,15 @@
 <app-header title="Homes" search="true"></app-header >
-<div class="example-selected-value">
-  <mat-button-toggle-group #group="matButtonToggleGroup" value = "list">
+<div *ngIf="homeService.homesNumber">
+<div *ngIf="homeService.homesNumber == 0">
+  <img src="../../../assets/img/add-home.png"  class="add-home-picture">
+  <div class="add-home-text">
+    <h3>You don't have a home, add one to make your experience more exciting..</h3>
+  </div>
+</div>
+
+<div *ngIf="homeService?.homesNumber > 0">
+  <div class="example-selected-value" >
+  <mat-button-toggle-group #group="matButtonToggleGroup" value = "module">
       <mat-button-toggle value="list" (click)="homeService.getHomes(tokenHeader)" >
         <mat-icon>view_list</mat-icon>
       </mat-button-toggle>
@@ -11,27 +20,30 @@
   </div>
   <br><br>
   <mat-grid-list  cols="3" *ngIf="group.value == 'module'" >
-    <mat-grid-tile *ngFor="let home of homeService.homes | async" class="tile">
-      <mat-card class="card">
-        <mat-card-title class="header" [routerLink]="[home._id]">
-          <img src="../../../assets/img/card-1.jpeg" alt="home image">
-        </mat-card-title>
-        <mat-card-content>
-          <h4>{{home.name}}</h4>
-        </mat-card-content>
-        <mat-card-actions  >
-          <button mat-icon-button (click)='editHome(home)' *ngIf="home.permission == 'owner'"><mat-icon>settings</mat-icon></button>
-          <button mat-icon-button (click)='deleteHome(home._id,home.name)'><mat-icon>delete</mat-icon></button>
-        </mat-card-actions>
-      </mat-card>
-   </mat-grid-tile>
+    <div *ngIf="homeService.homes" >
+      <mat-grid-tile  *ngFor="let home of homeService.homes | async" class="tile">
+        <mat-card class="card">
+          <mat-card-title class="header" [routerLink]="[home._id]">
+            <img src="../../../assets/img/card-1.jpeg" alt="home image">
+          </mat-card-title>
+          <mat-card-content>
+            <h4>{{home.name}}</h4>
+          </mat-card-content>
+          <mat-card-actions  >
+            <button mat-icon-button (click)='editHome(home)' *ngIf="home.owner.email == userEmail"><mat-icon>settings</mat-icon></button>
+            <button mat-icon-button (click)='deleteHome(home._id,home.name)'><mat-icon>delete</mat-icon></button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </div>
   </mat-grid-list>
-  <app-add-button type="addHome" ></app-add-button>
+
+
 
 
 
   <mat-card  *ngIf="group.value == 'list'"  >
-      <table *ngIf="homeService.homes">
+      <table >
         <tr>
           <th>Home</th>
           <th>Mail</th>
@@ -42,10 +54,15 @@
         <tr *ngFor="let home of homeService.homes | async"  >
           <td [routerLink]="[home._id]" style="cursor: pointer">{{home.name}}</td>
           <td>{{home.email}}</td>
-          <td>{{home.owner}}</td>
+          <td>{{home.owner.lastName}} {{home.owner.firstName}} </td>
           <td>{{home.country}}</td>
-          <td> <button mat-icon-button (click)='editHome(home)' *ngIf="home.permission == 'owner'"><mat-icon>settings</mat-icon></button>
+          <td> <button mat-icon-button (click)='editHome(home)' *ngIf="home.owner.email == userEmail"><mat-icon>settings</mat-icon></button>
             <button mat-icon-button (click)='deleteHome(home._id,home.name)'><mat-icon>delete</mat-icon></button></td>
         </tr>
         </table>
       </mat-card>
+
+</div>
+
+<app-add-button type="addHome" ></app-add-button>
+</div>

@@ -105,15 +105,13 @@ export class EventsService {
     // },error => {
     //   this.handleError(error, "unable to get user homes Ids")
     // });
-    return this.httpClient
-      .get<String[]>(Consts.BASE_URL + '/user/socketRooms', {
-        headers: tokenHeader
-      })
+    return this.httpClient.get<String[]>(Consts.BASE_URL + '/user/socketRooms', {headers: tokenHeader})
       .subscribe(
         res => {
           console.log(res);
           this.roomIdStore = res;
           this.roomIdSubject.next(this.roomIdStore);
+          this.getEvents();
           this.joinUserSocketRooms();
           // this.getAllEvents();
         },
@@ -131,14 +129,22 @@ export class EventsService {
     this.socket.emit('leave', { room: room });
   }
 
-  public sendMessage(message) {
-    this.socket.emit('room', {room: 'room', message: message});
+  public sendMessage(content) {
+    console.log('i ll send the socket message');
+    this.socket.emit('add-user-room', {room: content.room, message: content.message});
+    console.log('socket message sent');
     // this.socket.emit('remove-room', message);
   }
   private joinUserSocketRooms() {
+    console.log('I join the user\'s socket rooms');
     this.roomIdStore.forEach(socketId => {
-      console.log('joining: ' + socketId);
-      this.socket.emit('join', { room: socketId });
+      this.socket.on(socketId, message => {
+        console.log(message);
+        this.snackBar.open(message.toString(), 'close', {
+          duration: 5000,
+          extraClasses: ['info']
+        });
+      });
     });
   }
   // public getMessages = () => {
@@ -154,9 +160,9 @@ export class EventsService {
   //   });
   // }
 
-  public getEvents = () => {
-    return Observable.create(observer => {
-      this.socket.on('remove-room', message => {
+  private getEvents () {
+    console.log('get socket to listen the events');
+      this.socket.on('add-user-room', message => {
         console.log(message);
         this.snackBar.open(message.toString(), 'close', {
           duration: 5000,
@@ -170,7 +176,6 @@ export class EventsService {
           extraClasses: ['danger']
         });
       });
-    });
   }
 
   private handleError(error, message) {

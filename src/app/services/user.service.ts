@@ -7,6 +7,7 @@ import { Consts } from '../models/Consts';
 import { Room } from '../models/Room';
 import { EventObj } from '../models/EventObj';
 import { EventsService } from './events.service';
+import { SocketMessage } from '../models/SocketMessage';
 
 @Injectable()
 export class UserService {
@@ -105,7 +106,10 @@ addUserToRoom(tokenHeader, userId, user) {
   return this.httpClient.put(Consts.BASE_URL + `/rooms/room/users/${userId}`, user , {headers: tokenHeader})
   .subscribe(res => {
     console.log(res);
-    const _event = new EventObj();
+    const content = new SocketMessage();
+    content.room = userId;
+    content.message = 'user added to room';
+    this.eventsService.sendMessage(content);
     this.getRoomUsers(tokenHeader, user.homeId, user.roomId);
   }, error => {
     this.handleError(error, 'Unable to add the User to the Room');

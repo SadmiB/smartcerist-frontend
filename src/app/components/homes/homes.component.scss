@@ -40,7 +40,7 @@
 }
 
 mat-button-toggle-group {
-  float: right;
+  right : 4%;
   margin: 15px 0;
   position:absolute;
   top: 15%;
@@ -66,4 +66,25 @@ tr{color: #313131}
 th {
   background-color: rgb(245, 246, 247);
   color: black;
+}
+
+
+.add-home-picture {
+  height: 300px;
+  margin-left:30%;
+  opacity: 0.3;
+}
+
+.add-home-button{
+  background-color: #37474f;
+  color: white;
+}
+
+.add-home-text{
+  margin-left: 25%;
+}
+
+.add-home-text > h3 {
+  color: #5c5b5b;
+  font-family: monospace;
 }

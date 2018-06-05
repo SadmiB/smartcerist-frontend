@@ -12,6 +12,7 @@ export class HomesService {
   private homeStore: Home[] = [];
   private homeSubject = new Subject();
   homes = this.homeSubject.asObservable();
+  homesNumber = 0;
 
   private homeOwnerStore: Home[] = [];
   private homeOwnerSubject = new Subject();
@@ -22,6 +23,7 @@ export class HomesService {
     .subscribe(res => {
       this.homeStore = res;
       this.homeSubject.next(this.homeStore);
+      this.homesNumber = this.homeStore.length;
     }, error => {
       this.handleError(error, 'unable to get homes');
     });

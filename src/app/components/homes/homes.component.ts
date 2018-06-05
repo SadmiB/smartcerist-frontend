@@ -3,8 +3,10 @@ import { HomesService } from '../../services/homes.service';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar, MatDialog, MatDialogConfig } from '@angular/material';
 import { Home } from '../../models/Home';
+import { User } from '../../models/User';
 import { HomeEditComponent } from './home-edit/home-edit.component';
 import { WarningDiagComponent } from '../warning-diag/warning-diag.component';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-homes',
@@ -14,11 +16,14 @@ import { WarningDiagComponent } from '../warning-diag/warning-diag.component';
 export class HomesComponent implements OnInit {
 
   tokenHeader;
+  userEmail;
   constructor(protected homeService: HomesService,
+    private userService: UserService,
     protected auth: AuthService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar) {
     this.tokenHeader = auth.tokenHeader;
+    this.userEmail = auth.email;
   }
 
   ngOnInit() {
@@ -32,6 +37,17 @@ export class HomesComponent implements OnInit {
 
   getHomes() {
     this.homeService.getHomes(this.tokenHeader);
+  }
+
+  getUserById(userId) {
+    this.userService.getUserById(this.tokenHeader, userId)
+    .subscribe((res: User) => {
+      console.log(res.firstName);
+      return res.firstName;
+    }, error => {
+      this.handleError(error, 'Unable to get the user');
+    })
+    ;
   }
 
   deleteHome(homeId, homeName) {

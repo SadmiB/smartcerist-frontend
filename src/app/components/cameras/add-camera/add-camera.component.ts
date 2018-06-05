@@ -27,13 +27,9 @@ export class AddCameraComponent implements OnInit {
       ipv4: ['', Validators.required],
       ipv6: ['', [Validators.required]],
       port: ['', Validators.required],
-      username: ['', Validators.required],
       mainStream: ['', Validators.required],
       subStream: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required]
-    }, {validator: matchingFields('password', 'confirmPassword')}
-    );
+    });
     this.tokenHeader = auth.tokenHeader;
    }
 
@@ -67,10 +63,5 @@ onNoClick(): void {
     this.snackBar.open(message, 'close', {duration: 3000});
   }
 }
-function matchingFields(field1, field2) {
-  return form => {
-    if (form.controls[field1].value !== form.controls[field2].value) {
-        return {mismatchedFields: true };
-      }
-  };
-}
+
+
