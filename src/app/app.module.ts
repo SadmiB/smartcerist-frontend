@@ -73,6 +73,7 @@ import { ServerComponent } from './components/servers/server/server.component';
 import { ObjectAnalyticsComponent } from './components/analytics/object-analytics/object-analytics.component';
 import { AddCameraComponent } from './components/cameras/add-camera/add-camera.component';
 import { ServerAnalyticsComponent } from './components/analytics/server-analytics/server-analytics.component';
+import { HomesDisplayComponent } from './components/homes/homes-display/homes-display.component';
 import { ObjectService } from './services/object.service';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
@@ -131,6 +132,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     ObjectAnalyticsComponent,
     AddCameraComponent,
     ServerAnalyticsComponent,
+    HomesDisplayComponent,
   ],
   imports: [
     BrowserModule,

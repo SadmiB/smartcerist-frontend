@@ -71,8 +71,18 @@
     padding-left: 80px;
   }
 
-  .mat-input-container{
-    width: 100%;
+  .mat-input-container {
+    width: 60%;
+    margin-left: 15%;
+  }
+  .mat-select{
+    width: 20%;
+    margin-left: 15%;
+  }
+
+  .right-profile{
+    width: 40%;
+    margin-left:25%;
   }
 
   .category{
@@ -158,6 +168,12 @@ h6, .h6 {
 .container{
   padding: 15px 30px;
 }
+
+.profile-container {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
 
 .card{
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.14);

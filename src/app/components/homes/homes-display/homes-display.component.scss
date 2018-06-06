@@ -1,0 +1,70 @@
+.card {
+  position: relative;
+  width: 100%;
+  padding: 15px;
+  margin: 16px;
+  border-radius: 5%;
+}
+
+.tile {
+  height: inherit;
+}
+
+
+.card > mat-card-actions > button {
+  float: right;
+}
+
+
+.header {
+  position: relative;
+  border-radius: 6px;
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  top: -30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.header img{
+  position: relative;
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+////////// display type ////////////////::
+.example-selected-value {
+margin: 15px 0;
+}
+
+mat-button-toggle-group {
+right : 4%;
+margin: 15px 0;
+position:absolute;
+top: 15%;
+}
+
+/////////////////// display table /////////////////////:
+table {
+border-collapse: collapse;
+width: 100%;
+}
+
+
+th, td {
+text-align: center;
+padding: 8px;
+border-bottom-style: solid;
+border-bottom-color: rgb(95, 93, 93);
+border-bottom-width: 1px;
+}
+
+tr{color: #313131}
+
+th {
+background-color: rgb(245, 246, 247);
+color: black;
+}
+

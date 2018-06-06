@@ -1,19 +1,18 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { HomesService } from '../../services/homes.service';
-import { AuthService } from '../../services/auth.service';
-import { MatSnackBar, MatDialog, MatDialogConfig } from '@angular/material';
-import { Home } from '../../models/Home';
-import { User } from '../../models/User';
-import { HomeEditComponent } from './home-edit/home-edit.component';
-import { WarningDiagComponent } from '../warning-diag/warning-diag.component';
-import { UserService } from '../../services/user.service';
+import { Component, OnInit } from '@angular/core';
+import { HomesService } from '../../../services/homes.service';
+import { UserService } from '../../../services/user.service';
+import { AuthService } from '../../../services/auth.service';
+import { MatDialog, MatSnackBar, MatDialogConfig } from '@angular/material';
+import { WarningDiagComponent } from '../../warning-diag/warning-diag.component';
+import { User } from '../../../models/User';
+import { HomeEditComponent } from '../home-edit/home-edit.component';
 
 @Component({
-  selector: 'app-homes',
-  templateUrl: './homes.component.html',
-  styleUrls: ['./homes.component.scss']
+  selector: 'app-homes-display',
+  templateUrl: './homes-display.component.html',
+  styleUrls: ['./homes-display.component.scss']
 })
-export class HomesComponent implements OnInit {
+export class HomesDisplayComponent implements OnInit {
 
   tokenHeader;
   userEmail;
@@ -77,3 +76,5 @@ export class HomesComponent implements OnInit {
   }
 
 }
+
+

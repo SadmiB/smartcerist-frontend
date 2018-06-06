@@ -49,7 +49,7 @@ export class AddButtonComponent implements OnInit {
         this.dialog.open(ServerFormComponent, dialogConfig);
       break;
       case 'addCamera':
-        dialogConfig.height = '650px';
+        dialogConfig.height = '570px';
         dialogConfig.width = '350px';
         dialogConfig.data = {serverId: this.serverId};
         this.dialog.open(AddCameraComponent, dialogConfig);

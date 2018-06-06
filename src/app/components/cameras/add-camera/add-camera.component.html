@@ -1,6 +1,6 @@
-<h2 mat-dialog-title> Add Home </h2>
+<h2 mat-dialog-title> Add Camera </h2>
         <form  class="home-form" [formGroup]='form' (ngSubmit)='onSubmit()' #cameraForm="ngForm">
-          <div class="home-form-div">
+          <mat-dialog-content class="home-form-div">
             <mat-form-field>
               <input [ngClass]="{'error' : isValid('name')}" matInput placeholder="Name" formControlName='name'>
             </mat-form-field>
@@ -14,24 +14,15 @@
               <input [ngClass]="{'error' : isValid('port')}" matInput placeholder="Port Number" formControlName='port'>
             </mat-form-field>
             <mat-form-field>
-              <input [ngClass]="{'error' : isValid('username')}" matInput placeholder="Username" formControlName='username'>
-            </mat-form-field>
-            <mat-form-field>
               <input [ngClass]="{'error' : isValid('mainStream')}"  matInput placeholder="Main Stream Url"  formControlName='mainStream'>
             </mat-form-field>
             <mat-form-field>
               <input [ngClass]="{'error' : isValid('subStream')}" matInput placeholder="SubStream Url" formControlName='subStream'>
             </mat-form-field>
-            <mat-form-field class="input">
-              <input [ngClass]="{'error' : isValid('password')}" matInput placeholder="Password" type="password" formControlName='password'>
-            </mat-form-field>
-            <mat-form-field class="input">
-              <input [ngClass]="{'error' : isValid('confirmPassword')}" matInput placeholder="Confirm Password" type="password" formControlName='confirmPassword'>
-            </mat-form-field>
-            <span *ngIf="form.errors?.mismatchedFields">Password do not match</span>
-            <br>
-          </div>
+          </mat-dialog-content>
           <br><br>
-          <button type="submit" id='signup-btn'  [disabled]="!cameraForm.form.valid" mat-raised-button color='primary'>Add</button>
-          <button type="button" (click)="onNoClick()"  mat-raised-button color='accent' >Cancel</button>
+          <mat-dialog-actions>
+            <button type="submit" id='signup-btn'  [disabled]="!cameraForm.form.valid" mat-raised-button color='primary'>Add</button>
+            <button type="button" (click)="onNoClick()"  mat-raised-button color='accent' >Cancel</button>
+          </mat-dialog-actions>
         </form>
