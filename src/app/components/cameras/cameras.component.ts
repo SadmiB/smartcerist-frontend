@@ -35,8 +35,8 @@ export class CamerasComponent implements OnInit, OnChanges {
     const player = new jsmpeg(client, { canvas: canvas });
   }
 
-  async getCameras(camerasIds) {
-    await camerasIds.forEach(cameraId => {
+  getCameras(camerasIds) {
+    camerasIds.forEach(cameraId => {
       this.camerasService.getServerByCameraId(cameraId)
       .subscribe(res => {
             const server = res;
@@ -44,8 +44,9 @@ export class CamerasComponent implements OnInit, OnChanges {
             camera.server_ip4 = server.ipv4;
             camera.server_ip6 = server.ipv6;
             this.cameras.push(camera);
-            this.getCameraStream(camera);
-        }, error => {
+            console.log('cameras:', camera);
+            this.getCameraStream('camera');
+      }, error => {
             this.handleError(error, 'Unable to get cameras');
       });
     });
