@@ -38,7 +38,7 @@ export class RoomComponent implements OnInit {
         private dialog: MatDialog,
         private route: Router,
         private router: ActivatedRoute,
-        private serversService: ServersService,
+        protected serversService: ServersService,
         private camerasService: CamerasService) {
       this.tokenHeader = auth.tokenHeader;
   }

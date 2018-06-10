@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HomesService } from '../../services/homes.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -10,15 +11,18 @@ import { HomesService } from '../../services/homes.service';
 export class HomeComponent implements OnInit {
 
   homeId;
-  permission;
+  ownerEmail;
+  email;
   constructor(private router: ActivatedRoute,
+    private auth: AuthService,
     private homesService: HomesService) {
       this.homeId = this.router.snapshot.params.homeId;
+      this.email = auth.email;
      }
 
   ngOnInit() {
     this.homeId = this.router.snapshot.params.homeId;
-    this.permission = this.homesService.getHomeFromArray(this.homeId)[0].permission;
+    this.ownerEmail = this.homesService.getHomeFromArray(this.homeId)[0].owner.email;
   }
 
 }
