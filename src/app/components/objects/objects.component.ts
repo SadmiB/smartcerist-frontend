@@ -40,7 +40,7 @@ export class ObjectsComponent implements OnInit, OnChanges {
     this.dialog.open(ObjectSettingsComponent, dialogConfig);
   }
 
-  putLed(obj) {
+  toggleObject(obj) {
     let val;
     this.getObjectMeasure(obj);
     if (obj.measure === '1') {
@@ -62,9 +62,8 @@ export class ObjectsComponent implements OnInit, OnChanges {
     this.objectsService.getObjectMeasure(object)
     .subscribe(res => {
       object.measure = res;
-      object.status = 'Connected';
     }, error => {
-      object.status = 'Disconnected';
+      object.measure = 'Disconnected';
       this.handleError(error, `Unable to get ${object.name} value`);
     });
   }

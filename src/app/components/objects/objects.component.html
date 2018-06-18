@@ -12,21 +12,21 @@
                     <mat-icon *ngIf="obj.type==='PRESENCE'"> remove_red_eye </mat-icon>
                     <mat-icon *ngIf="obj.type==='POWER'" > power </mat-icon>
                     <mat-icon *ngIf="obj.type==='TEMPERATURE'" > toll </mat-icon>
+                    <mat-icon *ngIf="obj.type==='VENTILATOR'" > toys </mat-icon>
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content>
                 <h4>{{obj.name}}</h4>
                 <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon id="settings">more_vert</mat-icon></button>
-                <button mat-icon-button *ngIf="obj.status" (click)='getObjectMeasure(obj)'><mat-icon>refresh</mat-icon></button>
-                <button mat-icon-button *ngIf="(obj.type==='LED' || obj.type==='TEMPERATURE') && obj.status" (click)='putLed(obj)'><mat-icon>power_settings_new</mat-icon></button>
+                <button mat-icon-button *ngIf="obj.status!=Disconnected" (click)='getObjectMeasure(obj)'><mat-icon>refresh</mat-icon></button>
+                <button mat-icon-button *ngIf="(obj.type==='LED' || obj.type==='VENTILATOR') && obj.status!=Disconnected" (click)='toggleObject(obj)'><mat-icon>power_settings_new</mat-icon></button>
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item (click)="showDialog(obj)">
                         <mat-icon>settings</mat-icon>
                         <span>settings</span>
                     </button>
                 </mat-menu>
-                <p *ngIf="obj.status==='Disconnected'">STATUS: {{obj.status}}</p>
-                <p *ngIf="obj.measure">Measure: {{obj.measure}}</p>
+                <p *ngIf="obj.measure"> {{obj.measure}}</p>
 
             </mat-card-content>
             
