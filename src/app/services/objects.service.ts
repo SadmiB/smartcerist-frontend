@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Consts } from '../models/Consts';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ObjectsService {
@@ -16,12 +15,22 @@ export class ObjectsService {
 
 
   getObjectMeasure(object) {
-    console.log(object.path, object.type);
-    return this.httpClient.get(this.BASE_URL + object.path , {responseType: 'text'});
+    console.log(object.path, object.type, object.ipv6);
+    return this.httpClient.get(this.BASE_URL + object.path , {responseType: 'text', params: {'ip': object.ipv6}});
   }
 
-  putLed(val) {
-    return this.httpClient.put(this.BASE_URL + 'lights/led3', {'payload': val} , {responseType: 'text'} );
+  toggleObject(obj) {
+    let val;
+    if (obj.measure === '1') {
+      val = '0';
+    } else {
+      val = '1';
+    }
+    return this.httpClient.put(this.BASE_URL + obj.path, {'payload': val} , {responseType: 'text'} );
+  }
+
+  ressourcesDiscovery(ip) {
+    return this.httpClient.get(this.BASE_URL + 'core' , {params: {'ip': ip}});
   }
 
 }

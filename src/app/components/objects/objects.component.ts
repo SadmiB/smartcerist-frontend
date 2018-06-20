@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ObjectsService } from '../../services/objects.service';
-import { RoomService } from '../../services/room.service';
 import { MatSnackBar, MatDialogConfig, MatDialog } from '@angular/material';
 import { IotObject } from '../../models/IotObject';
 import { ObjectSettingsComponent } from './object-settings/object-settings.component';
@@ -41,17 +40,11 @@ export class ObjectsComponent implements OnInit, OnChanges {
   }
 
   toggleObject(obj) {
-    let val;
+
     this.getObjectMeasure(obj);
-    if (obj.measure === '1') {
-      val = '0';
-    } else {
-      val = '1';
-    }
-    console.log('putLed..', val);
-    this.objectsService.putLed(val)
+    this.objectsService.toggleObject(obj)
     .subscribe(res => {
-      this.getObjectMeasure(obj);
+      obj.measure = res;
     }, error => {
       this.handleError(error, 'Unable to toggle led');
     });
