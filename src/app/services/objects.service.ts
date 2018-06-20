@@ -20,17 +20,18 @@ export class ObjectsService {
   }
 
   toggleObject(obj) {
+    console.log(obj.path, obj.type, obj.ipv6);
     let val;
     if (obj.measure === '1') {
       val = '0';
     } else {
       val = '1';
     }
-    return this.httpClient.put(this.BASE_URL + obj.path, {'payload': val} , {responseType: 'text'} );
+    return this.httpClient.put(this.BASE_URL + obj.path, {'payload': val}, {responseType: 'text', params: {'ip': obj.ipv6}});
   }
 
   ressourcesDiscovery(ip) {
-    return this.httpClient.get(this.BASE_URL + 'core' , {params: {'ip': ip}});
+    return this.httpClient.get(this.BASE_URL + 'core', {params: {'ip': ip}});
   }
 
 }
