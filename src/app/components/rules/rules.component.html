@@ -1,0 +1,16 @@
+<mat-card  >
+  <table  >
+    <tr>
+      <th>Rule</th>
+      <th>Description</th>
+      <th>Manage</th>
+    </tr>
+    <tr *ngFor="let rule of homeService.rules | async"  >
+      <td [routerLink]="['rules',rule._id]" style="cursor: pointer">{{rule.name}}</td>
+      <td>{{rule.description}}</td>
+      <td> <button mat-icon-button (click)='editRule(rule)'><mat-icon>settings</mat-icon></button>
+        <button mat-icon-button (click)='deleteRule(rule)'><mat-icon>delete</mat-icon></button></td>
+    </tr>
+    </table>
+  </mat-card>
+  <app-add-button homeId="{{homeId}}" type="addRule" ></app-add-button>
