@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthResponse } from '../models/AuthResponse';
 import { MatSnackBar } from '@angular/material';
 import { Consts } from '../models/Consts';
+import { Error } from '../models/error';
 
 
 @Injectable()
@@ -46,10 +47,14 @@ export class AuthService {
   }
 
   signin(loginData) {
-    this.httpClient.post(Consts.BASE_URL + '/signin', loginData)
+    this.httpClient.post<Error>(Consts.BASE_URL + '/signin', loginData)
     .subscribe( res => {
       console.log(res);
-      this.authenticate(res);
+      if (res.status === 401) {
+          this.handleError(res.status, res.message);
+      } else {
+        this.authenticate(res);
+      }
     }, error => {
       this.handleError(error, 'Unable to Sign in!');
     });
