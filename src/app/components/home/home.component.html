@@ -8,4 +8,7 @@
         <app-home-servers homeId="{{homeId}}" type="dynamic" ></app-home-servers>
         <app-add-button type="addServer" homeId="{{homeId}}" *ngIf="ownerEmail == email"></app-add-button>
     </mat-tab>
+    <mat-tab label="Rules">
+        <app-rules homeId="{{homeId}}"></app-rules>
+    </mat-tab>
 </mat-tab-group>

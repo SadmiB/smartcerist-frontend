@@ -23,6 +23,8 @@ import {
   MatTableModule,
   MatSliderModule,
   MatDividerModule,
+  MatStepperModule,
+  MatRadioModule,
 } from '@angular/material';
 @NgModule({
   imports: [
@@ -49,6 +51,8 @@ import {
     MatTableModule,
     MatSliderModule,
     MatDividerModule,
+    MatStepperModule,
+    MatRadioModule,
   ],
   exports: [
     MatMenuModule,
@@ -74,6 +78,8 @@ import {
     MatTableModule,
     MatSliderModule,
     MatDividerModule,
+    MatStepperModule,
+    MatRadioModule,
   ],
 })
 

@@ -39,6 +39,7 @@ export class RoomComponent implements OnInit {
         private route: Router,
         private router: ActivatedRoute,
         protected serversService: ServersService,
+        private homesService: HomesService,
         private camerasService: CamerasService) {
       this.tokenHeader = auth.tokenHeader;
   }
@@ -46,7 +47,9 @@ export class RoomComponent implements OnInit {
   ngOnInit() {
     this.roomId = this.router.snapshot.params.roomId;
     this.homeId = this.router.snapshot.params.homeId;
+    this.home = this.homesService.getConnectedUserHomesId(this.homeId);
     this.getRoom(this.homeId, this.roomId);
+    this.serversService.getHomeServers(this.tokenHeader, this.homeId);
   }
 
   getUserPermission() {
