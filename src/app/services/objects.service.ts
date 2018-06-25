@@ -16,18 +16,17 @@ export class ObjectsService {
 
   getObjectMeasure(object) {
     console.log(object.path, object.type, object.ipv6);
-    return this.httpClient.get(this.BASE_URL + object.path , {responseType: 'text', params: {'ip': object.ipv6}});
+    return this.httpClient.get(this.BASE_URL + object.ipv6 + object.path , {responseType: 'text'});
   }
 
   toggleObject(obj) {
-    console.log(obj.path, obj.type, obj.ipv6);
     let val;
     if (obj.measure === '1') {
       val = '0';
     } else {
       val = '1';
     }
-    return this.httpClient.put(this.BASE_URL + obj.path, {'payload': val}, {responseType: 'text', params: {'ip': obj.ipv6}});
+    return this.httpClient.put(this.BASE_URL + obj.ipv6 + obj.path, {'payload': val}, {responseType: 'text'});
   }
 
   ressourcesDiscovery(ip) {
