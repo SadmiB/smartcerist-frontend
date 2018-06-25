@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Add Rule</h2>
+      <mat-dialog-content>
+        <form  class="room-form" [formGroup]='form' (ngSubmit)='onSubmit()' #serverForm="ngForm">
+          <div class="room-form-div">
+            <mat-form-field>
+              <input [ngClass]="{'error' : isValid('name')}" matInput placeholder="Name" formControlName='name'>
+            </mat-form-field>
+            <mat-form-field>
+              <textarea [ngClass]="{'error' : isValid('description')}" matInput placeholder="description" formControlName='description'> </textarea>
+            </mat-form-field>
+          </div>
+          <br><br>
+          <button type="submit" [disabled]="!serverForm.form.valid" id='signup-btn' mat-raised-button color='primary'>Add</button>
+          <button type="button" (click)="close()"  mat-raised-button color='accent' >Cancel</button>
+        </form>
+      </mat-dialog-content>
+
