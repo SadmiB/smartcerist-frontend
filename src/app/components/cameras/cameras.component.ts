@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, AfterViewInit, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
 import { CamerasService } from '../../services/cameras.service';
 import { Camera } from '../../models/Camera';
 import { MatSnackBar } from '@angular/material';
@@ -8,7 +8,7 @@ import { MatSnackBar } from '@angular/material';
   templateUrl: './cameras.component.html',
   styleUrls: ['./cameras.component.scss']
 })
-export class CamerasComponent implements OnInit, OnChanges, AfterViewInit {
+export class CamerasComponent implements OnInit, OnChanges {
 
   @Input() camerasIds: string[];
   @ViewChild('canvas') canvas: ElementRef;
@@ -28,12 +28,8 @@ export class CamerasComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  ngAfterViewInit() {
-      this.isCardVisible = true;
-      this.getCameraStream('camera');
-  }
-
   getCameraStream(camera) {
+    this.isCardVisible = true;
     const canvas = this.canvas.nativeElement;
     const client = new WebSocket('ws://localhost:9999');
     const player = new jsmpeg(client, { canvas: canvas });
@@ -49,7 +45,7 @@ export class CamerasComponent implements OnInit, OnChanges, AfterViewInit {
           camera.server_ip6 = server.ipv6;
           this.cameras.push(camera);
           console.log('cameras:', camera);
-          // this.getCameraStream('camera');
+          this.getCameraStream('camera');
       }, error => {
             this.handleError(error, 'Unable to get cameras');
       });
