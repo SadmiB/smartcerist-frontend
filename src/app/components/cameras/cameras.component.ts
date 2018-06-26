@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, OnChanges, AfterViewInit, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
-import { IotObject } from '../../models/IotObject';
 import { CamerasService } from '../../services/cameras.service';
 import { Camera } from '../../models/Camera';
 import { MatSnackBar } from '@angular/material';
@@ -9,17 +8,18 @@ import { MatSnackBar } from '@angular/material';
   templateUrl: './cameras.component.html',
   styleUrls: ['./cameras.component.scss']
 })
-export class CamerasComponent implements OnInit, OnChanges , AfterViewInit {
+export class CamerasComponent implements OnInit, OnChanges, AfterViewInit {
 
   @Input() camerasIds: string[];
   @ViewChild('canvas') canvas: ElementRef;
-  cameras: Camera[] = [];
+  @ViewChild('camcard') camcard: ElementRef;
 
+  cameras: Camera[] = [];
+  isCardVisible = false;
   constructor(private camerasService: CamerasService,
     private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-
   }
 
   ngOnChanges(change: SimpleChanges) {
@@ -29,7 +29,8 @@ export class CamerasComponent implements OnInit, OnChanges , AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.getCameraStream('camera');
+      this.isCardVisible = true;
+      this.getCameraStream('camera');
   }
 
   getCameraStream(camera) {
