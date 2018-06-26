@@ -62,9 +62,12 @@ export class AuthService {
 
   changePassword(tokenHeader, password) {
     delete password.confirmPassword;
-    this.httpClient.put(Consts.BASE_URL + '/changePwd', password, {headers : tokenHeader} )
+    this.httpClient.put<Error>(Consts.BASE_URL + '/changePwd', password, {headers : tokenHeader} )
     .subscribe(res => {
       console.log(res);
+      if (res.status === 401) {
+        this.handleError(401, res.message);
+      }
     }, error => {
       this.handleError(error, 'Unable to change the password');
     });

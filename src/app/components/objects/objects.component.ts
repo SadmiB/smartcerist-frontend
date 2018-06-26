@@ -41,12 +41,15 @@ export class ObjectsComponent implements OnInit, OnChanges {
 
   toggleObject(obj) {
 
-    this.getObjectMeasure(obj);
-    this.objectsService.toggleObject(obj)
-    .subscribe(res => {
+    this.objectsService.getObjectMeasure(obj)
+    .subscribe( res => {
       obj.measure = res;
-    }, error => {
-      this.handleError(error, 'Unable to toggle led');
+      this.objectsService.toggleObject(obj)
+      .subscribe(resp => {
+        obj.measure = resp;
+      }, error => {
+        this.handleError(error, 'Unable to toggle led');
+      });
     });
   }
 
