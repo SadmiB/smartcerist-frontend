@@ -8,6 +8,7 @@ import { HomesService } from '../../services/homes.service';
 import { MatDialog } from '@angular/material';
 import { WarningDiagComponent } from '../warning-diag/warning-diag.component';
 import { HomeService } from '../../services/home.service';
+import { Rule } from '../../models/Rule';
 
 @Component({
   selector: 'app-rules',
@@ -16,6 +17,7 @@ import { HomeService } from '../../services/home.service';
 })
 export class RulesComponent implements OnInit {
   @Input () homeId;
+  @Input() owner;
   home: Home;
   rules;
   tokenHeader;
@@ -46,5 +48,12 @@ export class RulesComponent implements OnInit {
           this.homeService.removeRule(this.tokenHeader, this.homeId, rule._id);
       }
     });
+  }
+  changeRuleState(rule) {
+    const newRule: Rule = rule;
+    newRule.state = !rule.state;
+    console.log('rule.state');
+    console.log(rule.state);
+    this.homeService.updateRule(this.tokenHeader, this.homeId, rule._id, newRule);
   }
 }

@@ -56,7 +56,7 @@ export class HomeService {
     this.httpClient.post<MyAction>(Consts.BASE_URL + `/homes/${homeId}/rules/${ruleId}/actions`, action, {headers: tokenHeader})
     .subscribe(res => {
       console.log(res);
-      this.getRuleActions(tokenHeader, homeId, ruleId);
+     // this.getRuleActions(tokenHeader, homeId, ruleId);
     }, error => {
       this.handleError(error, 'Unable to add the action!');
     });
@@ -111,6 +111,7 @@ export class HomeService {
   updateRule(tokenHeader, homeId, ruleId, rule) {
     this.httpClient.put<Rule>(Consts.BASE_URL + `/homes/${homeId}/rules/${ruleId}`, rule, {headers: tokenHeader})
     .subscribe(res => {
+      this.getRules(tokenHeader, homeId);
       console.log(res);
     }, error => {
       this.handleError(error, 'Unable to add room!');
@@ -138,6 +139,7 @@ export class HomeService {
   removeConditionRule(tokenHeader, homeId, ruleId, conditionId) {
     return this.httpClient.delete(Consts.BASE_URL + `/homes/${homeId}/rules/${ruleId}/conditions/${conditionId}` , {headers: tokenHeader})
     .subscribe(res => {
+      console.log(res);
       this.getRuleConditions(tokenHeader, homeId, ruleId);
     }, error => {
       this.handleError(error, 'unable to remove the condition');

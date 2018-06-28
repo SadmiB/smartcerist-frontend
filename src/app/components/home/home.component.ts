@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   homeId;
   ownerEmail;
   email;
+  owner: boolean;
   constructor(private router: ActivatedRoute,
     private auth: AuthService,
     private homesService: HomesService) {
@@ -23,6 +24,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.homeId = this.router.snapshot.params.homeId;
     this.ownerEmail = this.homesService.getHomeFromArray(this.homeId)[0].owner.email;
+    this.owner = (this.ownerEmail === this.email);
+    console.log('owner ' + this.owner);
   }
 
 }

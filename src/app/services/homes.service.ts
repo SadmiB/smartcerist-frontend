@@ -94,7 +94,7 @@ export class HomesService {
 
   showSnackBar(classType, message) {
     const config = new MatSnackBarConfig();
-    config.extraClasses = [classType];
+    config.panelClass = [classType];
     config.duration = 3000;
     config.direction = 'ltr';
     config.horizontalPosition = 'center';

@@ -14,6 +14,7 @@ import { WarningDiagComponent } from '../warning-diag/warning-diag.component';
 export class RoomsComponent implements OnInit {
   tokenHeader;
   @Input() homeId;
+  @Input() owner;
 
   constructor(protected roomsService: RoomsService,
     private auth: AuthService,

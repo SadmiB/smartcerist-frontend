@@ -25,6 +25,7 @@ import {
   MatDividerModule,
   MatStepperModule,
   MatRadioModule,
+  MatSlideToggleModule,
 } from '@angular/material';
 @NgModule({
   imports: [
@@ -53,6 +54,7 @@ import {
     MatDividerModule,
     MatStepperModule,
     MatRadioModule,
+    MatSlideToggleModule,
   ],
   exports: [
     MatMenuModule,
@@ -80,6 +82,7 @@ import {
     MatDividerModule,
     MatStepperModule,
     MatRadioModule,
+    MatSlideToggleModule,
   ],
 })
 

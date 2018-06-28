@@ -9,7 +9,7 @@
           <mat-card-content>
                   <h4>{{server.name}}</h4>
           </mat-card-content>
-          <mat-card-actions>
+          <mat-card-actions *ngIf="owner==='true'">
               <button mat-icon-button (click)="removeServer(server._id, server.name)"><mat-icon>delete</mat-icon></button>
               <button mat-icon-button (click)="editServer(server)"><mat-icon>settings</mat-icon></button>
           </mat-card-actions>
