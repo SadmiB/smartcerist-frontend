@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { IotObject } from '../../models/IotObject';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
 import { CamerasService } from '../../services/cameras.service';
 import { Camera } from '../../models/Camera';
 import { MatSnackBar } from '@angular/material';
@@ -12,14 +11,15 @@ import { MatSnackBar } from '@angular/material';
 export class CamerasComponent implements OnInit, OnChanges {
 
   @Input() camerasIds: string[];
+  @ViewChild('canvas') canvas: ElementRef;
+  @ViewChild('camcard') camcard: ElementRef;
 
   cameras: Camera[] = [];
-
+  isCardVisible = false;
   constructor(private camerasService: CamerasService,
     private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-
   }
 
   ngOnChanges(change: SimpleChanges) {
@@ -28,24 +28,25 @@ export class CamerasComponent implements OnInit, OnChanges {
     }
   }
 
-
   getCameraStream(camera) {
-    const canvas = document.getElementById('canvas');
+    this.isCardVisible = true;
+    const canvas = this.canvas.nativeElement;
     const client = new WebSocket('ws://localhost:9999');
     const player = new jsmpeg(client, { canvas: canvas });
   }
 
-  async getCameras(camerasIds) {
-    await camerasIds.forEach(cameraId => {
+  getCameras(camerasIds) {
+    camerasIds.forEach(cameraId => {
       this.camerasService.getServerByCameraId(cameraId)
       .subscribe(res => {
-            const server = res;
-            const camera = server.cameras[0];
-            camera.server_ip4 = server.ipv4;
-            camera.server_ip6 = server.ipv6;
-            this.cameras.push(camera);
-            this.getCameraStream(camera);
-        }, error => {
+          const server = res;
+          const camera = server.cameras[0];
+          camera.server_ip4 = server.ipv4;
+          camera.server_ip6 = server.ipv6;
+          this.cameras.push(camera);
+          console.log('cameras:', camera);
+          this.getCameraStream('camera');
+      }, error => {
             this.handleError(error, 'Unable to get cameras');
       });
     });
