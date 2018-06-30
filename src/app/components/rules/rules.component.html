@@ -1,0 +1,22 @@
+<mat-card  >
+  <table  >
+    <tr>
+      <th>Rule</th>
+      <th>Description</th>
+      <th>Deactivate/Activate</th>
+      <th *ngIf="owner==='true'">Manage</th>
+    </tr>
+    <tr *ngFor="let rule of homeService.rules | async"  >
+      <td [routerLink]="['rules',rule._id]" style="cursor: pointer">{{rule.name}}</td>
+      <td>{{rule.description}}</td>
+      <td>
+          <mat-slide-toggle
+          [checked]="rule.state"
+          (change)="changeRuleState(rule)">
+          </mat-slide-toggle>
+      </td>
+      <td *ngIf="owner==='true'"> <button mat-icon-button (click)='editRule(rule)'><mat-icon>settings</mat-icon></button>
+        <button mat-icon-button (click)='deleteRule(rule)'><mat-icon>delete</mat-icon></button></td>
+    </tr>
+    </table>
+  </mat-card>

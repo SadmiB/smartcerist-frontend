@@ -24,6 +24,8 @@ import { ServerFormComponent } from './components/servers/home-servers/server-fo
 import { RoomUsersExpansionPanelComponent } from './components/room/room-users-expansion-panel/room-users-expansion-panel.component';
 import { NotificationDetailsComponent } from './components/notifications/notification-details/notification-details.component';
 import { ServerComponent } from './components/servers/server/server.component';
+import { RulesComponent } from './components/rules/rules.component';
+import { RuleComponent } from './components/rules/rule/rule.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard/homes',  pathMatch: 'full'},
@@ -41,6 +43,7 @@ const routes: Routes = [
     {path: 'homes/:homeId/servers', component: ServersComponent},
     {path: 'homes/:homeId/servers/:serverId', component: ServerComponent},
     {path: 'homes/:homeId/servers/form', component: ServerFormComponent},
+    {path: 'homes/:homeId/rules/:ruleId', component: RuleComponent},
     {path: 'users', component: UsersComponent},
     {path: 'rooms', component: RoomsTabsComponent},
     {path: 'roomsUsers', component: UsersByRoomComponent},

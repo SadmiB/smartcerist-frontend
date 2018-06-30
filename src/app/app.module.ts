@@ -1,3 +1,4 @@
+import { HomeService } from './services/home.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -75,7 +76,13 @@ import { AddCameraComponent } from './components/cameras/add-camera/add-camera.c
 import { ServerAnalyticsComponent } from './components/analytics/server-analytics/server-analytics.component';
 import { HomesDisplayComponent } from './components/homes/homes-display/homes-display.component';
 import { ObjectService } from './services/object.service';
-
+import { RulesComponent } from './components/rules/rules.component';
+import { ActionsComponent } from './components/rules/actions/actions.component';
+import { ConditionsComponent } from './components/rules/conditions/conditions.component';
+import { AddActionComponent } from './components/rules/actions/add-action/add-action.component';
+import { RuleComponent } from './components/rules/rule/rule.component';
+import { RuleFormeComponent } from './components/rules/rule-forme/rule-forme.component';
+import { AddConditionComponent } from './components/rules/conditions/add-condition/add-condition.component';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 
@@ -133,6 +140,13 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     AddCameraComponent,
     ServerAnalyticsComponent,
     HomesDisplayComponent,
+    RulesComponent,
+    ActionsComponent,
+    ConditionsComponent,
+    AddActionComponent,
+    RuleComponent,
+    RuleFormeComponent,
+    AddConditionComponent,
   ],
   imports: [
     BrowserModule,
@@ -155,7 +169,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
   ],
   providers: [ AuthService, HomesService, RoomsService, RoomService, ObjectsService, UserService, ServersService, NotificationsService,
     EventsService, { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
-    SnotifyService, FileUploadServiceService, CamerasService, ObjectService],
+    SnotifyService, FileUploadServiceService, CamerasService, ObjectService, HomeService],
   entryComponents: [
       HomeEditComponent,
       RoomEditComponent,
@@ -163,7 +177,10 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
       PersonEditComponent,
       WarningDiagComponent,
       AddCameraComponent,
-      ObjectSettingsComponent
+      RuleFormeComponent,
+      ObjectSettingsComponent,
+      AddActionComponent,
+      AddConditionComponent,
   ],
   bootstrap: [AppComponent]
 })

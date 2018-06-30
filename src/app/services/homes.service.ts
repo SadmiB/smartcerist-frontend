@@ -4,6 +4,7 @@ import { Consts } from '../models/Consts';
 import { Home } from '../models/Home';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { Subject } from 'rxjs/Subject';
+import { Rule } from '../models/Rule';
 
 @Injectable()
 export class HomesService {
@@ -55,6 +56,11 @@ export class HomesService {
     return this.homeStore.filter(home => home._id === homeId);
   }
 
+  getRuleFromHome(homeId, ruleId) {
+    const home = this.homeStore.filter(homeDes => homeDes._id === homeId)[0];
+    return home.rules.filter(rule => rule._id === ruleId);
+  }
+
   getConnectedUserHomesId (tokenHeader) {
     return this.httpClient.get(Consts.BASE_URL + '/user/homesId', {headers: tokenHeader});
   }
@@ -68,6 +74,7 @@ export class HomesService {
       this.handleError(error, 'Unable to add home!');
     });
   }
+
 
   updateHome(tokenHeader, homeId, home) {
     this.httpClient.put<Home>(Consts.BASE_URL + `/user/homes/${homeId}`, home, {headers: tokenHeader})
@@ -87,7 +94,7 @@ export class HomesService {
 
   showSnackBar(classType, message) {
     const config = new MatSnackBarConfig();
-    config.extraClasses = [classType];
+    config.panelClass = [classType];
     config.duration = 3000;
     config.direction = 'ltr';
     config.horizontalPosition = 'center';

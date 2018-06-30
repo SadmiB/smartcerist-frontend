@@ -1,4 +1,6 @@
 <mat-grid-list cols="4" *ngIf="type === 'dynamic'" >
+
+
   <mat-grid-tile *ngFor='let server of serversService.servers | async ' class="tile">
       <mat-card class="card" >
           <mat-card-title  class="header" routerLink="servers/{{server._id}}">
@@ -7,7 +9,7 @@
           <mat-card-content>
                   <h4>{{server.name}}</h4>
           </mat-card-content>
-          <mat-card-actions>
+          <mat-card-actions *ngIf="owner==='true'">
               <button mat-icon-button (click)="removeServer(server._id, server.name)"><mat-icon>delete</mat-icon></button>
               <button mat-icon-button (click)="editServer(server)"><mat-icon>settings</mat-icon></button>
           </mat-card-actions>

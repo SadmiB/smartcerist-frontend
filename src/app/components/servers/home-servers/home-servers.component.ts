@@ -17,6 +17,7 @@ export class HomeServersComponent implements OnInit {
 
   @Input() homeId;
   @Input() type;
+  @Input() owner;
   servers: Server[] = [];
   tokenHeader;
 
