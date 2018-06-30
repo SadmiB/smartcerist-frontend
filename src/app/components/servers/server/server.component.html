@@ -5,7 +5,12 @@
   <mat-grid-tile *ngFor='let object of beacon.objects ' class="tile">
       <mat-card class="card">
           <mat-card-title  class="header" >
-              <mat-icon>toys</mat-icon>
+            <mat-icon *ngIf="object.type==='led'"> lightbulb_outline </mat-icon>
+            <mat-icon *ngIf="object.type==='light'"> highlight </mat-icon>
+            <mat-icon *ngIf="object.type==='presence'"> remove_red_eye </mat-icon>
+            <mat-icon *ngIf="object.type==='power'" > power </mat-icon>
+            <mat-icon *ngIf="object.type==='temperature'" > toll </mat-icon>
+            <mat-icon *ngIf="object.type==='ventilator'" > toys </mat-icon>
           </mat-card-title>
           <mat-card-content>
                   <h4>{{object.name}}</h4>
@@ -34,7 +39,7 @@
     <mat-grid-tile class="tile" *ngFor="let camera of server.cameras">
         <mat-card class="card" >
             <mat-card-title  class="header" >
-                <mat-icon>camera</mat-icon>
+                <mat-icon>videocam</mat-icon>
             </mat-card-title>
             <mat-card-content>
                     <h4>{{camera.name}}</h4>
