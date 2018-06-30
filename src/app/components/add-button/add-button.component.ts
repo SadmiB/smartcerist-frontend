@@ -5,6 +5,7 @@ import { RoomFormComponent } from '../rooms/room-form/room-form.component';
 import { ServerFormComponent } from '../servers/home-servers/server-form/server-form.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AddCameraComponent } from '../cameras/add-camera/add-camera.component';
+import { RuleFormeComponent } from '../rules/rule-forme/rule-forme.component';
 
 @Component({
   selector: 'app-add-button',
@@ -54,10 +55,17 @@ export class AddButtonComponent implements OnInit {
         dialogConfig.data = {serverId: this.serverId};
         this.dialog.open(AddCameraComponent, dialogConfig);
       break;
+      case 'addRule':
+        dialogConfig.height = '370px';
+        dialogConfig.width = '350px';
+        dialogConfig.data = {homeId: this.homeId};
+        this.dialog.open(RuleFormeComponent, dialogConfig);
+      break;
       case 'addUser':
         console.log(this.link);
         this.router.navigate([this.link]);
       break;
+
 
       default:
         break;

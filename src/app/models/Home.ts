@@ -1,4 +1,6 @@
 import {Room} from './Room';
+import { User } from './User';
+import { Rule } from './Rule';
 export class Home {
     _id: string;
     name: string;
@@ -9,8 +11,8 @@ export class Home {
     long: string;
     lat: string;
     picture: string;
-    owner: string;
+    owner: User;
     servers: string[];
     rooms: Room[];
-    permission: string;
+    rules: Rule[];
 }

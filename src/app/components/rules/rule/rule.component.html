@@ -1,0 +1,9 @@
+<app-header back='true' title='Rule' search="fasle"></app-header>
+<mat-tab-group >
+    <mat-tab label="Conditions" >
+        <app-conditions [home]="home" [rule]="rule" ></app-conditions>
+    </mat-tab>
+    <mat-tab label="Actions">
+      <app-actions [home]="home" [rule]="rule"></app-actions>
+    </mat-tab>
+</mat-tab-group>

@@ -5,6 +5,7 @@ export class MyObject {
     name: string;
     path: string;
     type: string;
+    kind: string;
     min_threshold: Number;
     max_threshold: Number;
     measures: [Measure];

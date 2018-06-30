@@ -23,6 +23,9 @@ import {
   MatTableModule,
   MatSliderModule,
   MatDividerModule,
+  MatStepperModule,
+  MatRadioModule,
+  MatSlideToggleModule,
 } from '@angular/material';
 @NgModule({
   imports: [
@@ -49,6 +52,9 @@ import {
     MatTableModule,
     MatSliderModule,
     MatDividerModule,
+    MatStepperModule,
+    MatRadioModule,
+    MatSlideToggleModule,
   ],
   exports: [
     MatMenuModule,
@@ -74,6 +80,9 @@ import {
     MatTableModule,
     MatSliderModule,
     MatDividerModule,
+    MatStepperModule,
+    MatRadioModule,
+    MatSlideToggleModule,
   ],
 })
 

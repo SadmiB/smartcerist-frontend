@@ -27,7 +27,11 @@ export class NotifIconBtnComponent implements OnInit {
 
   ngOnInit() {
     this.eventsService.getSocketRooms(this.tokenHeader);
-    this.notifsService.getNotificationsBtn(this.tokenHeader);
+    Observable.interval(300000)
+     .subscribe((val) => {
+      this.notifsService.getNotificationsBtn(this.tokenHeader);
+     }, error => {
+    });
   }
   private handleError(error, message) {
     console.error(error);

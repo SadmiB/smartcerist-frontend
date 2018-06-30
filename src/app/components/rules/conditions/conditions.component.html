@@ -1,0 +1,34 @@
+<button matTooltip="Choose Sensor" mat-icon-button class="msg-btn" [matMenuTriggerFor]="menu"  >
+  <i class="material-icons icon-btn">add_to_photos</i> <span>Add Condition</span>
+</button>
+
+<mat-menu #menu="matMenu" id="notification-menu" >
+  <div *ngFor="let server of serversService.servers | async">
+    <div *ngFor="let beacon of server.beacons" >
+      <div *ngFor="let object of beacon.objects" >
+          <span mat-menu-item class="notification-element" (click)="addCondition(server._id, beacon._id, object._id, object.type)"> {{object.name}} </span>
+      </div>
+    </div>
+  </div>
+  <span mat-menu-item class="notification-element" (click)="addCondition('', '', '', 'TIMEOUT')"> Time Out </span>
+</mat-menu>
+
+<mat-card  *ngIf="rule">
+    <table >
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Condition</th>
+        <th>Manage</th>
+      </tr>
+      <tr *ngFor="let condition of homeService.conditions | async">
+        <td >{{condition.name}}</td>
+        <td>{{condition.description}}</td>
+        <td>{{condition.value}}  {{condition.condition}} </td>
+        <td><button mat-icon-button (click)="deleteCondition(condition)"><mat-icon>delete</mat-icon></button></td>
+      </tr>
+      </table>
+    </mat-card>
+
+
+

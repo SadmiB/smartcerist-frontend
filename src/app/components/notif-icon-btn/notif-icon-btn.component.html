@@ -5,7 +5,7 @@
 
   <mat-menu #menu="matMenu" id="notification-menu" >
     <div *ngFor="let event of notifsService.notifications | async">
-      <span mat-menu-item class="notification-element" (click)="getLink(event)">{{event.type}}</span>
+      <span mat-menu-item class="notification-element" (click)="getLink(event)">{{event.resume}}</span>
     </div>
     <span mat-menu-item id="notification-all-elements" routerLink='/dashboard/notifications'>All notifications</span>
   </mat-menu>

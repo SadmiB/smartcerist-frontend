@@ -22,7 +22,7 @@
   <div class="dropdown-content-camera" >
     <div *ngFor="let server of serversService.servers | async" >
       <div *ngFor="let camera of server.cameras" >
-            <span mat-menu-item class="notification-element"  *ngIf="cameraNonAffected(camera._id)" (click)="addCameraToRoom(camera._id)"> {{camera.name}} </span>
+            <span mat-menu-item class="notification-element"  (click)="addCameraToRoom(camera._id)"> {{camera.name}} </span>
       </div>
     </div>
   </div>
