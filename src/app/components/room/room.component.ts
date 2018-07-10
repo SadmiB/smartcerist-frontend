@@ -47,7 +47,7 @@ export class RoomComponent implements OnInit {
   ngOnInit() {
     this.roomId = this.router.snapshot.params.roomId;
     this.homeId = this.router.snapshot.params.homeId;
-    this.home = this.homesService.getConnectedUserHomesId(this.homeId);
+    this.home = this.homesService.getHomeFromArray(this.homeId)[0];
     this.getRoom(this.homeId, this.roomId);
     this.serversService.getHomeServers(this.tokenHeader, this.homeId);
   }

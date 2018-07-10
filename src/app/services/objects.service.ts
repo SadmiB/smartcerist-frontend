@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Consts } from '../models/Consts';
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable()
 export class ObjectsService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private snackBar: MatSnackBar) { }
 
   BASE_URL = Consts.BASE_URL + '/api/';
 
@@ -31,6 +32,19 @@ export class ObjectsService {
 
   ressourcesDiscovery(ip) {
     return this.httpClient.get(this.BASE_URL + ip + '/' + 'core');
+  }
+
+  removeObjectFromRoom(tokenHeader, homeId, roomId, objectId) {
+    return this.httpClient.delete(Consts.BASE_URL + `/${homeId}/rooms/${roomId}/objects/${objectId}` , {headers: tokenHeader})
+    .subscribe( res => res,
+    error => {
+      this.handleError(error, 'Unalbe to remove the object');
+    });
+  }
+
+  private handleError(error, message) {
+    console.error(error);
+    this.snackBar.open(message, 'close', { duration: 3000 });
   }
 
 }

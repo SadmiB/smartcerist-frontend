@@ -16,7 +16,7 @@
                 </mat-form-field>
              <br><br>
            </div>
-        <div *ngIf="objectType === 'PRESENCE'" >
+        <div *ngIf="objectType === 'presence'" >
          <mat-radio-group  class="example-radio-group" [(ngModel)]="choix" formControlName='condition'>
           <mat-radio-button class="example-radio-button"  value="1">
             Motion detected
@@ -27,7 +27,7 @@
         </mat-radio-group>
         <br><br>
       </div>
-      <div *ngIf="((objectType === 'TEMPERATURE') || (objectType === 'LIGHT') || (objectType === 'POWER'))" >
+      <div *ngIf="((objectType === 'temperature') || (objectType === 'light') || (objectType === 'power'))" >
 
         <mat-form-field>
           <input  matInput  placeholder="{{objectType}}" formControlName='value'>

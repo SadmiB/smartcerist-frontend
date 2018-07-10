@@ -3,6 +3,10 @@ import { ObjectsService } from '../../services/objects.service';
 import { MatSnackBar, MatDialogConfig, MatDialog } from '@angular/material';
 import { IotObject } from '../../models/IotObject';
 import { ObjectSettingsComponent } from './object-settings/object-settings.component';
+import { AuthService } from '../../services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { WarningDiagComponent } from '../warning-diag/warning-diag.component';
 
 @Component({
   selector: 'app-objects',
@@ -12,13 +16,24 @@ import { ObjectSettingsComponent } from './object-settings/object-settings.compo
 export class ObjectsComponent implements OnInit, OnChanges {
 
   @Input() objectsIds: string[] = [];
+
+  roomId;
+  homeId;
+  tokenHeader;
+
   objects: IotObject[] = [];
   constructor(
     private objectsService: ObjectsService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar) { }
+    private router: ActivatedRoute,
+    private snackBar: MatSnackBar,
+    private auth: AuthService,
+    private route: Router) { }
 
   ngOnInit() {
+    this.roomId = this.router.snapshot.params.roomId;
+    this.homeId = this.router.snapshot.params.homeId;
+    this.tokenHeader = this.auth.tokenHeader;
   }
 
   ngOnChanges(change: SimpleChanges) {
@@ -111,4 +126,18 @@ export class ObjectsComponent implements OnInit, OnChanges {
       console.log('obj: ', theOject);
       return theOject;
   }
+
+  removeObject(object) {
+    const dialogRef = this.dialog.open(WarningDiagComponent, {
+      width: '250px',
+      data : {message : 'Are you sure to remove ' + object.name},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+          console.log('The dialog was closed');
+          this.objectsService.removeObjectFromRoom(this.tokenHeader, this.homeId, this.roomId, object._id);
+      }
+    });
+  }
+
 }
